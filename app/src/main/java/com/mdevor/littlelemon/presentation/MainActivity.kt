@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -68,7 +69,7 @@ class MainActivity : ComponentActivity() {
                         Column(
                             modifier = Modifier
                                 .background(color = MaterialTheme.colorScheme.secondary)
-                                .padding(all = 20.dp)
+                                .padding(horizontal = 12.dp)
                                 .fillMaxWidth(),
                         ) {
                             Text(
@@ -80,14 +81,27 @@ class MainActivity : ComponentActivity() {
                                 color = MaterialTheme.colorScheme.surface,
                                 style = MaterialTheme.typography.titleMedium
                             )
-                            Row() {
+                            Row(modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(bottom = 60.dp)
+                            ) {
                                 Text(
-                                    text = "We are a family owned Mediterranean restaurant," +
+                                    text = "We are a family owned Mediterranean restaurant, " +
                                             "focused on traditional recipes served with a modern twist.",
-                                    style = MaterialTheme.typography.bodyLarge
+                                    style = MaterialTheme.typography.bodyLarge,
+                                    modifier = Modifier
+                                        .weight(weight= 0.5f)
+                                        .padding(end = 8.dp),
                                 )
-                                
+                                Image(
+                                    painter = painterResource(R.drawable.hero_image),
+                                    contentDescription = "",
+                                    contentScale = ContentScale.Crop,
+                                    modifier = Modifier.size(120.dp)
+                                        .clip(RoundedCornerShape(16.dp))
+                                )
                             }
+
 
                         }
                     }
