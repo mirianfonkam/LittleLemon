@@ -29,8 +29,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mdevor.littlelemon.R
+import com.mdevor.littlelemon.presentation.components.LineDivider
 import com.mdevor.littlelemon.presentation.components.TextInputField
-import com.mdevor.littlelemon.presentation.theme.FilterList
+import com.mdevor.littlelemon.presentation.components.FilterList
 import com.mdevor.littlelemon.presentation.theme.LittleLemonTheme
 
 @Composable
@@ -127,6 +128,10 @@ fun HomeScreen() {
 
                 selectedCategories = oldCategoryList
             }
+            LineDivider(
+                modifier = Modifier.padding(horizontal = 16.dp),
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
         }
     }
 }
