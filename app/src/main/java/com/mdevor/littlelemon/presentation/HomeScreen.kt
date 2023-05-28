@@ -18,8 +18,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -28,6 +30,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mdevor.littlelemon.R
 import com.mdevor.littlelemon.presentation.components.TextInputField
+import com.mdevor.littlelemon.presentation.theme.FilterList
 import com.mdevor.littlelemon.presentation.theme.LittleLemonTheme
 
 @Composable
@@ -46,7 +49,7 @@ fun HomeScreen() {
                         modifier = Modifier
                             .padding(12.dp)
                             .size(height = 40.dp, width = 148.dp),
-                        painter = painterResource(R.drawable.ic_little_lemon_logo),
+                        painter = painterResource(R.drawable.ic_logo),
                         contentDescription = "Little Lemon Logo"
                     )
                 }
@@ -108,6 +111,21 @@ fun HomeScreen() {
                     placeholderText = "Search"
                 )
                 Spacer(modifier = Modifier.height(36.dp))
+            }
+            var selectedCategories by remember { mutableStateOf(listOf<String>()) }
+            FilterList(
+                categories = listOf("Chip 1", "Chip 2", "Chip 3","Chip 4", "Chip 5", "Chip 6", "Chip 7","Chip 8"  ),
+                selectedCategories = selectedCategories
+            ) { filter ->
+                // Move callback to VM
+                val oldCategoryList: MutableList<String> = selectedCategories.toMutableList()
+                if (oldCategoryList.contains(filter)) {
+                    oldCategoryList.remove(filter)
+                } else {
+                    oldCategoryList.add(filter)
+                }
+
+                selectedCategories = oldCategoryList
             }
         }
     }
