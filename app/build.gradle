@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.plugin.serialization'
 }
 
 android {
@@ -47,6 +48,7 @@ android {
 }
 
 dependencies {
+    testImplementation 'org.testng:testng:6.9.6'
     def composeBom = platform('androidx.compose:compose-bom:2023.04.01')
     implementation composeBom
 
@@ -57,9 +59,17 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1'
     implementation 'androidx.compose.runtime:runtime-livedata'
 
+    // Ktor
+    implementation "io.ktor:ktor-client-core:2.1.3"
+    implementation "io.ktor:ktor-client-android:2.1.3"
+    implementation "io.ktor:ktor-client-content-negotiation:2.1.3"
+    implementation "io.ktor:ktor-serialization-kotlinx-json:2.1.3"
+
     // UI Tests
     androidTestImplementation composeBom
     androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
+
+    testImplementation 'junit:junit:4.13.2'
 
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
     debugImplementation 'androidx.compose.ui:ui-tooling'
