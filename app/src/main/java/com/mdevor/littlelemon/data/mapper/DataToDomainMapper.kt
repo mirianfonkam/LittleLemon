@@ -5,18 +5,17 @@ import com.mdevor.littlelemon.data.model.MenuListRequest
 import com.mdevor.littlelemon.domain.model.MenuItem
 import com.mdevor.littlelemon.domain.model.MenuItemList
 
-fun MenuListRequest.toDomain(): MenuItemList {
-    return MenuItemList(
+fun MenuListRequest.toDomain() =
+    MenuItemList(
         menuList = menuList.map { it.toDomain() }
     )
-}
 
-private fun MenuItemRequest.toDomain(): MenuItem {
-    return MenuItem(
+
+private fun MenuItemRequest.toDomain() =
+    MenuItem(
         title = title,
         description = description,
         price = price,
         category = category,
         image = image,
     )
-}

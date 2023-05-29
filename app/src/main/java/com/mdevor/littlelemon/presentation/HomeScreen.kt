@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
@@ -31,7 +32,6 @@ import androidx.compose.ui.unit.dp
 import com.mdevor.littlelemon.R
 import com.mdevor.littlelemon.presentation.components.LineDivider
 import com.mdevor.littlelemon.presentation.components.TextInputField
-import com.mdevor.littlelemon.presentation.components.FilterList
 import com.mdevor.littlelemon.presentation.theme.LittleLemonTheme
 
 @Composable
@@ -77,12 +77,12 @@ fun HomeScreen() {
             ) {
                 Text(
                     text = "Little Lemon",
-                    style = MaterialTheme.typography.titleLarge,
+                    style = MaterialTheme.typography.displayLarge,
                 )
                 Text(
                     text = "Chicago",
                     color = MaterialTheme.colorScheme.surface,
-                    style = MaterialTheme.typography.titleMedium
+                    style = MaterialTheme.typography.displayMedium
                 )
                 Row(modifier = Modifier
                     .fillMaxWidth()
@@ -91,7 +91,7 @@ fun HomeScreen() {
                     Text(
                         text = "We are a family owned Mediterranean restaurant, " +
                                 "focused on traditional recipes served with a modern twist.",
-                        style = MaterialTheme.typography.bodyLarge,
+                        style = MaterialTheme.typography.displaySmall,
                         modifier = Modifier
                             .weight(weight = 0.5f)
                             .padding(end = 8.dp),
@@ -132,6 +132,18 @@ fun HomeScreen() {
                 modifier = Modifier.padding(horizontal = 16.dp),
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
+            LazyColumn(
+                modifier = Modifier.padding(horizontal = 16.dp)
+            ) {
+                items(5) { index ->
+                    Spacer(modifier = Modifier.height(16.dp))
+                    DishItem(menuItem = tempStub)
+                    Spacer(modifier = Modifier.height(16.dp))
+                    LineDivider(
+                        color = MaterialTheme.colorScheme.surfaceVariant
+                    )
+                }
+            }
         }
     }
 }

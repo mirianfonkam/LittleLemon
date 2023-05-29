@@ -1,4 +1,4 @@
-package com.mdevor.littlelemon.presentation.components
+package com.mdevor.littlelemon.presentation
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
