@@ -2,6 +2,7 @@ package com.mdevor.littlelemon.presentation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -29,13 +30,15 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImagePainter.State.Empty.painter
 import com.mdevor.littlelemon.R
 import com.mdevor.littlelemon.presentation.components.LineDivider
 import com.mdevor.littlelemon.presentation.components.TextInputField
 import com.mdevor.littlelemon.presentation.theme.LittleLemonTheme
+import com.mdevor.littlelemon.presentation.viewmodel.MenuViewModel
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(viewModel: MenuViewModel) {
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.surface
@@ -62,8 +65,9 @@ fun HomeScreen() {
                         modifier = Modifier
                             .padding(12.dp)
                             .size(size = 40.dp)
-                            .clip(CircleShape),
-                        painter = painterResource(R.drawable.ic_little_lemon_profile),
+                            .clip(CircleShape)
+                            .clickable { /* TODO nav to profile */ },
+                    painter = painterResource(R.drawable.ic_little_lemon_profile),
                         contentScale = ContentScale.Crop,
                         contentDescription = "Navigate to profile"
                     )
@@ -152,6 +156,6 @@ fun HomeScreen() {
 @Composable
 fun HomeScreenPreview() {
     LittleLemonTheme {
-        HomeScreen()
+        HomeScreen(MenuViewModel())
     }
 }

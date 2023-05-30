@@ -16,11 +16,11 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.mdevor.littlelemon.presentation.model.MenuViewItem
+import com.mdevor.littlelemon.presentation.model.MenuItemData
 import com.mdevor.littlelemon.presentation.theme.LittleLemonTheme
 
 @Composable
-fun DishItem(menuItem: MenuViewItem) {
+fun DishItem(menuItem: MenuItemData) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween
@@ -61,7 +61,7 @@ fun DishItem(menuItem: MenuViewItem) {
 fun DishItemPreview() {
     LittleLemonTheme {
         DishItem(
-            MenuViewItem(
+            MenuItemData(
                 title = "Pasta",
                 description = "Delicious pasta for your delight.",
                 image = "https://github.com/Meta-Mobile-Developer-PC/Working-With-Data-API/blob/main/images/greekSalad.jpg?raw=true",

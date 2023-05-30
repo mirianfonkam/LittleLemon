@@ -2,8 +2,8 @@ package com.mdevor.littlelemon.presentation.mapper
 
 import com.mdevor.littlelemon.domain.model.MenuItem
 import com.mdevor.littlelemon.domain.model.MenuItemList
-import com.mdevor.littlelemon.presentation.model.MenuViewItem
-import com.mdevor.littlelemon.presentation.model.MenuViewItemList
+import com.mdevor.littlelemon.presentation.model.MenuItemData
+import com.mdevor.littlelemon.presentation.model.MenuItemListData
 import org.junit.Assert
 import org.junit.Test
 
@@ -31,16 +31,16 @@ class DomainToPresentationMapper {
             )
         )
 
-        val expectedPresentationModel = MenuViewItemList(
+        val expectedPresentationModel = MenuItemListData(
             menuList = listOf(
-                MenuViewItem(
+                MenuItemData(
                     title = "Greek Salad",
                     description = "Our delicious salad is served with Feta cheese and peeled cucumber. Includes tomatoes, onions, olives, salt and oregano in the ingredients.",
                     image = "imageURL",
                     category = "starters",
                     price = "$12.99",
                 ),
-                MenuViewItem(
+                MenuItemData(
                     title = "Pasta",
                     description = "Delicious pasta for your delight.",
                     image = "imageURL",

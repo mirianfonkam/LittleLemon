@@ -1,6 +1,9 @@
 package com.mdevor.littlelemon.presentation.model
 
-data class MenuViewItem(
+import androidx.compose.runtime.Immutable
+
+@Immutable
+data class MenuItemData(
     val title: String,
     val description: String,
     val price: String,
