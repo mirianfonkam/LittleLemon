@@ -14,10 +14,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.style.TextAlign
 
+
+/**
+ * If any issues occur revise:
+ * https://medium.com/androiddevelopers/effective-state-management-for-textfield-in-compose-d6e5b070fbe5
+ *
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TextInputField(
     textFieldState: MutableState<String>,
+    onTextValueChange: (String) -> Unit,
     placeholderText: String? = null,
     labelText: String? = null,
     backgroundColor: Color = MaterialTheme.colorScheme.surface,
@@ -35,7 +42,7 @@ fun TextInputField(
             modifier = Modifier.fillMaxWidth(),
             value = textFieldState.value,
             onValueChange = { newText ->
-                textFieldState.value = newText
+                onTextValueChange(newText)
             },
             singleLine = true,
             colors = TextFieldDefaults.outlinedTextFieldColors(

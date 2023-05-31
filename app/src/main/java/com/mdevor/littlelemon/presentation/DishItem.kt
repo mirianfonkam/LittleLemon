@@ -20,9 +20,12 @@ import com.mdevor.littlelemon.presentation.model.MenuItemData
 import com.mdevor.littlelemon.presentation.theme.LittleLemonTheme
 
 @Composable
-fun DishItem(menuItem: MenuItemData) {
+fun DishItem(
+    modifier: Modifier = Modifier.fillMaxWidth(),
+    menuItem: MenuItemData,
+) {
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = modifier,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Column(
@@ -61,7 +64,7 @@ fun DishItem(menuItem: MenuItemData) {
 fun DishItemPreview() {
     LittleLemonTheme {
         DishItem(
-            MenuItemData(
+            menuItem = MenuItemData(
                 title = "Pasta",
                 description = "Delicious pasta for your delight.",
                 image = "https://github.com/Meta-Mobile-Developer-PC/Working-With-Data-API/blob/main/images/greekSalad.jpg?raw=true",

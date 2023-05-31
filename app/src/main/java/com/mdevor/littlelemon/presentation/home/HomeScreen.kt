@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
@@ -34,9 +35,9 @@ import com.mdevor.littlelemon.presentation.DishItem
 import com.mdevor.littlelemon.presentation.FilterList
 import com.mdevor.littlelemon.presentation.components.LineDivider
 import com.mdevor.littlelemon.presentation.components.LogoTopBar
+import com.mdevor.littlelemon.presentation.components.ProfileTopBar
 import com.mdevor.littlelemon.presentation.components.TextInputField
 import com.mdevor.littlelemon.presentation.theme.LittleLemonTheme
-import com.mdevor.littlelemon.presentation.tempStub
 
 @Composable
 fun HomeScreen(viewModel: HomeViewModel = HomeViewModel()) {
@@ -60,32 +61,14 @@ fun HomeScreen(viewModel: HomeViewModel = HomeViewModel()) {
                 color = MaterialTheme.colorScheme.surface,
                 style = MaterialTheme.typography.displayMedium
             )
-            Row(modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 48.dp)
-            ) {
-                Text(
-                    text = "We are a family owned Mediterranean restaurant, " +
-                            "focused on traditional recipes served with a modern twist.",
-                    style = MaterialTheme.typography.displaySmall,
-                    modifier = Modifier
-                        .weight(weight = 0.5f)
-                        .padding(end = 8.dp),
-                )
-                Image(
-                    painter = painterResource(R.drawable.hero_image),
-                    contentDescription = "",
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .size(120.dp)
-                        .clip(RoundedCornerShape(16.dp))
-                )
-            }
+            HeroContentRow()
             val searchTextState = remember { mutableStateOf("") }
             TextInputField(
                 textFieldState = searchTextState,
+                onTextValueChange = viewModel::updateSearchInput,
                 backgroundColor = MaterialTheme.colorScheme.surfaceVariant,
-                placeholderText = "Search"
+                placeholderText = "Search",
+
             )
             Spacer(modifier = Modifier.height(36.dp))
         }
@@ -111,10 +94,13 @@ fun HomeScreen(viewModel: HomeViewModel = HomeViewModel()) {
         LazyColumn(
             modifier = Modifier.padding(horizontal = 16.dp)
         ) {
-            items(5) { index ->
-                Spacer(modifier = Modifier.height(16.dp))
-                DishItem(menuItem = tempStub)
-                Spacer(modifier = Modifier.height(16.dp))
+            itemsIndexed(items = viewModel.uiState.value.displayedMenuList) { _, item ->
+                DishItem(
+                    menuItem = item,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 32.dp)
+                )
                 LineDivider(
                     color = MaterialTheme.colorScheme.surfaceVariant
                 )
@@ -124,22 +110,27 @@ fun HomeScreen(viewModel: HomeViewModel = HomeViewModel()) {
 }
 
 @Composable
-fun ProfileTopBar(
-    onProfileClick: () -> Unit,
-) {
+private fun HeroContentRow() {
     Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.End,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(bottom = 48.dp)
     ) {
-        Image(
+        Text(
+            text = "We are a family owned Mediterranean restaurant, " +
+                    "focused on traditional recipes served with a modern twist.",
+            style = MaterialTheme.typography.displaySmall,
             modifier = Modifier
-                .padding(12.dp)
-                .size(size = 40.dp)
-                .clip(CircleShape)
-                .clickable { onProfileClick() },
-            painter = painterResource(R.drawable.ic_little_lemon_profile),
+                .weight(weight = 0.5f)
+                .padding(end = 8.dp),
+        )
+        Image(
+            painter = painterResource(R.drawable.hero_image),
+            contentDescription = "",
             contentScale = ContentScale.Crop,
-            contentDescription = "Navigate to profile"
+            modifier = Modifier
+                .size(120.dp)
+                .clip(RoundedCornerShape(16.dp))
         )
     }
 }
