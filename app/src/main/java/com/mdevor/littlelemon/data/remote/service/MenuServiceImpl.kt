@@ -7,7 +7,7 @@ import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 
-private const val URL_STRING = "https://github.com/Meta-Mobile-Developer-PC/Working-With-Data-API/blob/main/menu.json"
+private const val URL_STRING = "https://raw.githubusercontent.com/mirianfonkam/LittleLemon/main/littlelemonapi/menu.json"
 
 class MenuServiceImpl(
     private val httpClient: HttpClient,

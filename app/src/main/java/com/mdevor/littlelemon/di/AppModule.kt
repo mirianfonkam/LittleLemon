@@ -7,6 +7,7 @@ import com.mdevor.littlelemon.data.remote.service.MenuService
 import com.mdevor.littlelemon.data.remote.service.MenuServiceImpl
 import com.mdevor.littlelemon.data.repository.MenuRepositoryImpl
 import com.mdevor.littlelemon.domain.repository.MenuRepository
+import com.mdevor.littlelemon.domain.usecase.GetCategoriesUseCase
 import com.mdevor.littlelemon.domain.usecase.GetMenuUseCase
 import com.mdevor.littlelemon.presentation.home.HomeViewModel
 import kotlinx.coroutines.Dispatchers
@@ -32,7 +33,12 @@ val appModule = module {
 
     factory { GetMenuUseCase(get()) }
 
+    factory { GetCategoriesUseCase() }
+
     viewModel {
-        HomeViewModel(getMenuUseCase = get())
+        HomeViewModel(
+            getMenuUseCase = get(),
+            getCategoriesUseCase = get(),
+        )
     }
 }

@@ -51,7 +51,7 @@ fun DishItem(
         }
         AsyncImage(
             model = menuItem.image,
-            contentDescription = null,
+            contentDescription = "${menuItem.title} image",
             contentScale = ContentScale.Crop,
             modifier = Modifier.size(70.dp)
                 .align(CenterVertically)
