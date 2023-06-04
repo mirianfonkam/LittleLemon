@@ -15,9 +15,9 @@
 </p>
 
 ## ☑ Todo List 
- - [ ] Use ViewModel to render the Home Screen
- - [ ] Integrate the Ktor library for network requests
- - [ ] Use Koin for dependency injection
+ - [x] Use ViewModel to render the Home Screen
+ - [x] Integrate the Ktor library for network requests
+ - [x] Use Koin for dependency injection
  - [ ] Filtering Funcionality - VM
  - [ ] Searching Functionality - VM
  - [ ] Improve Home Screen Composables
@@ -28,6 +28,8 @@
 | ------ | ------ |
 | [Figma](https://figma.com) | Design and access resources of the prototype |
 | [Coil](https://github.com/coil-kt/coil)| Image loading library|
+| [Ktor](https://github.com/ktorio/ktor)| Network HTTP client|
+| [Koin](https://github.com/InsertKoinIO/koin)| Dependency Injection|
 
 ## 📚 References
 
