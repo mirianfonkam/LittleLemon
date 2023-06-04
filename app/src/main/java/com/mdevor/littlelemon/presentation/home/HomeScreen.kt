@@ -2,8 +2,6 @@ package com.mdevor.littlelemon.presentation.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,7 +13,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -38,9 +35,10 @@ import com.mdevor.littlelemon.presentation.components.LogoTopBar
 import com.mdevor.littlelemon.presentation.components.ProfileTopBar
 import com.mdevor.littlelemon.presentation.components.TextInputField
 import com.mdevor.littlelemon.presentation.theme.LittleLemonTheme
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun HomeScreen(viewModel: HomeViewModel) {
+fun HomeScreen(viewModel: HomeViewModel = koinViewModel()) {
     // uiState
     // uiAction
 
@@ -143,6 +141,6 @@ private fun HeroContentRow() {
 @Composable
 fun HomeScreenPreview() {
     LittleLemonTheme {
-//        HomeScreen()
+        HomeScreen()
     }
 }

@@ -33,8 +33,6 @@ val appModule = module {
     factory { GetMenuUseCase(get()) }
 
     viewModel {
-        HomeViewModel(
-            getMenuUseCase = get()
-        )
+        HomeViewModel(getMenuUseCase = get())
     }
 }

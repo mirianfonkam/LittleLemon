@@ -1,6 +1,6 @@
 package com.mdevor.littlelemon.presentation.home
 
-sealed class HomeUiIntent {
+sealed class HomeUiEvent {
 
     object Set {
 
