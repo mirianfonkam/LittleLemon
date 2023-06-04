@@ -1,9 +1,8 @@
 package com.mdevor.littlelemon.data.mapper
 
-import com.mdevor.littlelemon.data.model.MenuItemRequest
-import com.mdevor.littlelemon.data.model.MenuListRequest
-import com.mdevor.littlelemon.domain.model.MenuItem
-import com.mdevor.littlelemon.domain.model.MenuItemList
+import com.mdevor.littlelemon.data.remote.model.MenuItemRequest
+import com.mdevor.littlelemon.data.remote.model.MenuListRequest
+import com.mdevor.littlelemon.domain.entity.MenuItem
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -30,8 +29,7 @@ class DataToDomainMapperTest {
                 )
             )
         )
-        val expectedDomainModel = MenuItemList(
-            menuList = listOf(
+        val expectedDomainModel = listOf(
                 MenuItem(
                     title = "Greek Salad",
                     description = "Our delicious salad is served with Feta cheese and peeled cucumber. Includes tomatoes, onions, olives, salt and oregano in the ingredients.",
@@ -47,8 +45,6 @@ class DataToDomainMapperTest {
                     price = 6.99,
                 )
             )
-        )
-
 
         // When
         val actualModel = menuDataModel.toDomain()

@@ -40,7 +40,11 @@ import com.mdevor.littlelemon.presentation.components.TextInputField
 import com.mdevor.littlelemon.presentation.theme.LittleLemonTheme
 
 @Composable
-fun HomeScreen(viewModel: HomeViewModel = HomeViewModel()) {
+fun HomeScreen(viewModel: HomeViewModel) {
+    // uiState
+    // uiAction
+
+    // home content (uiState, uiAction)
     Column(modifier = Modifier.fillMaxSize()) {
         Box() {
             LogoTopBar()
@@ -139,6 +143,6 @@ private fun HeroContentRow() {
 @Composable
 fun HomeScreenPreview() {
     LittleLemonTheme {
-        HomeScreen()
+//        HomeScreen()
     }
 }

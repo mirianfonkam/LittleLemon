@@ -18,12 +18,12 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             LittleLemonTheme {
-                val viewModel: HomeViewModel = viewModel { HomeViewModel() }
+//                val viewModel: HomeViewModel = viewModel { HomeViewModel() }
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.surface
                 ) {
-                    HomeScreen(viewModel)
+//                    HomeScreen(viewModel)
                 }
             }
         }

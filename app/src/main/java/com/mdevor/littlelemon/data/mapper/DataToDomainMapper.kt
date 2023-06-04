@@ -1,15 +1,11 @@
 package com.mdevor.littlelemon.data.mapper
 
-import com.mdevor.littlelemon.data.model.MenuItemRequest
-import com.mdevor.littlelemon.data.model.MenuListRequest
-import com.mdevor.littlelemon.domain.model.MenuItem
-import com.mdevor.littlelemon.domain.model.MenuItemList
+import com.mdevor.littlelemon.data.remote.model.MenuItemRequest
+import com.mdevor.littlelemon.data.remote.model.MenuListRequest
+import com.mdevor.littlelemon.domain.entity.MenuItem
 
-fun MenuListRequest.toDomain() =
-    MenuItemList(
-        menuList = menuList.map { it.toDomain() }
-    )
-
+fun MenuListRequest.toDomain(): List<MenuItem> =
+    menuList.map { it.toDomain() }
 
 private fun MenuItemRequest.toDomain() =
     MenuItem(

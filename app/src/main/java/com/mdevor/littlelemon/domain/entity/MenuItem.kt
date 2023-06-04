@@ -1,4 +1,4 @@
-package com.mdevor.littlelemon.domain.model
+package com.mdevor.littlelemon.domain.entity
 
 data class MenuItem(
     val title: String,

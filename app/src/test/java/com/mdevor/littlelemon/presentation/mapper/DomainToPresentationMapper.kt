@@ -1,9 +1,7 @@
 package com.mdevor.littlelemon.presentation.mapper
 
-import com.mdevor.littlelemon.domain.model.MenuItem
-import com.mdevor.littlelemon.domain.model.MenuItemList
+import com.mdevor.littlelemon.domain.entity.MenuItem
 import com.mdevor.littlelemon.presentation.model.MenuItemData
-import com.mdevor.littlelemon.presentation.model.MenuItemListData
 import org.junit.Assert
 import org.junit.Test
 
@@ -12,8 +10,7 @@ class DomainToPresentationMapper {
     @Test
     fun `GIVEN domain model WHEN toPresentation is called THEN should return expected presentation model`() {
         // Given
-        val menuDomainModel = MenuItemList(
-            menuList = listOf(
+        val menuDomainModel = listOf(
                 MenuItem(
                     title = "Greek Salad",
                     description = "Our delicious salad is served with Feta cheese and peeled cucumber. Includes tomatoes, onions, olives, salt and oregano in the ingredients.",
@@ -29,10 +26,8 @@ class DomainToPresentationMapper {
                     price = 6.99,
                 )
             )
-        )
 
-        val expectedPresentationModel = MenuItemListData(
-            menuList = listOf(
+        val expectedPresentationModel = listOf(
                 MenuItemData(
                     title = "Greek Salad",
                     description = "Our delicious salad is served with Feta cheese and peeled cucumber. Includes tomatoes, onions, olives, salt and oregano in the ingredients.",
@@ -48,7 +43,6 @@ class DomainToPresentationMapper {
                     price = "$6.99",
                 )
             )
-        )
 
 
         // When

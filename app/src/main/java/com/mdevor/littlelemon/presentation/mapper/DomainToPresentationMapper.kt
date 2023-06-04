@@ -1,14 +1,10 @@
 package com.mdevor.littlelemon.presentation.mapper
 
-import com.mdevor.littlelemon.domain.model.MenuItem
-import com.mdevor.littlelemon.domain.model.MenuItemList
+import com.mdevor.littlelemon.domain.entity.MenuItem
 import com.mdevor.littlelemon.presentation.model.MenuItemData
-import com.mdevor.littlelemon.presentation.model.MenuItemListData
 
-fun MenuItemList.toPresentation() =
-    MenuItemListData(
-        menuList = menuList.map { it.toPresentation() }
-    )
+fun List<MenuItem>.toPresentation() =
+    map { it.toPresentation() }
 
 private fun MenuItem.toPresentation() =
     MenuItemData(
