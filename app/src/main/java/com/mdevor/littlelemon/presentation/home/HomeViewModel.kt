@@ -26,8 +26,8 @@ class HomeViewModel(
 
     fun dispatchViewEvent(viewAction: HomeUiEvent) {
         when (viewAction) {
-            is HomeUiEvent.FilterMenu -> filterMenu(filter = viewAction.filter)
-            is HomeUiEvent.SearchMenu -> updateSearchInput(input = viewAction.searchQuery)
+            is HomeUiEvent.FilterMenu -> handleFilteringUpdate(filter = viewAction.filter)
+            is HomeUiEvent.SearchMenu -> handleSearchUpdate(input = viewAction.searchQuery)
         }
     }
 
@@ -50,30 +50,42 @@ class HomeViewModel(
         _uiState.update { it.copy(categoryList = categoryList) }
     }
 
-    private fun updateSearchInput(input: String) {
+    private fun handleSearchUpdate(input: String) {
         _uiState.update { it.copy(searchQuery = input) }
+        updateDisplayedMenuList()
     }
 
-    private fun filterMenu(filter: String) {
-        val selectedFilters: MutableList<String> = _uiState.value.selectedCategoryList.toMutableList()
-        if (selectedFilters.contains(filter)) {
+    private fun handleFilteringUpdate(filter: String) {
+        val selectedFilters = _uiState.value.selectedCategoryList.toMutableList()
+        toggleFilter(selectedFilters, filter)
+        val newSelectedFilterList = selectedFilters.toList()
+        _uiState.update { it.copy(selectedCategoryList = newSelectedFilterList) }
+        updateDisplayedMenuList()
+    }
+
+    private fun toggleFilter(
+        selectedFilters: MutableList<String>,
+        filter: String,
+    ) {
+        val wasPreviouslySelected = selectedFilters.contains(filter)
+        if (wasPreviouslySelected) {
             selectedFilters.remove(filter)
         } else {
             selectedFilters.add(filter)
         }
-        val newSelectedFilterList = selectedFilters.toList()
-        val newDisplayedMenuList = if (newSelectedFilterList.isEmpty()) {
-            _uiState.value.menuList
-        } else {
-            _uiState.value.menuList.filter { menuItem ->
-                newSelectedFilterList.contains(menuItem.category)
-            }
+    }
+
+    private fun updateDisplayedMenuList() {
+        val searchQuery = _uiState.value.searchQuery
+        val selectedCategoryList = _uiState.value.selectedCategoryList
+        val menuList = _uiState.value.menuList
+        val filteredMenuList = menuList.filter { menuItem ->
+            val matchesSearchQuery = menuItem.title.contains(searchQuery, ignoreCase = true)
+                    || searchQuery.isBlank()
+            val matchesCategoryFilter = selectedCategoryList.contains(menuItem.category)
+                    || selectedCategoryList.isEmpty()
+            matchesSearchQuery && matchesCategoryFilter
         }
-        _uiState.update {
-            it.copy(
-                selectedCategoryList = newSelectedFilterList,
-                displayedMenuList = newDisplayedMenuList,
-            )
-        }
+        _uiState.update { it.copy(displayedMenuList = filteredMenuList) }
     }
 }
