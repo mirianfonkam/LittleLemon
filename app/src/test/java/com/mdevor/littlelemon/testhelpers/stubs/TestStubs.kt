@@ -1,4 +1,4 @@
-package com.mdevor.littlelemon.stubs
+package com.mdevor.littlelemon.testhelpers.stubs
 
 import com.mdevor.littlelemon.domain.entity.MenuItem
 import com.mdevor.littlelemon.presentation.model.MenuItemData
@@ -37,3 +37,5 @@ fun getPresentationMenuList(): List<MenuItemData> = listOf(
         price = "$6.99",
     )
 )
+
+fun getCategoryList(): List<String> = listOf("starters", "mains")

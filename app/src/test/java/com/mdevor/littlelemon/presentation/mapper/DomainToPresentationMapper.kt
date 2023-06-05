@@ -1,7 +1,7 @@
 package com.mdevor.littlelemon.presentation.mapper
 
-import com.mdevor.littlelemon.stubs.getDomainMenuList
-import com.mdevor.littlelemon.stubs.getPresentationMenuList
+import com.mdevor.littlelemon.testhelpers.stubs.getDomainMenuList
+import com.mdevor.littlelemon.testhelpers.stubs.getPresentationMenuList
 import org.junit.Assert
 import org.junit.Test
 

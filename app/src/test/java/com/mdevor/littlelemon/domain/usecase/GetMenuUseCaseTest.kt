@@ -1,7 +1,7 @@
 package com.mdevor.littlelemon.domain.usecase
 
 import com.mdevor.littlelemon.domain.repository.MenuRepository
-import com.mdevor.littlelemon.stubs.getDomainMenuList
+import com.mdevor.littlelemon.testhelpers.stubs.getDomainMenuList
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking

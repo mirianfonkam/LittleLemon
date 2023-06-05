@@ -1,6 +1,6 @@
 package com.mdevor.littlelemon.domain.usecase
 
-import com.mdevor.littlelemon.stubs.getDomainMenuList
+import com.mdevor.littlelemon.testhelpers.stubs.getDomainMenuList
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
