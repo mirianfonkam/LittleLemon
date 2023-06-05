@@ -6,6 +6,7 @@ import com.mdevor.littlelemon.domain.entity.MenuItem
 import com.mdevor.littlelemon.domain.usecase.GetCategoriesUseCase
 import com.mdevor.littlelemon.domain.usecase.GetMenuUseCase
 import com.mdevor.littlelemon.presentation.mapper.toPresentation
+import com.mdevor.littlelemon.presentation.model.MenuItemData
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -76,16 +77,23 @@ class HomeViewModel(
     }
 
     private fun updateDisplayedMenuList() {
-        val searchQuery = _uiState.value.searchQuery
-        val selectedCategoryList = _uiState.value.selectedCategoryList
-        val menuList = _uiState.value.menuList
-        val filteredMenuList = menuList.filter { menuItem ->
-            val matchesSearchQuery = menuItem.title.contains(searchQuery, ignoreCase = true)
-                    || searchQuery.isBlank()
-            val matchesCategoryFilter = selectedCategoryList.contains(menuItem.category)
-                    || selectedCategoryList.isEmpty()
-            matchesSearchQuery && matchesCategoryFilter
+        with(_uiState.value) {
+            val filteredMenuList = menuList.filter { menuItem ->
+                shouldSelectBySearchQuery(menuItem, searchQuery)
+                        && shouldSelectByFilterList(selectedCategoryList, menuItem)
+            }
+            _uiState.update { it.copy(displayedMenuList = filteredMenuList) }
         }
-        _uiState.update { it.copy(displayedMenuList = filteredMenuList) }
+    }
+
+    private fun shouldSelectBySearchQuery(menuItem: MenuItemData, searchQuery: String): Boolean {
+        return menuItem.title.contains(searchQuery, ignoreCase = true) || searchQuery.isBlank()
+    }
+
+    private fun shouldSelectByFilterList(
+        selectedCategoryList: List<String>,
+        menuItem: MenuItemData
+    ): Boolean {
+        return selectedCategoryList.contains(menuItem.category) || selectedCategoryList.isEmpty()
     }
 }
