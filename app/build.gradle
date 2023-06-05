@@ -68,6 +68,8 @@ dependencies {
     implementation "io.ktor:ktor-client-android:$ktor_version"
     implementation "io.ktor:ktor-client-content-negotiation:$ktor_version"
     implementation "io.ktor:ktor-serialization-kotlinx-json:$ktor_version"
+    implementation "io.ktor:ktor-client-mock:$ktor_version"
+
 
     // Koin
     implementation "io.insert-koin:koin-androidx-compose:3.4.3"
@@ -85,6 +87,7 @@ dependencies {
     testImplementation "io.insert-koin:koin-test-junit4:$koin_version"
     testImplementation "io.insert-koin:koin-android-test:$koin_version"
     testImplementation "io.mockk:mockk:$mockk_version"
+    testImplementation "io.ktor:ktor-client-mock:$ktor_version"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.1"
 
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
