@@ -1,4 +1,4 @@
-package com.mdevor.littlelemon.presentation
+package com.mdevor.littlelemon.presentation.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

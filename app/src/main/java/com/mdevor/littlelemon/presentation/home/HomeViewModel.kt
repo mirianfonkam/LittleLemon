@@ -20,13 +20,15 @@ class HomeViewModel(
     private val _uiState = MutableStateFlow(HomeUiState())
     val uiState: StateFlow<HomeUiState> = _uiState.asStateFlow()
 
-
-    /**
-     * Warning: Avoid launching asynchronous operations in the init block or constructor of a ViewModel.
-     * https://developer.android.com/topic/architecture/ui-layer/state-production
-     */
     init {
         getMenuList()
+    }
+
+    fun dispatchViewEvent(viewAction: HomeUiEvent) {
+        when (viewAction) {
+            is HomeUiEvent.FilterMenu -> filterMenu(selectedFilters = viewAction.selectedFilters)
+            is HomeUiEvent.SearchMenu -> updateSearchInput(input = viewAction.searchQuery)
+        }
     }
 
     private fun getMenuList() {
@@ -42,7 +44,11 @@ class HomeViewModel(
         _uiState.update { it.copy(categoryList = categoryList) }
     }
 
-    fun updateSearchInput(input: String) {
+    private fun updateSearchInput(input: String) {
         _uiState.update { it.copy(searchQuery = input) }
+    }
+
+    private fun filterMenu(selectedFilters: List<String>) {
+        _uiState.update { it.copy(selectedCategoryList = selectedFilters) }
     }
 }

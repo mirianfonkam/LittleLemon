@@ -1,12 +1,7 @@
 package com.mdevor.littlelemon.presentation.home
 
 sealed class HomeUiEvent {
+    data class FilterMenu(val selectedFilters: List<String>): HomeUiEvent()
 
-    object Set {
-
-    }
-
-    object  Navigate {
-
-    }
+    data class SearchMenu(val searchQuery: String): HomeUiEvent()
 }
