@@ -26,7 +26,7 @@ class HomeViewModel(
 
     fun dispatchViewEvent(viewAction: HomeUiEvent) {
         when (viewAction) {
-            is HomeUiEvent.FilterMenu -> filterMenu(selectedFilters = viewAction.selectedFilters)
+            is HomeUiEvent.FilterMenu -> filterMenu(filter = viewAction.filter)
             is HomeUiEvent.SearchMenu -> updateSearchInput(input = viewAction.searchQuery)
         }
     }
@@ -48,7 +48,14 @@ class HomeViewModel(
         _uiState.update { it.copy(searchQuery = input) }
     }
 
-    private fun filterMenu(selectedFilters: List<String>) {
-        _uiState.update { it.copy(selectedCategoryList = selectedFilters) }
+    private fun filterMenu(filter: String) {
+        val selectedFilters: MutableList<String> = _uiState.value.selectedCategoryList.toMutableList()
+        if (selectedFilters.contains(filter)) {
+            selectedFilters.remove(filter)
+        } else {
+            selectedFilters.add(filter)
+        }
+        val newSelectedFilterList = selectedFilters.toList()
+        _uiState.update { it.copy(selectedCategoryList = newSelectedFilterList) }
     }
 }

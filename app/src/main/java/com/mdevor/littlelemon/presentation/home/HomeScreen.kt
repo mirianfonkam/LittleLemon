@@ -12,10 +12,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -60,21 +58,10 @@ fun HomeScreenContent(viewState: HomeUiState, viewEvent: (HomeUiEvent) -> Unit) 
                 )
             Spacer(modifier = Modifier.height(36.dp))
         }
-        var selectedCategories by remember { mutableStateOf(listOf<String>()) }
         FilterList(
             categories = viewState.categoryList,
-            selectedCategories = selectedCategories,
-            onFilterClick = { filter ->
-                // Move callback to VM
-                val oldCategoryList: MutableList<String> = selectedCategories.toMutableList()
-                if (oldCategoryList.contains(filter)) {
-                    oldCategoryList.remove(filter)
-                } else {
-                    oldCategoryList.add(filter)
-                }
-
-                selectedCategories = oldCategoryList
-            }
+            selectedCategories = viewState.selectedCategoryList,
+            onFilterClick = { filter -> viewEvent(HomeUiEvent.FilterMenu(filter)) }
         )
         LineDivider(
             modifier = Modifier.padding(horizontal = 16.dp),
