@@ -66,7 +66,7 @@ fun HomeScreenContent(viewState: HomeUiState, viewEvent: (HomeUiEvent) -> Unit) 
             modifier = Modifier.padding(horizontal = 16.dp),
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
-        DishItemList(viewState.menuList)
+        DishItemList(viewState.displayedMenuList)
     }
 }
 

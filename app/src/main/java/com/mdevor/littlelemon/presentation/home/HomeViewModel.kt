@@ -34,7 +34,13 @@ class HomeViewModel(
     private fun getMenuList() {
         viewModelScope.launch {
             val menuList = getMenuUseCase()
-            _uiState.update { it.copy(menuList = menuList.toPresentation()) }
+            val menuItemDataList = menuList.toPresentation()
+            _uiState.update {
+                it.copy(
+                    menuList = menuItemDataList,
+                    displayedMenuList = menuItemDataList,
+                )
+            }
             getCategoryList(menuList)
         }
     }
@@ -56,6 +62,18 @@ class HomeViewModel(
             selectedFilters.add(filter)
         }
         val newSelectedFilterList = selectedFilters.toList()
-        _uiState.update { it.copy(selectedCategoryList = newSelectedFilterList) }
+        val newDisplayedMenuList = if (newSelectedFilterList.isEmpty()) {
+            _uiState.value.menuList
+        } else {
+            _uiState.value.menuList.filter { menuItem ->
+                newSelectedFilterList.contains(menuItem.category)
+            }
+        }
+        _uiState.update {
+            it.copy(
+                selectedCategoryList = newSelectedFilterList,
+                displayedMenuList = newDisplayedMenuList,
+            )
+        }
     }
 }
