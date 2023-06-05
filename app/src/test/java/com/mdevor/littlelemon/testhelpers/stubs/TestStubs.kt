@@ -22,13 +22,7 @@ fun getDomainMenuList(): List<MenuItem> =
     )
 
 fun getPresentationMenuList(): List<MenuItemData> = listOf(
-    MenuItemData(
-        title = "Greek Salad",
-        description = "Our delicious salad is served with Feta cheese and peeled cucumber. Includes tomatoes, onions, olives, salt and oregano in the ingredients.",
-        image = "imageURL",
-        category = "starters",
-        price = "$12.99",
-    ),
+    greekSaladItem(),
     MenuItemData(
         title = "Pasta",
         description = "Delicious pasta for your delight.",
@@ -36,6 +30,14 @@ fun getPresentationMenuList(): List<MenuItemData> = listOf(
         category = "mains",
         price = "$6.99",
     )
+)
+
+fun greekSaladItem() = MenuItemData(
+    title = "Greek Salad",
+    description = "Our delicious salad is served with Feta cheese and peeled cucumber. Includes tomatoes, onions, olives, salt and oregano in the ingredients.",
+    image = "imageURL",
+    category = "starters",
+    price = "$12.99",
 )
 
 fun getCategoryList(): List<String> = listOf("starters", "mains")
