@@ -18,9 +18,11 @@
  - [x] Use ViewModel to render the Home Screen
  - [x] Integrate the Ktor library for network requests
  - [x] Use Koin for dependency injection
- - [ ] Filtering Funcionality - VM
- - [ ] Searching Functionality - VM
- - [ ] Improve Home Screen Composables
+ - [x] Filtering Funcionality - VM
+ - [x] Searching Functionality - VM
+ - [x] Improve Home Screen Composables
+
+[KanBan Board with Capstone Tasks](https://github.com/users/mirianfonkam/projects/5)
 
 ## 🛠️ Libraries & Tools
 

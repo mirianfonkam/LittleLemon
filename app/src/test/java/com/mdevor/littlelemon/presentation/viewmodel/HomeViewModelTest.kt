@@ -113,7 +113,7 @@ class HomeViewModelTest {
     fun `WHEN dispatch SearchMenu uiEvent with blank query THEN assert uiState updates accordingly`() {
         // GIVEN
         setupViewModel()
-        val blankSearchQuery = "  "
+        val blankSearchQuery =  " "
         val expected = HomeUiState(
             menuList = getPresentationMenuList(),
             displayedMenuList = getPresentationMenuList(),

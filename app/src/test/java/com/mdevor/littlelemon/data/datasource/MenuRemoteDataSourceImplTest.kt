@@ -15,7 +15,7 @@ class MenuRemoteDataSourceImplTest {
     private val dataSource = MenuRemoteDataSourceImpl(service)
 
     @Test
-    fun `GIVEN service succeeds WHEN getMenu THEN a list of MenuItem`() = runBlocking {
+    fun `GIVEN service succeeds WHEN getMenu THEN get a list of MenuItem`() = runBlocking {
         // GIVEN
         coEvery { service.getMenu() } returns getDomainMenuList()
         val expectedResult = getDomainMenuList()
