@@ -10,6 +10,7 @@ import com.mdevor.littlelemon.domain.repository.MenuRepository
 import com.mdevor.littlelemon.domain.usecase.GetCategoriesUseCase
 import com.mdevor.littlelemon.domain.usecase.GetMenuUseCase
 import com.mdevor.littlelemon.presentation.home.HomeViewModel
+import com.mdevor.littlelemon.presentation.login.LoginViewModel
 import kotlinx.coroutines.Dispatchers
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -40,5 +41,9 @@ val appModule = module {
             getMenuUseCase = get(),
             getCategoriesUseCase = get(),
         )
+    }
+
+    viewModel {
+        LoginViewModel()
     }
 }
