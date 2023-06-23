@@ -76,9 +76,7 @@ fun LoginScreenContent(viewState: LoginUiState, viewEvent: (LoginUiEvent) -> Uni
                 }
             )
         }
-
     }
-
 }
 
 @Composable

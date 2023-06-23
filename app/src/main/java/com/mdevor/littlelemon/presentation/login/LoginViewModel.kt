@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 
 class LoginViewModel : ViewModel() {
 
@@ -24,14 +25,14 @@ class LoginViewModel : ViewModel() {
     }
 
     private fun handleEmailUpdate(email: String) {
-
+        _uiState.update { it.copy(email = email) }
     }
 
     private fun handleLastNameUpdate(lastName: String) {
-
+        _uiState.update { it.copy(lastName = lastName) }
     }
 
     private fun handleFirstNameUpdate(firstName: String) {
-
+        _uiState.update { it.copy(firstName = firstName) }
     }
 }
