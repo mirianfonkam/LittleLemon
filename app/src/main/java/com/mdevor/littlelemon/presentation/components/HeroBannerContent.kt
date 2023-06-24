@@ -36,6 +36,7 @@ fun HeroBannerContent() {
             text = "We are a family owned Mediterranean restaurant, " +
                     "focused on traditional recipes served with a modern twist.",
             style = MaterialTheme.typography.displaySmall,
+            color = MaterialTheme.colorScheme.surface,
             modifier = Modifier
                 .weight(weight = 0.5f)
                 .padding(end = 8.dp),

@@ -22,7 +22,6 @@ val Typography = Typography(
     displaySmall = TextStyle(
         fontFamily = FontFamily(Font(R.font.karla_regular)),
         fontSize = 16.sp,
-        color = Color.White,
     ),
     titleLarge = TextStyle(
         fontFamily = FontFamily(Font(R.font.karla_regular)),
@@ -39,8 +38,17 @@ val Typography = Typography(
             weight = 300
         )
     ),
+    bodyMedium = TextStyle(
+        fontFamily = FontFamily(Font(R.font.karla_regular)),
+        fontSize = 16.sp,
+    ),
     bodySmall = TextStyle(
         fontFamily = FontFamily(Font(R.font.karla_regular)),
         fontSize = 12.sp,
     ),
+    labelSmall = TextStyle(
+        fontFamily = FontFamily(Font(R.font.karla_regular)),
+        fontSize = 12.sp,
+        fontWeight = FontWeight(700),
+    )
 )

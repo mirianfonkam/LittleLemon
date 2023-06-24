@@ -2,7 +2,6 @@ package com.mdevor.littlelemon.presentation.profile
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -30,10 +29,11 @@ import androidx.compose.ui.unit.dp
 import com.mdevor.littlelemon.R
 import com.mdevor.littlelemon.presentation.components.LemonButton
 import com.mdevor.littlelemon.presentation.components.LineDivider
+import com.mdevor.littlelemon.presentation.model.InfoData
 import com.mdevor.littlelemon.presentation.theme.LittleLemonTheme
 
 @Composable
-fun ProfileScreen() {
+fun ProfileScreen(profileInfoList: List<InfoData> = listOf()) {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.SpaceBetween
@@ -54,14 +54,15 @@ fun ProfileScreen() {
                 }
             }
             Box(
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
                     .padding(bottom = 28.dp),
                 contentAlignment = Alignment.Center
             ) {
                 Image(
                     modifier = Modifier
                         .padding(12.dp)
-                        .size(size = 200.dp)
+                        .size(size = 160.dp)
                         .clip(CircleShape),
                     painter = painterResource(R.drawable.ic_little_lemon_profile),
                     contentScale = ContentScale.Crop,
@@ -69,22 +70,47 @@ fun ProfileScreen() {
                 )
             }
         }
-        Column(modifier = Modifier.fillMaxWidth()) {
-            Text(text = "First Name")
-            Text(text = "Tilly")
-            LineDivider(
-                color = MaterialTheme.colorScheme.surfaceVariant
-            )
+        Column() {
+            profileInfoList.forEach { profileInfo ->
+                ProfileInfoItem(profileInfo = profileInfo)
+            }
         }
         LemonButton(
             modifier = Modifier
+                .padding(horizontal = 12.dp)
                 .padding(bottom = 24.dp)
                 .height(height = 48.dp)
                 .fillMaxWidth(),
-            text = "Logout",
+            text = "Log out",
             onClick = {
                 // TODO: Impl register click
             }
+        )
+    }
+}
+
+@Composable
+private fun ProfileInfoItem(profileInfo: InfoData) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 12.dp)
+    ) {
+        Text(
+            text = profileInfo.label,
+            style = MaterialTheme.typography.labelSmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+        Text(
+            text = profileInfo.value,
+            style = MaterialTheme.typography.bodyMedium,
+            modifier = Modifier.padding(
+                top = 16.dp,
+            ),
+        )
+        LineDivider(
+            color = MaterialTheme.colorScheme.surfaceVariant,
+            modifier = Modifier.padding(vertical = 12.dp)
         )
     }
 }
@@ -93,6 +119,17 @@ fun ProfileScreen() {
 @Composable
 fun ProfileScreenPreview() {
     LittleLemonTheme {
-        ProfileScreen()
+        ProfileScreen(
+            profileInfoList = listOf(
+                InfoData(
+                    label = "Name",
+                    value = "Megan Devor",
+                ),
+                InfoData(
+                    label = "Email",
+                    value = "megan.devor@gmail.com"
+                )
+            )
+        )
     }
 }
