@@ -1,4 +1,4 @@
-package com.mdevor.littlelemon.presentation.login
+package com.mdevor.littlelemon.presentation.screens.login
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

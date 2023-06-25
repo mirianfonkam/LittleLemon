@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.mdevor.littlelemon.presentation.home.HomeScreen
+import com.mdevor.littlelemon.presentation.screens.home.HomeScreen
 import com.mdevor.littlelemon.presentation.theme.LittleLemonTheme
 
 class MainActivity : ComponentActivity() {

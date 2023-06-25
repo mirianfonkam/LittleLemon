@@ -1,4 +1,4 @@
-package com.mdevor.littlelemon.presentation.home
+package com.mdevor.littlelemon.presentation.screens.home
 
 import android.util.Log
 import androidx.lifecycle.ViewModel

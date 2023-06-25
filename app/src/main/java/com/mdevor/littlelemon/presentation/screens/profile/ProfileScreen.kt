@@ -1,4 +1,4 @@
-package com.mdevor.littlelemon.presentation.profile
+package com.mdevor.littlelemon.presentation.screens.profile
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -27,6 +27,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mdevor.littlelemon.R
+import com.mdevor.littlelemon.presentation.components.InfoItem
 import com.mdevor.littlelemon.presentation.components.LemonButton
 import com.mdevor.littlelemon.presentation.components.LineDivider
 import com.mdevor.littlelemon.presentation.model.InfoData
@@ -72,7 +73,7 @@ fun ProfileScreen(profileInfoList: List<InfoData> = listOf()) {
         }
         Column() {
             profileInfoList.forEach { profileInfo ->
-                ProfileInfoItem(profileInfo = profileInfo)
+                InfoItem(profileInfo = profileInfo)
             }
         }
         LemonButton(
@@ -85,32 +86,6 @@ fun ProfileScreen(profileInfoList: List<InfoData> = listOf()) {
             onClick = {
                 // TODO: Impl register click
             }
-        )
-    }
-}
-
-@Composable
-private fun ProfileInfoItem(profileInfo: InfoData) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 12.dp)
-    ) {
-        Text(
-            text = profileInfo.label,
-            style = MaterialTheme.typography.labelSmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
-        Text(
-            text = profileInfo.value,
-            style = MaterialTheme.typography.bodyMedium,
-            modifier = Modifier.padding(
-                top = 16.dp,
-            ),
-        )
-        LineDivider(
-            color = MaterialTheme.colorScheme.surfaceVariant,
-            modifier = Modifier.padding(vertical = 12.dp)
         )
     }
 }

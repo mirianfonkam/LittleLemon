@@ -1,4 +1,4 @@
-package com.mdevor.littlelemon.presentation.login
+package com.mdevor.littlelemon.presentation.screens.login
 
 sealed class LoginUiEvent {
     data class UpdateFirstName(val firstName: String) : LoginUiEvent()

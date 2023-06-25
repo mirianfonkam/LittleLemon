@@ -1,4 +1,4 @@
-package com.mdevor.littlelemon.presentation.home
+package com.mdevor.littlelemon.presentation.screens.home
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

@@ -3,9 +3,9 @@ package com.mdevor.littlelemon.presentation.viewmodel
 import android.util.Log
 import com.mdevor.littlelemon.domain.usecase.GetCategoriesUseCase
 import com.mdevor.littlelemon.domain.usecase.GetMenuUseCase
-import com.mdevor.littlelemon.presentation.home.HomeUiEvent
-import com.mdevor.littlelemon.presentation.home.HomeUiState
-import com.mdevor.littlelemon.presentation.home.HomeViewModel
+import com.mdevor.littlelemon.presentation.screens.home.HomeUiEvent
+import com.mdevor.littlelemon.presentation.screens.home.HomeUiState
+import com.mdevor.littlelemon.presentation.screens.home.HomeViewModel
 import com.mdevor.littlelemon.testhelpers.stubs.getCategoryList
 import com.mdevor.littlelemon.testhelpers.stubs.getDomainMenuList
 import com.mdevor.littlelemon.testhelpers.stubs.getPresentationMenuList
