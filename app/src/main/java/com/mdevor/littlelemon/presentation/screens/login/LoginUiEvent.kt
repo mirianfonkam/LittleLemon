@@ -8,4 +8,6 @@ sealed class LoginUiEvent {
     data class UpdateEmail(val email: String) : LoginUiEvent()
 
     object OnRegisterButtonClicked : LoginUiEvent()
+
+    object HideLoginStatusMessage : LoginUiEvent()
 }

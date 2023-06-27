@@ -14,16 +14,17 @@ import org.junit.Test
 import java.io.IOException
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class MenuRepositoryTest {
+class LittleLemonRepositoryTest {
 
     @get:Rule
     val mainDispatcherRule = MainDispatcherRule()
 
     private val remoteDataSource: MenuRemoteDataSource = mockk(relaxed = true)
 
-    private val repository = MenuRepositoryImpl(
+    private val repository = LittleLemonRepositoryImpl(
         remoteDataSource = remoteDataSource,
-        ioDispatcher = UnconfinedTestDispatcher()
+        ioDispatcher = UnconfinedTestDispatcher(),
+        localDataSource = mockk(relaxed = true)
     )
 
     @Test

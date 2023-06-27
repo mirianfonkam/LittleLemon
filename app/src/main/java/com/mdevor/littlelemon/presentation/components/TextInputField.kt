@@ -3,6 +3,7 @@ package com.mdevor.littlelemon.presentation.components
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -12,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -23,6 +25,7 @@ fun TextInputField(
     placeholderText: String? = null,
     labelText: String? = null,
     backgroundColor: Color = MaterialTheme.colorScheme.surface,
+    keyboardType: KeyboardType = KeyboardType.Text,
 ) {
     Column(modifier = modifier) {
         labelText?.let {
@@ -57,7 +60,10 @@ fun TextInputField(
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurface,
                 )
-            }
+            },
+            keyboardOptions = KeyboardOptions(
+                keyboardType = keyboardType
+            ),
         )
     }
 }
@@ -68,6 +74,7 @@ fun BasicTextInputField(
     onTextValueChange: (String) -> Unit,
     placeholderText: String? = null,
     labelText: String? = null,
+    keyboardType: KeyboardType = KeyboardType.Text,
 ) {
     TextInputField(
         textFieldState = textFieldState,
@@ -76,5 +83,6 @@ fun BasicTextInputField(
         labelText = labelText,
         backgroundColor = MaterialTheme.colorScheme.surface,
         modifier = Modifier.fillMaxWidth(),
+        keyboardType = keyboardType,
     )
 }

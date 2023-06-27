@@ -1,6 +1,6 @@
 package com.mdevor.littlelemon.domain.usecase
 
-import com.mdevor.littlelemon.domain.repository.MenuRepository
+import com.mdevor.littlelemon.domain.repository.LittleLemonRepository
 import com.mdevor.littlelemon.testhelpers.stubs.getDomainMenuList
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -11,13 +11,13 @@ import java.util.concurrent.TimeoutException
 
 class GetMenuUseCaseTest {
 
-    private val menuRepository = mockk<MenuRepository>()
-    private val getMenuUseCase = GetMenuUseCase(menuRepository = menuRepository)
+    private val repository = mockk<LittleLemonRepository>()
+    private val getMenuUseCase = GetMenuUseCase(repository = repository)
 
     @Test
     fun `GIVEN menuRepository returns menuList WHEN invoke THEN assert it returns menuList`() = runBlocking {
         // GIVEN
-        coEvery { menuRepository.getMenu() } returns getDomainMenuList()
+        coEvery { repository.getMenu() } returns getDomainMenuList()
         val expectedResult = getDomainMenuList()
 
         // WHEN
@@ -30,7 +30,7 @@ class GetMenuUseCaseTest {
     @Test
     fun `GIVEN menuRepository throws exception WHEN invoke THEN assert it has a failed outcome`() = runBlocking {
         // GIVEN
-        coEvery { menuRepository.getMenu() } throws TimeoutException()
+        coEvery { repository.getMenu() } throws TimeoutException()
 
         // WHEN
         val actualResult = runCatching { getMenuUseCase() }

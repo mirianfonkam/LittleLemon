@@ -1,5 +1,6 @@
 package com.mdevor.littlelemon.presentation.screens.login
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,6 +14,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -62,6 +65,7 @@ fun LoginScreenContent(viewState: LoginUiState, viewEvent: (LoginUiEvent) -> Uni
                         viewEvent(LoginUiEvent.UpdateEmail(email))
                     },
                     labelText = "Email",
+                    keyboardType = KeyboardType.Email,
                 )
 
             }
@@ -76,6 +80,14 @@ fun LoginScreenContent(viewState: LoginUiState, viewEvent: (LoginUiEvent) -> Uni
                 }
             )
         }
+    }
+    if (viewState.loginStatusMessage.isNotEmpty()) {
+        Toast.makeText(
+            LocalContext.current,
+            viewState.loginStatusMessage,
+            Toast.LENGTH_SHORT
+        ).show()
+        viewEvent(LoginUiEvent.HideLoginStatusMessage)
     }
 }
 
