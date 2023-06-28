@@ -3,7 +3,7 @@ package com.mdevor.littlelemon.presentation.viewmodel
 import android.util.Log
 import com.mdevor.littlelemon.domain.usecase.GetCategoriesUseCase
 import com.mdevor.littlelemon.domain.usecase.GetMenuUseCase
-import com.mdevor.littlelemon.presentation.screens.home.HomeUiEvent
+import com.mdevor.littlelemon.presentation.screens.home.HomeUiAction
 import com.mdevor.littlelemon.presentation.screens.home.HomeUiState
 import com.mdevor.littlelemon.presentation.screens.home.HomeViewModel
 import com.mdevor.littlelemon.testhelpers.stubs.getCategoryList
@@ -92,7 +92,7 @@ class HomeViewModelTest {
 
 
     @Test
-    fun `WHEN dispatch SearchMenu uiEvent with query THEN assert uiState updates according to found search result`() {
+    fun `WHEN handle SearchMenu uiAction with query THEN assert uiState updates according to found search result`() {
         // GIVEN
         setupViewModel()
         val foundSearchQuery = "pasta"
@@ -103,14 +103,14 @@ class HomeViewModelTest {
             searchQuery = foundSearchQuery,
         )
         // WHEN
-        viewModel.dispatchViewEvent(HomeUiEvent.SearchMenu(foundSearchQuery))
+        viewModel.handleViewAction(HomeUiAction.SearchMenu(foundSearchQuery))
 
         // THEN
        assertEquals(expected, viewModel.uiState.value)
     }
 
     @Test
-    fun `WHEN dispatch SearchMenu uiEvent with blank query THEN assert uiState updates accordingly`() {
+    fun `WHEN handle SearchMenu uiAction with blank query THEN assert uiState updates accordingly`() {
         // GIVEN
         setupViewModel()
         val blankSearchQuery =  " "
@@ -122,14 +122,14 @@ class HomeViewModelTest {
         )
 
         // WHEN
-        viewModel.dispatchViewEvent(HomeUiEvent.SearchMenu(blankSearchQuery))
+        viewModel.handleViewAction(HomeUiAction.SearchMenu(blankSearchQuery))
 
         // THEN
         assertEquals(expected, viewModel.uiState.value)
     }
 
     @Test
-    fun `WHEN dispatch SearchMenu uiEvent with not found query THEN assert uiState updates accordingly`() {
+    fun `WHEN handle SearchMenu uiAction with not found query THEN assert uiState updates accordingly`() {
         // GIVEN
         setupViewModel()
         val blankSearchQuery = "testing not found search query"
@@ -141,14 +141,14 @@ class HomeViewModelTest {
         )
 
         // WHEN
-        viewModel.dispatchViewEvent(HomeUiEvent.SearchMenu(blankSearchQuery))
+        viewModel.handleViewAction(HomeUiAction.SearchMenu(blankSearchQuery))
 
         // THEN
         assertEquals(expected, viewModel.uiState.value)
     }
 
     @Test
-    fun `WHEN dispatch FilterMenu uiEvent with selectedFilter THEN assert uiState updates according to found menuItem`() {
+    fun `WHEN handle FilterMenu uiAction with selectedFilter THEN assert uiState updates according to found menuItem`() {
         // GIVEN
         setupViewModel()
         val selectedFilter = getCategoryList().first()
@@ -160,14 +160,14 @@ class HomeViewModelTest {
         )
 
         // WHEN
-        viewModel.dispatchViewEvent(HomeUiEvent.FilterMenu(selectedFilter))
+        viewModel.handleViewAction(HomeUiAction.FilterMenu(selectedFilter))
 
         // THEN
         assertEquals(expected, viewModel.uiState.value)
     }
 
     @Test
-    fun `WHEN dispatch FilterMenu uiEvent twice THEN assert uiState updates according to filter toggle`() {
+    fun `WHEN handle FilterMenu uiAction twice THEN assert uiState updates according to filter toggle`() {
         // GIVEN
         setupViewModel()
         val selectedFilter = getCategoryList().first()
@@ -179,15 +179,15 @@ class HomeViewModelTest {
         )
 
         // WHEN
-        viewModel.dispatchViewEvent(HomeUiEvent.FilterMenu(selectedFilter))
-        viewModel.dispatchViewEvent(HomeUiEvent.FilterMenu(selectedFilter))
+        viewModel.handleViewAction(HomeUiAction.FilterMenu(selectedFilter))
+        viewModel.handleViewAction(HomeUiAction.FilterMenu(selectedFilter))
 
         // THEN
         assertEquals(expected, viewModel.uiState.value)
     }
 
     @Test
-    fun `WHEN dispatch FilterMenu uiEvent and Search uiEvent THEN assert uiState updates accordingly`() {
+    fun `WHEN handle FilterMenu uiAction and Search uiEvent THEN assert uiState updates accordingly`() {
         // GIVEN
         setupViewModel()
         val selectedFilter = getCategoryList().first()
@@ -201,8 +201,8 @@ class HomeViewModelTest {
         )
 
         // WHEN
-        viewModel.dispatchViewEvent(HomeUiEvent.FilterMenu(selectedFilter))
-        viewModel.dispatchViewEvent(HomeUiEvent.SearchMenu(searchQuery))
+        viewModel.handleViewAction(HomeUiAction.FilterMenu(selectedFilter))
+        viewModel.handleViewAction(HomeUiAction.SearchMenu(searchQuery))
 
         // THEN
         assertEquals(expected, viewModel.uiState.value)

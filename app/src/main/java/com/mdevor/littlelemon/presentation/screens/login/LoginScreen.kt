@@ -26,14 +26,17 @@ import com.mdevor.littlelemon.presentation.theme.LittleLemonTheme
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun LoginScreen(viewModel: LoginViewModel = koinViewModel()) {
+fun LoginScreen(
+    viewModel: LoginViewModel = koinViewModel(),
+    onLoginSuccessCallback: () -> Unit = {},
+) {
     val viewState: LoginUiState = viewModel.uiState.collectAsStateWithLifecycle().value
-    val viewEvent: (LoginUiEvent) -> Unit = { viewModel.dispatchViewEvent(it) }
+    val viewEvent: (LoginUiAction) -> Unit = { viewModel.handleViewAction(it) }
     LoginScreenContent(viewState, viewEvent)
 }
 
 @Composable
-fun LoginScreenContent(viewState: LoginUiState, viewEvent: (LoginUiEvent) -> Unit) {
+fun LoginScreenContent(viewState: LoginUiState, viewEvent: (LoginUiAction) -> Unit) {
     Column(modifier = Modifier.fillMaxWidth()) {
         LogoTopBar()
         OnBoardingBanner()
@@ -48,21 +51,21 @@ fun LoginScreenContent(viewState: LoginUiState, viewEvent: (LoginUiEvent) -> Uni
                 BasicTextInputField(
                     textFieldState = viewState.firstName,
                     onTextValueChange = { firstName ->
-                        viewEvent(LoginUiEvent.UpdateFirstName(firstName))
+                        viewEvent(LoginUiAction.UpdateFirstName(firstName))
                     },
                     labelText = "First Name",
                 )
                 BasicTextInputField(
                     textFieldState = viewState.lastName,
                     onTextValueChange = { lastName ->
-                        viewEvent(LoginUiEvent.UpdateLastName(lastName))
+                        viewEvent(LoginUiAction.UpdateLastName(lastName))
                     },
                     labelText = "Last Name",
                 )
                 BasicTextInputField(
                     textFieldState = viewState.email,
                     onTextValueChange = { email ->
-                        viewEvent(LoginUiEvent.UpdateEmail(email))
+                        viewEvent(LoginUiAction.UpdateEmail(email))
                     },
                     labelText = "Email",
                     keyboardType = KeyboardType.Email,
@@ -76,7 +79,7 @@ fun LoginScreenContent(viewState: LoginUiState, viewEvent: (LoginUiEvent) -> Uni
                     .fillMaxWidth(),
                 text = "Register",
                 onClick = {
-                    viewEvent(LoginUiEvent.OnRegisterButtonClicked)
+                    viewEvent(LoginUiAction.OnRegisterButtonClicked)
                 }
             )
         }
@@ -87,7 +90,7 @@ fun LoginScreenContent(viewState: LoginUiState, viewEvent: (LoginUiEvent) -> Uni
             viewState.loginStatusMessage,
             Toast.LENGTH_SHORT
         ).show()
-        viewEvent(LoginUiEvent.HideLoginStatusMessage)
+        viewEvent(LoginUiAction.HideLoginStatusMessage)
     }
 }
 

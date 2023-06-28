@@ -27,7 +27,15 @@ fun LittleLemonNavHost(
             HomeScreen()
         }
         composable(LOGIN.route) {
-            LoginScreen()
+            LoginScreen(
+                onLoginSuccessCallback = {
+                    navController.navigate(HOME.route) {
+                        popUpTo(LOGIN.route) {
+                            inclusive = true
+                        }
+                    }
+                }
+            )
         }
         composable(PROFILE.route) {
             ProfileScreen()

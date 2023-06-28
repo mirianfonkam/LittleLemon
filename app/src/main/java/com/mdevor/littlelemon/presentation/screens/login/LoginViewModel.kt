@@ -12,13 +12,13 @@ class LoginViewModel(private val setIsLoggedUseCase: SetIsLoggedUseCase) : ViewM
     private val _uiState = MutableStateFlow(LoginUiState())
     val uiState: StateFlow<LoginUiState> = _uiState.asStateFlow()
 
-    fun dispatchViewEvent(viewAction: LoginUiEvent) {
+    fun handleViewAction(viewAction: LoginUiAction) {
         when (viewAction) {
-            is LoginUiEvent.UpdateFirstName -> handleFirstNameUpdate(firstName = viewAction.firstName)
-            is LoginUiEvent.UpdateLastName -> handleLastNameUpdate(lastName = viewAction.lastName)
-            is LoginUiEvent.UpdateEmail -> handleEmailUpdate(email = viewAction.email)
-            is LoginUiEvent.OnRegisterButtonClicked -> handleOnRegisterButtonClicked()
-            is LoginUiEvent.HideLoginStatusMessage -> handleHideLoginStatusMessage()
+            is LoginUiAction.UpdateFirstName -> handleFirstNameUpdate(firstName = viewAction.firstName)
+            is LoginUiAction.UpdateLastName -> handleLastNameUpdate(lastName = viewAction.lastName)
+            is LoginUiAction.UpdateEmail -> handleEmailUpdate(email = viewAction.email)
+            is LoginUiAction.OnRegisterButtonClicked -> handleOnRegisterButtonClicked()
+            is LoginUiAction.HideLoginStatusMessage -> handleHideLoginStatusMessage()
         }
     }
 

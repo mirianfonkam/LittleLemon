@@ -26,10 +26,10 @@ class HomeViewModel(
         getMenuList()
     }
 
-    fun dispatchViewEvent(viewAction: HomeUiEvent) {
+    fun handleViewAction(viewAction: HomeUiAction) {
         when (viewAction) {
-            is HomeUiEvent.FilterMenu -> handleFilteringUpdate(filter = viewAction.filter)
-            is HomeUiEvent.SearchMenu -> handleSearchUpdate(input = viewAction.searchQuery)
+            is HomeUiAction.FilterMenu -> handleFilteringUpdate(filter = viewAction.filter)
+            is HomeUiAction.SearchMenu -> handleSearchUpdate(input = viewAction.searchQuery)
         }
     }
 
