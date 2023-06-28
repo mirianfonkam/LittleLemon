@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -31,12 +32,33 @@ fun LoginScreen(
     onLoginSuccessCallback: () -> Unit = {},
 ) {
     val viewState: LoginUiState = viewModel.uiState.collectAsStateWithLifecycle().value
-    val viewEvent: (LoginUiAction) -> Unit = { viewModel.handleViewAction(it) }
-    LoginScreenContent(viewState, viewEvent)
+    val viewAction: (LoginUiAction) -> Unit = { viewModel.handleViewAction(it) }
+
+    LoginScreenContent(viewState, viewAction)
+    LoginScreenEffect(viewState, onLoginSuccessCallback)
 }
 
 @Composable
-fun LoginScreenContent(viewState: LoginUiState, viewEvent: (LoginUiAction) -> Unit) {
+private fun LoginScreenEffect(
+    viewState: LoginUiState,
+    onLoginSuccessCallback: () -> Unit,
+) {
+    viewState.loginEvent?.let { event ->
+        LaunchedEffect(event) {
+            when (event) {
+                is LoginVMEvent.NavigateToHome -> {
+                    onLoginSuccessCallback()
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun LoginScreenContent(
+    viewState: LoginUiState,
+    viewAction: (LoginUiAction) -> Unit,
+) {
     Column(modifier = Modifier.fillMaxWidth()) {
         LogoTopBar()
         OnBoardingBanner()
@@ -51,21 +73,21 @@ fun LoginScreenContent(viewState: LoginUiState, viewEvent: (LoginUiAction) -> Un
                 BasicTextInputField(
                     textFieldState = viewState.firstName,
                     onTextValueChange = { firstName ->
-                        viewEvent(LoginUiAction.UpdateFirstName(firstName))
+                        viewAction(LoginUiAction.UpdateFirstName(firstName))
                     },
                     labelText = "First Name",
                 )
                 BasicTextInputField(
                     textFieldState = viewState.lastName,
                     onTextValueChange = { lastName ->
-                        viewEvent(LoginUiAction.UpdateLastName(lastName))
+                        viewAction(LoginUiAction.UpdateLastName(lastName))
                     },
                     labelText = "Last Name",
                 )
                 BasicTextInputField(
                     textFieldState = viewState.email,
                     onTextValueChange = { email ->
-                        viewEvent(LoginUiAction.UpdateEmail(email))
+                        viewAction(LoginUiAction.UpdateEmail(email))
                     },
                     labelText = "Email",
                     keyboardType = KeyboardType.Email,
@@ -79,7 +101,7 @@ fun LoginScreenContent(viewState: LoginUiState, viewEvent: (LoginUiAction) -> Un
                     .fillMaxWidth(),
                 text = "Register",
                 onClick = {
-                    viewEvent(LoginUiAction.OnRegisterButtonClicked)
+                    viewAction(LoginUiAction.OnRegisterButtonClicked)
                 }
             )
         }
@@ -90,7 +112,7 @@ fun LoginScreenContent(viewState: LoginUiState, viewEvent: (LoginUiAction) -> Un
             viewState.loginStatusMessage,
             Toast.LENGTH_SHORT
         ).show()
-        viewEvent(LoginUiAction.HideLoginStatusMessage)
+        viewAction(LoginUiAction.HideLoginStatusMessage)
     }
 }
 

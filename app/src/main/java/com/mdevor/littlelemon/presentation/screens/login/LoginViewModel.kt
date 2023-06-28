@@ -33,9 +33,13 @@ class LoginViewModel(private val setIsLoggedUseCase: SetIsLoggedUseCase) : ViewM
 
         if (hasAllRequiredInfo) {
             setIsLoggedUseCase(isLogged = true)
-            // Save user info to shared preferences
-            // Navigate to home screen
+            _uiState.update {
+                it.copy(
+                    loginEvent = LoginVMEvent.NavigateToHome
+                )
+            }
 
+            // Save user info to shared preferences
         } else {
             _uiState.update {
                 it.copy(

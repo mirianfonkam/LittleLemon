@@ -5,4 +5,5 @@ data class LoginUiState(
     val lastName: String = "",
     val email: String = "",
     val loginStatusMessage: String = "",
+    val loginEvent: LoginVMEvent? = null,
 )

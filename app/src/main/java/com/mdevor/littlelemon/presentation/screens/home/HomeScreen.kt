@@ -30,12 +30,12 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun HomeScreen(viewModel: HomeViewModel = koinViewModel()) {
     val viewState: HomeUiState = viewModel.uiState.collectAsStateWithLifecycle().value
-    val viewEvent: (HomeUiAction) -> Unit = { viewModel.handleViewAction(it)}
-    HomeScreenContent(viewState, viewEvent)
+    val viewAction: (HomeUiAction) -> Unit = { viewModel.handleViewAction(it)}
+    HomeScreenContent(viewState, viewAction)
 }
 
 @Composable
-fun HomeScreenContent(viewState: HomeUiState, viewEvent: (HomeUiAction) -> Unit) {
+fun HomeScreenContent(viewState: HomeUiState, viewAction: (HomeUiAction) -> Unit) {
     Column(modifier = Modifier.fillMaxSize()) {
         HomeTopBar()
         Column(
@@ -48,7 +48,7 @@ fun HomeScreenContent(viewState: HomeUiState, viewEvent: (HomeUiAction) -> Unit)
             TextInputField(
                 textFieldState = viewState.searchQuery,
                 onTextValueChange = { searchQuery ->
-                    viewEvent(HomeUiAction.SearchMenu(searchQuery))
+                    viewAction(HomeUiAction.SearchMenu(searchQuery))
                 },
                 backgroundColor = MaterialTheme.colorScheme.surfaceVariant,
                 placeholderText = "Search",
@@ -59,7 +59,7 @@ fun HomeScreenContent(viewState: HomeUiState, viewEvent: (HomeUiAction) -> Unit)
         FilterList(
             categories = viewState.categoryList,
             selectedCategories = viewState.selectedCategoryList,
-            onFilterClick = { filter -> viewEvent(HomeUiAction.FilterMenu(filter)) }
+            onFilterClick = { filter -> viewAction(HomeUiAction.FilterMenu(filter)) }
         )
         LineDivider(
             modifier = Modifier.padding(horizontal = 16.dp),
