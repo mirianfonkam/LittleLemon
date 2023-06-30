@@ -101,7 +101,7 @@ fun LoginScreenContent(
                     .fillMaxWidth(),
                 text = "Register",
                 onClick = {
-                    viewAction(LoginUiAction.OnRegisterButtonClicked)
+                    viewAction(LoginUiAction.ClickRegisterButton)
                 }
             )
         }

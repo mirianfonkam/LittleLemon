@@ -7,7 +7,7 @@ sealed class LoginUiAction {
 
     data class UpdateEmail(val email: String) : LoginUiAction()
 
-    object OnRegisterButtonClicked : LoginUiAction()
+    object ClickRegisterButton : LoginUiAction()
 
     object HideLoginStatusMessage : LoginUiAction()
 }

@@ -17,7 +17,7 @@ class LoginViewModel(private val setIsLoggedUseCase: SetIsLoggedUseCase) : ViewM
             is LoginUiAction.UpdateFirstName -> handleFirstNameUpdate(firstName = viewAction.firstName)
             is LoginUiAction.UpdateLastName -> handleLastNameUpdate(lastName = viewAction.lastName)
             is LoginUiAction.UpdateEmail -> handleEmailUpdate(email = viewAction.email)
-            is LoginUiAction.OnRegisterButtonClicked -> handleOnRegisterButtonClicked()
+            is LoginUiAction.ClickRegisterButton -> handleRegisterButtonClick()
             is LoginUiAction.HideLoginStatusMessage -> handleHideLoginStatusMessage()
         }
     }
@@ -26,7 +26,7 @@ class LoginViewModel(private val setIsLoggedUseCase: SetIsLoggedUseCase) : ViewM
         _uiState.update { it.copy(loginStatusMessage = "") }
     }
 
-    private fun handleOnRegisterButtonClicked() {
+    private fun handleRegisterButtonClick() {
         val hasAllRequiredInfo: Boolean = _uiState.value.run {
             firstName.isNotBlank() && lastName.isNotBlank() && email.isNotBlank()
         }
