@@ -1,6 +1,6 @@
 package com.mdevor.littlelemon.domain.entity
 
-data class MenuItem(
+data class MenuEntity(
     val title: String,
     val description: String,
     val price: Double,

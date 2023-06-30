@@ -1,18 +1,18 @@
 package com.mdevor.littlelemon.testhelpers.stubs
 
-import com.mdevor.littlelemon.domain.entity.MenuItem
+import com.mdevor.littlelemon.domain.entity.MenuEntity
 import com.mdevor.littlelemon.presentation.model.MenuItemData
 
-fun getDomainMenuList(): List<MenuItem> =
+fun getDomainMenuList(): List<MenuEntity> =
     listOf(
-        MenuItem(
+        MenuEntity(
             title = "Greek Salad",
             description = "Our delicious salad is served with Feta cheese and peeled cucumber. Includes tomatoes, onions, olives, salt and oregano in the ingredients.",
             image = "imageURL",
             category = "starters",
             price = 12.99,
         ),
-        MenuItem(
+        MenuEntity(
             title = "Pasta",
             description = "Delicious pasta for your delight.",
             image = "imageURL",

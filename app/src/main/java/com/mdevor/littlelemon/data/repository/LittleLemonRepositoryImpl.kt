@@ -2,7 +2,8 @@ package com.mdevor.littlelemon.data.repository
 
 import com.mdevor.littlelemon.data.local.LittleLemonLocalDataSource
 import com.mdevor.littlelemon.data.remote.datasource.MenuRemoteDataSource
-import com.mdevor.littlelemon.domain.entity.MenuItem
+import com.mdevor.littlelemon.domain.entity.MenuEntity
+import com.mdevor.littlelemon.domain.entity.UserEntity
 import com.mdevor.littlelemon.domain.repository.LittleLemonRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
@@ -13,7 +14,7 @@ class LittleLemonRepositoryImpl(
     private val ioDispatcher: CoroutineDispatcher,
 ): LittleLemonRepository {
 
-    override suspend fun getMenu(): List<MenuItem> {
+    override suspend fun getMenu(): List<MenuEntity> {
        return withContext(ioDispatcher) {
             remoteDataSource.getMenu()
         }
@@ -25,5 +26,15 @@ class LittleLemonRepositoryImpl(
 
     override fun setIsLogged(isLogged: Boolean) {
         localDataSource.setIsLogged(isLogged)
+    }
+
+    override fun getUserData(): UserEntity {
+        with(localDataSource) {
+            return UserEntity(
+                firstName = getFirstName(),
+                lastName = getLastName(),
+                email = getEmail(),
+            )
+        }
     }
 }

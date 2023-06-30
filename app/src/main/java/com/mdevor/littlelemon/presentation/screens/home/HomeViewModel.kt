@@ -3,7 +3,7 @@ package com.mdevor.littlelemon.presentation.screens.home
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mdevor.littlelemon.domain.entity.MenuItem
+import com.mdevor.littlelemon.domain.entity.MenuEntity
 import com.mdevor.littlelemon.domain.usecase.GetCategoriesUseCase
 import com.mdevor.littlelemon.domain.usecase.GetMenuUseCase
 import com.mdevor.littlelemon.presentation.mapper.toPresentation
@@ -62,7 +62,7 @@ class HomeViewModel(
         }
     }
 
-    private fun getCategoryList(menuList: List<MenuItem>) {
+    private fun getCategoryList(menuList: List<MenuEntity>) {
         val categoryList = getCategoriesUseCase(menuList)
         _uiState.update { it.copy(categoryList = categoryList) }
     }
