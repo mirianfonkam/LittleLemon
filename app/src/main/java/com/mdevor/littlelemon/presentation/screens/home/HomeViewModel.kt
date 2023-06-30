@@ -30,7 +30,17 @@ class HomeViewModel(
         when (viewAction) {
             is HomeUiAction.FilterMenu -> handleFilteringUpdate(filter = viewAction.filter)
             is HomeUiAction.SearchMenu -> handleSearchUpdate(input = viewAction.searchQuery)
+            is HomeUiAction.ClickOnProfile -> handleProfileClick()
+            is HomeUiAction.ClearHomeEvent -> handleClearHomeEvent()
         }
+    }
+
+    private fun handleClearHomeEvent() {
+        _uiState.update { it.copy(homeEvent = null) }
+    }
+
+    private fun handleProfileClick() {
+        _uiState.update { it.copy(homeEvent = HomeVMEvent.NavigateToProfile) }
     }
 
     private fun getMenuList() {

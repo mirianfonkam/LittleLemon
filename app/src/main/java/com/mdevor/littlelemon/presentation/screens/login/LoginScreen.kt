@@ -29,25 +29,25 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun LoginScreen(
     viewModel: LoginViewModel = koinViewModel(),
-    onLoginSuccessCallback: () -> Unit = {},
+    onLoginSuccess: () -> Unit = {},
 ) {
     val viewState: LoginUiState = viewModel.uiState.collectAsStateWithLifecycle().value
     val viewAction: (LoginUiAction) -> Unit = { viewModel.handleViewAction(it) }
 
     LoginScreenContent(viewState, viewAction)
-    LoginScreenEffect(viewState, onLoginSuccessCallback)
+    LoginScreenEffect(viewState, onLoginSuccess)
 }
 
 @Composable
 private fun LoginScreenEffect(
     viewState: LoginUiState,
-    onLoginSuccessCallback: () -> Unit,
+    onLoginSuccess: () -> Unit,
 ) {
     viewState.loginEvent?.let { event ->
         LaunchedEffect(event) {
             when (event) {
                 is LoginVMEvent.NavigateToHome -> {
-                    onLoginSuccessCallback()
+                    onLoginSuccess()
                 }
             }
         }

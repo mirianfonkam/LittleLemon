@@ -1,6 +1,6 @@
 package com.mdevor.littlelemon.presentation.navigation
 
-enum class LittleLemonDestinations {
+enum class LittleLemonDestination {
     HOME,
     PROFILE,
     LOGIN;

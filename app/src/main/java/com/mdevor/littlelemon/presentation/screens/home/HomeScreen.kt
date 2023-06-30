@@ -12,6 +12,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -28,16 +29,34 @@ import com.mdevor.littlelemon.presentation.theme.LittleLemonTheme
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun HomeScreen(viewModel: HomeViewModel = koinViewModel()) {
+fun HomeScreen(
+    viewModel: HomeViewModel = koinViewModel(),
+    onProfileClick: () -> Unit = {},
+) {
     val viewState: HomeUiState = viewModel.uiState.collectAsStateWithLifecycle().value
     val viewAction: (HomeUiAction) -> Unit = { viewModel.handleViewAction(it)}
     HomeScreenContent(viewState, viewAction)
+    HomeScreenEffect(viewState, viewAction, onProfileClick)
+}
+
+@Composable
+fun HomeScreenEffect(viewState: HomeUiState, viewAction: (HomeUiAction) -> Unit, onProfileClick: () -> Unit) {
+    viewState.homeEvent?.let { event ->
+        LaunchedEffect(event) {
+            when (event) {
+                is HomeVMEvent.NavigateToProfile -> {
+                    onProfileClick()
+                }
+            }
+        }
+        viewAction(HomeUiAction.ClearHomeEvent)
+    }
 }
 
 @Composable
 fun HomeScreenContent(viewState: HomeUiState, viewAction: (HomeUiAction) -> Unit) {
     Column(modifier = Modifier.fillMaxSize()) {
-        HomeTopBar()
+        HomeTopBar { viewAction(HomeUiAction.ClickOnProfile) }
         Column(
             modifier = Modifier
                 .background(color = MaterialTheme.colorScheme.secondary)
@@ -70,10 +89,10 @@ fun HomeScreenContent(viewState: HomeUiState, viewAction: (HomeUiAction) -> Unit
 }
 
 @Composable
-private fun HomeTopBar() {
+private fun HomeTopBar(onProfileClick: () -> Unit) {
     Box() {
         LogoTopBar()
-        ProfileTopBar(onProfileClick = {})
+        ProfileTopBar(onProfileClick = onProfileClick)
     }
 }
 

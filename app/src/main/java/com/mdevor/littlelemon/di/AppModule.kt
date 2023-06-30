@@ -11,8 +11,10 @@ import com.mdevor.littlelemon.data.remote.service.MenuServiceImpl
 import com.mdevor.littlelemon.data.repository.LittleLemonRepositoryImpl
 import com.mdevor.littlelemon.domain.repository.LittleLemonRepository
 import com.mdevor.littlelemon.domain.usecase.GetCategoriesUseCase
+import com.mdevor.littlelemon.domain.usecase.GetIsLoggedUseCase
 import com.mdevor.littlelemon.domain.usecase.GetMenuUseCase
 import com.mdevor.littlelemon.domain.usecase.SetIsLoggedUseCase
+import com.mdevor.littlelemon.presentation.navigation.StartNavigationViewModel
 import com.mdevor.littlelemon.presentation.screens.home.HomeViewModel
 import com.mdevor.littlelemon.presentation.screens.login.LoginViewModel
 import kotlinx.coroutines.Dispatchers
@@ -49,7 +51,7 @@ val appModule = module {
 
     factory { SetIsLoggedUseCase(get()) }
 
-    factory { SetIsLoggedUseCase(get()) }
+    factory { GetIsLoggedUseCase(get()) }
 
     viewModel {
         HomeViewModel(
@@ -61,6 +63,12 @@ val appModule = module {
     viewModel {
         LoginViewModel(
             setIsLoggedUseCase = get()
+        )
+    }
+
+    viewModel {
+        StartNavigationViewModel(
+            getIsLoggedUseCase = get(),
         )
     }
 }
