@@ -17,8 +17,8 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -26,15 +26,28 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.mdevor.littlelemon.R
 import com.mdevor.littlelemon.presentation.components.InfoItem
 import com.mdevor.littlelemon.presentation.components.LemonButton
-import com.mdevor.littlelemon.presentation.components.LineDivider
-import com.mdevor.littlelemon.presentation.model.InfoData
 import com.mdevor.littlelemon.presentation.theme.LittleLemonTheme
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun ProfileScreen(profileInfoList: List<InfoData> = listOf()) {
+fun ProfileScreen(
+    viewModel: ProfileViewModel = koinViewModel(),
+    onLogoutClick: () -> Unit = {},
+    onBackClick: () -> Unit = {},
+) {
+    val viewState: ProfileUiState = viewModel.uiState.collectAsStateWithLifecycle().value
+    val viewAction: (ProfileUiAction) -> Unit = { viewModel.handleViewAction(it) }
+
+    ProfileScreenContent(viewState, viewAction)
+    ProfileScreenEffect(viewState, onLogoutClick, onBackClick)
+}
+
+@Composable
+private fun ProfileScreenContent(viewState: ProfileUiState, viewAction: (ProfileUiAction) -> Unit) {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.SpaceBetween
@@ -46,11 +59,11 @@ fun ProfileScreen(profileInfoList: List<InfoData> = listOf()) {
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Start,
             ) {
-                IconButton(onClick = { /* TODO: Impl back click */ }) {
+                IconButton(onClick = { viewAction(ProfileUiAction.ClickBackButton) }) {
                     Icon(
                         imageVector = Icons.Filled.ArrowBack,
                         tint = MaterialTheme.colorScheme.surface,
-                        contentDescription = "Back",
+                        contentDescription = "Back button",
                     )
                 }
             }
@@ -72,7 +85,7 @@ fun ProfileScreen(profileInfoList: List<InfoData> = listOf()) {
             }
         }
         Column() {
-            profileInfoList.forEach { profileInfo ->
+            viewState.userInfoList.forEach { profileInfo ->
                 InfoItem(profileInfo = profileInfo)
             }
         }
@@ -84,9 +97,25 @@ fun ProfileScreen(profileInfoList: List<InfoData> = listOf()) {
                 .fillMaxWidth(),
             text = "Log out",
             onClick = {
-                // TODO: Impl register click
+                viewAction(ProfileUiAction.ClickLogoutButton)
             }
         )
+    }
+}
+
+@Composable
+fun ProfileScreenEffect(
+    viewState: ProfileUiState,
+    onLogoutClick: () -> Unit = {},
+    onBackClick: () -> Unit = {}
+) {
+    viewState.profileEvent?.let { event ->
+        LaunchedEffect(event) {
+            when (event) {
+                is ProfileVMEvent.NavigateBack -> onBackClick()
+                is ProfileVMEvent.NavigateToLogin -> onLogoutClick()
+            }
+        }
     }
 }
 
@@ -94,17 +123,6 @@ fun ProfileScreen(profileInfoList: List<InfoData> = listOf()) {
 @Composable
 fun ProfileScreenPreview() {
     LittleLemonTheme {
-        ProfileScreen(
-            profileInfoList = listOf(
-                InfoData(
-                    label = "Name",
-                    value = "Megan Devor",
-                ),
-                InfoData(
-                    label = "Email",
-                    value = "megan.devor@gmail.com"
-                )
-            )
-        )
+        ProfileScreen()
     }
 }

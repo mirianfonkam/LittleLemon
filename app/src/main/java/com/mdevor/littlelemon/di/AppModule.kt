@@ -17,6 +17,7 @@ import com.mdevor.littlelemon.domain.usecase.SetIsLoggedUseCase
 import com.mdevor.littlelemon.presentation.navigation.StartNavigationViewModel
 import com.mdevor.littlelemon.presentation.screens.home.HomeViewModel
 import com.mdevor.littlelemon.presentation.screens.login.LoginViewModel
+import com.mdevor.littlelemon.presentation.screens.profile.ProfileViewModel
 import kotlinx.coroutines.Dispatchers
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -69,6 +70,12 @@ val appModule = module {
     viewModel {
         StartNavigationViewModel(
             getIsLoggedUseCase = get(),
+        )
+    }
+
+    viewModel {
+        ProfileViewModel(
+            setIsLoggedUseCase = get(),
         )
     }
 }

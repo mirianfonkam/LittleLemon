@@ -42,7 +42,18 @@ fun LittleLemonNavHost(
             )
         }
         composable(PROFILE.route) {
-            ProfileScreen()
+            ProfileScreen(
+                onLogoutClick = {
+                    navController.navigate(LOGIN.route) {
+                        popUpTo(HOME.route) {
+                            inclusive = true
+                        }
+                    }
+                },
+                onBackClick = {
+                    navController.popBackStack()
+                }
+            )
         }
     }
 }
