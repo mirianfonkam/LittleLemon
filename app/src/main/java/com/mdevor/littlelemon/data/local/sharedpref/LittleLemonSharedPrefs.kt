@@ -1,4 +1,4 @@
-package com.mdevor.littlelemon.data.local
+package com.mdevor.littlelemon.data.local.sharedpref
 
 import android.content.Context
 import android.content.SharedPreferences

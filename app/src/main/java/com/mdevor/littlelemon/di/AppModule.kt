@@ -1,8 +1,8 @@
 package com.mdevor.littlelemon.di
 
-import com.mdevor.littlelemon.data.local.LittleLemonLocalDataSource
-import com.mdevor.littlelemon.data.local.LittleLemonLocalDataSourceImpl
-import com.mdevor.littlelemon.data.local.LittleLemonSharedPrefs
+import com.mdevor.littlelemon.data.local.datasource.LittleLemonLocalDataSource
+import com.mdevor.littlelemon.data.local.datasource.LittleLemonLocalDataSourceImpl
+import com.mdevor.littlelemon.data.local.sharedpref.LittleLemonSharedPrefs
 import com.mdevor.littlelemon.data.remote.datasource.MenuRemoteDataSource
 import com.mdevor.littlelemon.data.remote.datasource.MenuRemoteDataSourceImpl
 import com.mdevor.littlelemon.data.remote.service.KtorClient

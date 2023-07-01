@@ -86,7 +86,7 @@ private fun ProfileScreenContent(viewState: ProfileUiState, viewAction: (Profile
         }
         Column() {
             viewState.userInfoList.forEach { profileInfo ->
-                InfoItem(profileInfo = profileInfo)
+                InfoItem(info = profileInfo)
             }
         }
         LemonButton(

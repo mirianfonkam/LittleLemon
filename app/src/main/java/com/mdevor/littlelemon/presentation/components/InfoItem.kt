@@ -11,19 +11,19 @@ import androidx.compose.ui.unit.dp
 import com.mdevor.littlelemon.presentation.model.InfoData
 
 @Composable
-fun InfoItem(profileInfo: InfoData) {
+fun InfoItem(info: InfoData) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 12.dp)
     ) {
         Text(
-            text = profileInfo.label,
+            text = info.label,
             style = MaterialTheme.typography.labelSmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
         Text(
-            text = profileInfo.value,
+            text = info.value,
             style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier.padding(
                 top = 16.dp,

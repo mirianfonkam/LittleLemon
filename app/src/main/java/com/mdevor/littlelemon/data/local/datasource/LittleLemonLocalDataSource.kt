@@ -1,4 +1,4 @@
-package com.mdevor.littlelemon.data.local
+package com.mdevor.littlelemon.data.local.datasource
 
 interface LittleLemonLocalDataSource {
     fun getFirstName(): String

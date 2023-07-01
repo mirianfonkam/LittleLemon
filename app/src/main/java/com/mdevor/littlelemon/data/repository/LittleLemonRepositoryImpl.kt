@@ -1,6 +1,6 @@
 package com.mdevor.littlelemon.data.repository
 
-import com.mdevor.littlelemon.data.local.LittleLemonLocalDataSource
+import com.mdevor.littlelemon.data.local.datasource.LittleLemonLocalDataSource
 import com.mdevor.littlelemon.data.remote.datasource.MenuRemoteDataSource
 import com.mdevor.littlelemon.domain.entity.MenuEntity
 import com.mdevor.littlelemon.domain.entity.UserEntity
