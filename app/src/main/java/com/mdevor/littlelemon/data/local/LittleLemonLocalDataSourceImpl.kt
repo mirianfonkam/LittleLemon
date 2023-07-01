@@ -13,12 +13,9 @@ class LittleLemonLocalDataSourceImpl(private val prefs: SharedPreferences) :
 
     override fun getFirstName(): String = getStringValueByKey(FIRST_NAME_KEY)
 
-
     override fun getLastName(): String = getStringValueByKey(LAST_NAME_KEY)
 
-
     override fun getEmail(): String = getStringValueByKey(EMAIL_KEY)
-
 
     override fun getIsLogged(): Boolean {
         return prefs.getBoolean(IS_LOGGED_KEY, false)
@@ -43,5 +40,4 @@ class LittleLemonLocalDataSourceImpl(private val prefs: SharedPreferences) :
     private fun getStringValueByKey(key: String): String {
         return prefs.getString(key, "").orEmpty()
     }
-
 }

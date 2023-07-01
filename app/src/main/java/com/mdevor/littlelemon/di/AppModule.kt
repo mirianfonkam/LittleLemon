@@ -13,7 +13,9 @@ import com.mdevor.littlelemon.domain.repository.LittleLemonRepository
 import com.mdevor.littlelemon.domain.usecase.GetCategoriesUseCase
 import com.mdevor.littlelemon.domain.usecase.GetIsLoggedUseCase
 import com.mdevor.littlelemon.domain.usecase.GetMenuUseCase
+import com.mdevor.littlelemon.domain.usecase.GetUserDataUseCase
 import com.mdevor.littlelemon.domain.usecase.SetIsLoggedUseCase
+import com.mdevor.littlelemon.domain.usecase.SetUserDataUseCase
 import com.mdevor.littlelemon.presentation.navigation.StartNavigationViewModel
 import com.mdevor.littlelemon.presentation.screens.home.HomeViewModel
 import com.mdevor.littlelemon.presentation.screens.login.LoginViewModel
@@ -54,6 +56,10 @@ val appModule = module {
 
     factory { GetIsLoggedUseCase(get()) }
 
+    factory { GetUserDataUseCase(get()) }
+
+    factory { SetUserDataUseCase(get()) }
+
     viewModel {
         HomeViewModel(
             getMenuUseCase = get(),
@@ -63,7 +69,8 @@ val appModule = module {
 
     viewModel {
         LoginViewModel(
-            setIsLoggedUseCase = get()
+            setIsLoggedUseCase = get(),
+            setUserDataUseCase = get(),
         )
     }
 
@@ -76,6 +83,7 @@ val appModule = module {
     viewModel {
         ProfileViewModel(
             setIsLoggedUseCase = get(),
+            getUserDataUseCase = get(),
         )
     }
 }

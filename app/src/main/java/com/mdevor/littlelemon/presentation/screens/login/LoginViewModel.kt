@@ -2,12 +2,16 @@ package com.mdevor.littlelemon.presentation.screens.login
 
 import androidx.lifecycle.ViewModel
 import com.mdevor.littlelemon.domain.usecase.SetIsLoggedUseCase
+import com.mdevor.littlelemon.domain.usecase.SetUserDataUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
-class LoginViewModel(private val setIsLoggedUseCase: SetIsLoggedUseCase) : ViewModel() {
+class LoginViewModel(
+    private val setIsLoggedUseCase: SetIsLoggedUseCase,
+    private val setUserDataUseCase: SetUserDataUseCase,
+) : ViewModel() {
 
     private val _uiState = MutableStateFlow(LoginUiState())
     val uiState: StateFlow<LoginUiState> = _uiState.asStateFlow()
@@ -38,8 +42,9 @@ class LoginViewModel(private val setIsLoggedUseCase: SetIsLoggedUseCase) : ViewM
                     loginEvent = LoginVMEvent.NavigateToHome
                 )
             }
-
-            // Save user info to shared preferences
+            with(_uiState.value) {
+                setUserDataUseCase(firstName, lastName, email)
+            }
         } else {
             _uiState.update {
                 it.copy(

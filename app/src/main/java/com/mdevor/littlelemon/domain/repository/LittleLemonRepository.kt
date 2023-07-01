@@ -12,4 +12,6 @@ interface LittleLemonRepository {
     fun setIsLogged(isLogged: Boolean)
 
     fun getUserData(): UserEntity
+
+    fun setUserData(firstName: String?, lastName: String?, email: String?)
 }

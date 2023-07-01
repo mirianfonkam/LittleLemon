@@ -37,4 +37,11 @@ class LittleLemonRepositoryImpl(
             )
         }
     }
+    override fun setUserData(firstName: String?, lastName: String?, email: String?) {
+        with(localDataSource) {
+            firstName?.let { setFirstName(it) }
+            lastName?.let { setLastName(it) }
+            email?.let { setEmail(it) }
+        }
+    }
 }
