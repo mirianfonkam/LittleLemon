@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'org.jetbrains.kotlin.plugin.serialization'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -51,6 +52,7 @@ dependencies {
     def koin_version = "3.4.0"
     def mockk_version = "1.13.5"
     def composeNavigationVersion = "2.6.0"
+    def room_version = "2.5.2"
 
     implementation composeBom
     implementation 'androidx.compose.material3:material3'
@@ -63,13 +65,18 @@ dependencies {
     implementation("io.coil-kt:coil-compose:2.4.0")
     implementation "androidx.navigation:navigation-compose:$composeNavigationVersion"
 
+    // Room
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    kapt("androidx.room:room-compiler:$room_version")
+
     // Ktor
     implementation "io.ktor:ktor-client-core:$ktor_version"
     implementation "io.ktor:ktor-client-android:$ktor_version"
     implementation "io.ktor:ktor-client-content-negotiation:$ktor_version"
     implementation "io.ktor:ktor-serialization-kotlinx-json:$ktor_version"
     implementation "io.ktor:ktor-client-mock:$ktor_version"
-
 
     // Koin
     implementation "io.insert-koin:koin-androidx-compose:3.4.3"
