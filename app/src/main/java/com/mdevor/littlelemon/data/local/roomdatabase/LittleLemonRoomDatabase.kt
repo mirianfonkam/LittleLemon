@@ -6,5 +6,5 @@ import com.mdevor.littlelemon.data.local.entity.MenuLocalEntity
 
 @Database(entities = [MenuLocalEntity::class], version = 1)
 abstract class LittleLemonRoomDatabase : RoomDatabase() {
-    abstract fun menuItemDao(): MenuDao
+    abstract fun getMenuDao(): MenuDao
 }

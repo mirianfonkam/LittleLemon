@@ -4,9 +4,9 @@ import android.content.Context
 import android.content.SharedPreferences
 
 
-class LittleLemonSharedPrefs {
+object LittleLemonSharedPrefs {
 
-    fun setup(context: Context): SharedPreferences {
+    fun build(context: Context): SharedPreferences {
         return context.getSharedPreferences("littlelemon_shared_prefs", Context.MODE_PRIVATE)
     }
 }
