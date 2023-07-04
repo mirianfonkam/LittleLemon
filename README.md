@@ -8,14 +8,18 @@
 3. Implement tests with **JUnit** 
 
 ## 📲 Design & Screenshots
+
 - [Little Lemon Figma](https://www.figma.com/file/Kn9dkpxIqUgR4CR77SWEo1/Little-Lemon-food-ordering-app---Capstone-Project?type=design&node-id=0%3A1&t=agUK0VpMSCC0j29q-1)
 
-<p align="center">
-  <img width="800" alt="image" src="https://github.com/mirianfonkam/LittleLemon/assets/28691174/6914347e-2f12-45b1-b695-97ab869b4df4">
-</p>
+  
 
 <p align="center">
+  <img width="840" alt="image" src="https://github.com/mirianfonkam/LittleLemon/assets/28691174/5f7ebdd0-5ae6-421f-8698-51c287d57101">
+  
+  <img width="840" alt="image" src="https://github.com/mirianfonkam/LittleLemon/assets/28691174/8f8d2532-de84-4eb7-8631-1c842e0c40da">
+
   <img src="https://github.com/mirianfonkam/LittleLemon/blob/main/docs/little.gif" height="400" alt="Little Lemon App Demo Gif" />
+
 </p>
 
 ## ☑ Todo List 
