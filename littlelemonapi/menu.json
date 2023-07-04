@@ -16,9 +16,9 @@
     },
     {
       "title": "Grilled Fish",
-      "description": "Our Bruschetta is made from grilled bread that has been smeared with garlic and seasoned with salt and olive oil.",
+      "description": "Fantastic grilled fish seasoned with salt.",
       "price": 20.00,
-      "image": "https://github.com/Meta-Mobile-Developer-PC/Working-With-Data-API/blob/main/images/grilledFish.jpg?raw=true",
+      "image": "https://www.lanascooking.com/wp-content/uploads/2021/07/simple-seasoned-grilled-fish-feature-1200.jpg",
       "category": "mains"
     },
     {
@@ -32,7 +32,7 @@
       "title": "Lemon Desert",
       "description": "Traditional homemade Italian Lemon Ricotta Cake.",
       "price": 4.99,
-      "image": "https://github.com/Meta-Mobile-Developer-PC/Working-With-Data-API/blob/main/images/lemonDessert%202.jpg?raw=true",
+      "image": "https://www.marcellinaincucina.com/wp-content/uploads/2023/02/italian-lemon-cake-featured.jpg",
       "category": "desserts"
     }
   ]
