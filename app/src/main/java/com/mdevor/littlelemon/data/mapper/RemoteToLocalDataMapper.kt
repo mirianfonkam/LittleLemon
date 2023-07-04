@@ -1,11 +1,11 @@
 package com.mdevor.littlelemon.data.mapper
 
 import com.mdevor.littlelemon.data.local.entity.MenuLocalEntity
-import com.mdevor.littlelemon.domain.entity.MenuEntity
+import com.mdevor.littlelemon.data.remote.model.MenuItemRequest
 
-fun List<MenuLocalEntity>.toDomain(): List<MenuEntity> =
+fun List<MenuItemRequest>.toLocalDataModel(): List<MenuLocalEntity> =
     map {
-        MenuEntity(
+        MenuLocalEntity(
             title = it.title,
             description = it.description,
             price = it.price,

@@ -1,7 +1,6 @@
 package com.mdevor.littlelemon.data.local.datasource
 
 import com.mdevor.littlelemon.data.local.entity.MenuLocalEntity
-import kotlinx.coroutines.flow.Flow
 
 interface LittleLemonLocalDataSource {
     fun getFirstName(): String
@@ -12,6 +11,6 @@ interface LittleLemonLocalDataSource {
     fun setEmail(email: String)
     fun getIsLogged(): Boolean
     fun setIsLogged(isLogged: Boolean)
-    fun getMenu(): Flow<List<MenuLocalEntity>>
+    suspend fun getMenu(): List<MenuLocalEntity>
     suspend fun insertMenu(menuItems: List<MenuLocalEntity>)
 }

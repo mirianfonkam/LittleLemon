@@ -4,7 +4,6 @@ import android.content.SharedPreferences
 import androidx.core.content.edit
 import com.mdevor.littlelemon.data.local.entity.MenuLocalEntity
 import com.mdevor.littlelemon.data.local.roomdatabase.MenuDao
-import kotlinx.coroutines.flow.Flow
 
 private const val FIRST_NAME_KEY = "first_name"
 private const val LAST_NAME_KEY = "last_name"
@@ -42,7 +41,7 @@ class LittleLemonLocalDataSourceImpl(
         prefs.edit(commit = true) { putBoolean(IS_LOGGED_KEY, isLogged) }
     }
 
-    override fun getMenu(): Flow<List<MenuLocalEntity>> = db.getAll()
+    override suspend fun getMenu(): List<MenuLocalEntity> = db.getAll()
 
     override suspend fun insertMenu(menuItems: List<MenuLocalEntity>) = db.insertAll(menuItems)
 

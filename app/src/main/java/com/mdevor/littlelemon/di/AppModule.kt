@@ -32,7 +32,7 @@ val appModule = module {
 
     single<MenuService> {
         MenuServiceImpl(
-            httpClient = KtorClient().build()
+            httpClient = KtorClient.build()
         )
     }
 

@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "menu")
 data class MenuLocalEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val id: Int? = null,
     val title: String,
     val description: String,
     val price: Double,

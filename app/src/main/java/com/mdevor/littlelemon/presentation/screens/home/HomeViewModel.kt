@@ -1,6 +1,5 @@
 package com.mdevor.littlelemon.presentation.screens.home
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mdevor.littlelemon.domain.entity.MenuEntity
@@ -45,20 +44,15 @@ class HomeViewModel(
 
     private fun getMenuList() {
         viewModelScope.launch {
-            runCatching {
-                 getMenuUseCase()
-            }.onSuccess { menu ->
-                val menuItemDataList = menu.toPresentation()
-                _uiState.update {
-                    it.copy(
-                        menuList = menuItemDataList,
-                        displayedMenuList = menuItemDataList,
-                    )
-                }
-                getCategoryList(menu)
-            }.onFailure {
-                Log.e("HomeViewModel", "getMenuList error", it)
+            val menu = getMenuUseCase()
+            val menuItemDataList = menu.toPresentation()
+            _uiState.update {
+                it.copy(
+                    menuList = menuItemDataList,
+                    displayedMenuList = menuItemDataList,
+                )
             }
+            getCategoryList(menu)
         }
     }
 

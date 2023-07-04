@@ -2,7 +2,7 @@ package com.mdevor.littlelemon.data.datasource
 
 import com.mdevor.littlelemon.data.remote.datasource.MenuRemoteDataSourceImpl
 import com.mdevor.littlelemon.data.remote.service.MenuService
-import com.mdevor.littlelemon.testhelpers.stubs.getDomainMenuList
+import com.mdevor.littlelemon.testhelpers.stubs.getRemoteDataMenuList
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
@@ -17,8 +17,8 @@ class MenuRemoteDataSourceImplTest {
     @Test
     fun `GIVEN service succeeds WHEN getMenu THEN get a list of MenuItem`() = runBlocking {
         // GIVEN
-        coEvery { service.getMenu() } returns getDomainMenuList()
-        val expectedResult = getDomainMenuList()
+        coEvery { service.getMenu() } returns getRemoteDataMenuList()
+        val expectedResult = getRemoteDataMenuList()
 
         // WHEN
         val actualResult = dataSource.getMenu()

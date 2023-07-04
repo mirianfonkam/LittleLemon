@@ -1,6 +1,5 @@
 package com.mdevor.littlelemon.presentation.viewmodel
 
-import android.util.Log
 import com.mdevor.littlelemon.domain.usecase.GetCategoriesUseCase
 import com.mdevor.littlelemon.domain.usecase.GetMenuUseCase
 import com.mdevor.littlelemon.presentation.screens.home.HomeUiAction
@@ -13,9 +12,7 @@ import com.mdevor.littlelemon.testhelpers.stubs.greekSaladItem
 import com.mdevor.littlelemon.testhelpers.testrule.MainDispatcherRule
 import io.mockk.coEvery
 import io.mockk.coVerifyOrder
-import io.mockk.every
 import io.mockk.mockk
-import io.mockk.mockkStatic
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 import org.junit.Test
@@ -71,20 +68,6 @@ class HomeViewModelTest {
 
         // WHEN
         setupViewModel()
-
-        // THEN
-        assertEquals(expectedState, viewModel.uiState.value)
-    }
-
-    @Test
-    fun `GIVEN getMenuUseCase fails WHEN init THEN assert uiState remains with initial uiState`() = runTest {
-        // GIVEN
-        val expectedState = HomeUiState()
-        mockkStatic(Log::class)
-        every { Log.e(any(), any(), any()) } returns 0
-
-        // WHEN
-        setupViewModel(hasFailure = true)
 
         // THEN
         assertEquals(expectedState, viewModel.uiState.value)
