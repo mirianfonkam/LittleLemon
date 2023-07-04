@@ -11,6 +11,6 @@ interface MenuDao {
     @Query("SELECT * FROM menu")
     suspend fun getAll(): List<MenuLocalEntity>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(menuItems: List<MenuLocalEntity>)
 }
