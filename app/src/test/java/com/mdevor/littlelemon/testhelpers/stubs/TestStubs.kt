@@ -3,6 +3,7 @@ package com.mdevor.littlelemon.testhelpers.stubs
 import com.mdevor.littlelemon.data.local.entity.MenuLocalEntity
 import com.mdevor.littlelemon.data.remote.model.MenuItemRequest
 import com.mdevor.littlelemon.domain.entity.MenuEntity
+import com.mdevor.littlelemon.domain.entity.UserEntity
 import com.mdevor.littlelemon.presentation.model.MenuItemData
 
 fun getRemoteDataMenuList(): List<MenuItemRequest> =
@@ -80,3 +81,9 @@ fun greekSaladItem() = MenuItemData(
 )
 
 fun getCategoryList(): List<String> = listOf("starters", "mains")
+
+fun getUserEntity() = UserEntity(
+    firstName = "John",
+    lastName = "Doe",
+    email = "johndoe@gmail.com"
+)
