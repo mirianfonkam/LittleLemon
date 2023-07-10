@@ -8,10 +8,18 @@
 3. Implement tests with **JUnit** 
 
 ## 📲 Design & Screenshots
+
 - [Little Lemon Figma](https://www.figma.com/file/Kn9dkpxIqUgR4CR77SWEo1/Little-Lemon-food-ordering-app---Capstone-Project?type=design&node-id=0%3A1&t=agUK0VpMSCC0j29q-1)
 
+  
+
 <p align="center">
-  <img width="118" alt="image" src="https://github.com/mirianfonkam/LittleLemon/assets/28691174/48c05861-fcaf-4859-a840-3af4ba54e413">
+  <img width="840" alt="image" src="https://github.com/mirianfonkam/LittleLemon/assets/28691174/5f7ebdd0-5ae6-421f-8698-51c287d57101">
+  
+  <img width="840" alt="image" src="https://github.com/mirianfonkam/LittleLemon/assets/28691174/8f8d2532-de84-4eb7-8631-1c842e0c40da">
+
+  <img src="https://github.com/mirianfonkam/LittleLemon/blob/main/docs/little.gif" height="400" alt="Little Lemon App Demo Gif" />
+
 </p>
 
 ## ☑ Todo List 
@@ -22,7 +30,7 @@
  - [x] Searching Functionality - VM
  - [x] Improve Home Screen Composables
 
-[KanBan Board with Capstone Tasks](https://github.com/users/mirianfonkam/projects/5)
+[<< KanBan Board with Capstone Tasks >>](https://github.com/users/mirianfonkam/projects/5)
 
 ## 🛠️ Libraries & Tools
 
