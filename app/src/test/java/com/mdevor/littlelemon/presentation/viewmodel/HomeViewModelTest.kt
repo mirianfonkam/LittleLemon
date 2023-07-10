@@ -4,6 +4,7 @@ import com.mdevor.littlelemon.domain.usecase.GetCategoriesUseCase
 import com.mdevor.littlelemon.domain.usecase.GetMenuUseCase
 import com.mdevor.littlelemon.presentation.screens.home.HomeUiAction
 import com.mdevor.littlelemon.presentation.screens.home.HomeUiState
+import com.mdevor.littlelemon.presentation.screens.home.HomeVMEvent
 import com.mdevor.littlelemon.presentation.screens.home.HomeViewModel
 import com.mdevor.littlelemon.testhelpers.stubs.getCategoryList
 import com.mdevor.littlelemon.testhelpers.stubs.getDomainMenuList
@@ -14,6 +15,7 @@ import io.mockk.coEvery
 import io.mockk.coVerifyOrder
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import kotlin.test.assertEquals
@@ -28,13 +30,10 @@ class HomeViewModelTest {
     private val getMenuUseCase = mockk<GetMenuUseCase>()
     private val getCategoriesUseCase = mockk<GetCategoriesUseCase>()
 
-    private fun setupViewModel(hasFailure: Boolean = false) {
-        if (hasFailure) {
-            coEvery { getMenuUseCase() } throws Exception()
-        } else {
-            coEvery { getMenuUseCase() } returns getDomainMenuList()
-            coEvery { getCategoriesUseCase(any()) } returns getCategoryList()
-        }
+    @Before
+    fun setupViewModel() {
+        coEvery { getMenuUseCase() } returns getDomainMenuList()
+        coEvery { getCategoriesUseCase(any()) } returns getCategoryList()
 
         viewModel = HomeViewModel(
             getMenuUseCase = getMenuUseCase,
@@ -43,12 +42,9 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `GIVEN getMenuUseCase succeeds WHEN init THEN use cases are called in order`() = runTest {
+    fun `WHEN init THEN getMenuUseCase and getCategoriesUseCase are called in order`() = runTest {
         // GIVEN
         val expectedMenuList = getDomainMenuList()
-
-        // WHEN
-        setupViewModel()
 
         // THEN
         coVerifyOrder {
@@ -58,16 +54,13 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `GIVEN getMenuUseCase succeeds WHEN init THEN assert uiState updates accordingly`() = runTest {
+    fun `WHEN init THEN assert uiState updates accordingly with menuList and categoryList states`() = runTest {
         // GIVEN
         val expectedState = HomeUiState(
             menuList = getPresentationMenuList(),
             displayedMenuList = getPresentationMenuList(),
             categoryList = getCategoryList(),
         )
-
-        // WHEN
-        setupViewModel()
 
         // THEN
         assertEquals(expectedState, viewModel.uiState.value)
@@ -77,7 +70,6 @@ class HomeViewModelTest {
     @Test
     fun `WHEN handle SearchMenu uiAction with query THEN assert uiState updates according to found search result`() {
         // GIVEN
-        setupViewModel()
         val foundSearchQuery = "pasta"
         val expected = HomeUiState(
             menuList = getPresentationMenuList(),
@@ -85,6 +77,7 @@ class HomeViewModelTest {
             categoryList = getCategoryList(),
             searchQuery = foundSearchQuery,
         )
+
         // WHEN
         viewModel.handleViewAction(HomeUiAction.SearchMenu(foundSearchQuery))
 
@@ -95,7 +88,6 @@ class HomeViewModelTest {
     @Test
     fun `WHEN handle SearchMenu uiAction with blank query THEN assert uiState updates accordingly`() {
         // GIVEN
-        setupViewModel()
         val blankSearchQuery =  " "
         val expected = HomeUiState(
             menuList = getPresentationMenuList(),
@@ -114,7 +106,6 @@ class HomeViewModelTest {
     @Test
     fun `WHEN handle SearchMenu uiAction with not found query THEN assert uiState updates accordingly`() {
         // GIVEN
-        setupViewModel()
         val blankSearchQuery = "testing not found search query"
         val expected = HomeUiState(
             menuList = getPresentationMenuList(),
@@ -133,7 +124,6 @@ class HomeViewModelTest {
     @Test
     fun `WHEN handle FilterMenu uiAction with selectedFilter THEN assert uiState updates according to found menuItem`() {
         // GIVEN
-        setupViewModel()
         val selectedFilter = getCategoryList().first()
         val expected = HomeUiState(
             menuList = getPresentationMenuList(),
@@ -152,7 +142,6 @@ class HomeViewModelTest {
     @Test
     fun `WHEN handle FilterMenu uiAction twice THEN assert uiState updates according to filter toggle`() {
         // GIVEN
-        setupViewModel()
         val selectedFilter = getCategoryList().first()
         val expected = HomeUiState(
             menuList = getPresentationMenuList(),
@@ -170,9 +159,8 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `WHEN handle FilterMenu uiAction and Search uiEvent THEN assert uiState updates accordingly`() {
+    fun `WHEN handle FilterMenu uiAction and Search uiAction THEN assert uiState updates accordingly`() {
         // GIVEN
-        setupViewModel()
         val selectedFilter = getCategoryList().first()
         val searchQuery = "Salad"
         val expected = HomeUiState(
@@ -186,6 +174,40 @@ class HomeViewModelTest {
         // WHEN
         viewModel.handleViewAction(HomeUiAction.FilterMenu(selectedFilter))
         viewModel.handleViewAction(HomeUiAction.SearchMenu(searchQuery))
+
+        // THEN
+        assertEquals(expected, viewModel.uiState.value)
+    }
+
+    @Test
+    fun `WHEN handle ClickOnProfile uiAction THEN assert uiState updates with NavigateToProfile event`() {
+        // GIVEN
+        val expected = HomeUiState(
+            menuList = getPresentationMenuList(),
+            displayedMenuList = getPresentationMenuList(),
+            categoryList = getCategoryList(),
+            homeEvent = HomeVMEvent.NavigateToProfile,
+        )
+        // WHEN
+        viewModel.handleViewAction(HomeUiAction.ClickOnProfile)
+
+        // THEN
+        assertEquals(expected, viewModel.uiState.value)
+    }
+
+    @Test
+    fun `GIVEN ClickOnProfile WHEN handle ClearHomeEvent uiAction THEN assert uiState updates with null event`() {
+        // GIVEN
+        val expected = HomeUiState(
+            menuList = getPresentationMenuList(),
+            displayedMenuList = getPresentationMenuList(),
+            categoryList = getCategoryList(),
+            homeEvent = null,
+        )
+        viewModel.handleViewAction(HomeUiAction.ClickOnProfile)
+
+        // WHEN
+        viewModel.handleViewAction(HomeUiAction.ClearHomeEvent)
 
         // THEN
         assertEquals(expected, viewModel.uiState.value)
