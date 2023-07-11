@@ -4,7 +4,9 @@ import com.mdevor.littlelemon.domain.usecase.SetIsLoggedUseCase
 import com.mdevor.littlelemon.domain.usecase.SetUserDataUseCase
 import com.mdevor.littlelemon.presentation.screens.login.LoginUiAction
 import com.mdevor.littlelemon.presentation.screens.login.LoginUiState
+import com.mdevor.littlelemon.presentation.screens.login.LoginVMEvent
 import com.mdevor.littlelemon.presentation.screens.login.LoginViewModel
+import com.mdevor.littlelemon.testhelpers.stubs.getUserEntity
 import com.mdevor.littlelemon.testhelpers.testrule.MainDispatcherRule
 import io.mockk.Called
 import io.mockk.mockk
@@ -30,6 +32,16 @@ class LoginViewModelTest {
             setIsLoggedUseCase = setIsLoggedUseCase,
             setUserDataUseCase = setUserDataUseCase,
         )
+    }
+
+    private fun enterAllRequiredInfo() {
+        with(viewModel) {
+            with(getUserEntity()) {
+                handleViewAction(LoginUiAction.UpdateFirstName(firstName))
+                handleViewAction(LoginUiAction.UpdateLastName(lastName))
+                handleViewAction(LoginUiAction.UpdateEmail(email))
+            }
+        }
     }
 
     @Test
@@ -117,15 +129,7 @@ class LoginViewModelTest {
     @Test
     fun `GIVEN firstName, lastName and email are entered WHEN ClickRegisterButton THEN assert setIsLogged and setUserData useCases are invoked`() {
         // GIVEN
-        val firstName = "Mirian"
-        val lastName = "Fonkam"
-        val email = "mirianandkotlin@gmail.com"
-
-        with(viewModel) {
-            handleViewAction(LoginUiAction.UpdateFirstName(firstName))
-            handleViewAction(LoginUiAction.UpdateLastName(lastName))
-            handleViewAction(LoginUiAction.UpdateEmail(email))
-        }
+        enterAllRequiredInfo()
 
         // WHEN
         viewModel.handleViewAction(LoginUiAction.ClickRegisterButton)
@@ -133,17 +137,49 @@ class LoginViewModelTest {
         // THEN
         verifySequence {
             setIsLoggedUseCase(isLogged = true)
-            setUserDataUseCase(firstName = firstName, lastName = lastName, email = email)
+            with(getUserEntity()) {
+                setUserDataUseCase(firstName = firstName, lastName = lastName, email = email)
+            }
         }
     }
 
     @Test
-    fun `GIVEN firstName, lastName and email are entered WHEN ClickRegisterButton THEN assert uiState updates with NavigateToHome event`() {
+    fun `GIVEN hasAllRequiredInfo is entered WHEN ClickRegisterButton THEN assert uiState updates with NavigateToHome event`() {
+        // GIVEN
+        enterAllRequiredInfo()
+        val expectedLoginEventState = with(getUserEntity()) {
+            LoginUiState(
+                firstName = firstName,
+                lastName = lastName,
+                email = email,
+                loginStatusMessage = "",
+                loginEvent = LoginVMEvent.NavigateToHome,
+            )
+        }
 
+        // WHEN
+        viewModel.handleViewAction(LoginUiAction.ClickRegisterButton)
+
+        // THEN
+        assertEquals(expectedLoginEventState, viewModel.uiState.value)
     }
 
     @Test
-    fun `WHEN handle HideLoginStatusMessage THEN assert uiState updates with cleared loginStatusMessage`() {
+    fun `GIVEN loginStatusMessage is present WHEN handle HideLoginStatusMessage THEN assert uiState updates with cleared loginStatusMessage`() {
+        // GIVEN
+        viewModel.handleViewAction(LoginUiAction.UpdateFirstName(getUserEntity().firstName))
+        val expectedState = LoginUiState(
+            firstName = getUserEntity().firstName,
+            lastName = "",
+            email = "",
+            loginStatusMessage = "",
+            loginEvent = null,
+        )
 
+        // WHEN
+        viewModel.handleViewAction(LoginUiAction.HideLoginStatusMessage)
+
+        // THEN
+        assertEquals(expectedState, viewModel.uiState.value)
     }
 }
