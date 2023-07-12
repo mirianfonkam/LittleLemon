@@ -1,0 +1,37 @@
+# loginscreentest.yaml
+# This Maestro flow tests the login functionality of the Little Lemon application.
+
+appId: com.mdevor.littlelemon
+---
+- launchApp
+
+# Test visibility of text components
+- assertVisible: "Let's get to know you"
+- assertVisible: "First Name"
+- assertVisible: "Last Name"
+- assertVisible: "Email"
+- assertVisible: "Register"
+
+# Test visibility of input components
+- assertVisible: "Enter Your First Name"
+- assertVisible: "Enter Your Last Name"
+- assertVisible: "Enter Your Email Address"
+
+# Test attempt to register without entering required information
+
+- tapOn: "Enter Your First Name"
+- inputRandomPersonName
+- hideKeyboard
+- tapOn: "Register"
+- assertVisible: "Registration unsuccessful. Please enter all the data."
+
+# Test registration after entering all required valid information
+
+- tapOn: "Enter Your Last Name"
+- inputRandomPersonName
+- hideKeyboard
+- tapOn: "Enter Your Email Address"
+- inputRandomEmail
+- hideKeyboard
+- tapOn: "Register"
+- assertNotVisible: "Registration unsuccessful. Please enter all the data."

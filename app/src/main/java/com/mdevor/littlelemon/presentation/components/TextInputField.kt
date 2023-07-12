@@ -13,6 +13,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 
@@ -22,6 +24,7 @@ fun TextInputField(
     modifier: Modifier = Modifier,
     textFieldState: String,
     onTextValueChange: (String) -> Unit,
+    contentDescription: String? = null,
     placeholderText: String? = null,
     labelText: String? = null,
     backgroundColor: Color = MaterialTheme.colorScheme.surface,
@@ -34,13 +37,15 @@ fun TextInputField(
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier.padding(
-                    top = 24.dp,
+                    top = 20.dp,
                     bottom = 4.dp
                 )
             )
         }
         OutlinedTextField(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().semantics {
+                contentDescription?.let { this.contentDescription = it }
+            },
             value = textFieldState,
             onValueChange = { newText ->
                 onTextValueChange(newText)
@@ -72,6 +77,7 @@ fun TextInputField(
 fun BasicTextInputField(
     textFieldState: String,
     onTextValueChange: (String) -> Unit,
+    contentDescription: String? = null,
     placeholderText: String? = null,
     labelText: String? = null,
     keyboardType: KeyboardType = KeyboardType.Text,
@@ -79,10 +85,12 @@ fun BasicTextInputField(
     TextInputField(
         textFieldState = textFieldState,
         onTextValueChange = onTextValueChange,
+        contentDescription = contentDescription,
         placeholderText = placeholderText,
         labelText = labelText,
         backgroundColor = MaterialTheme.colorScheme.surface,
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth(),
         keyboardType = keyboardType,
     )
 }

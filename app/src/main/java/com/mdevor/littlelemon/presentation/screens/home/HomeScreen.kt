@@ -71,7 +71,6 @@ fun HomeScreenContent(viewState: HomeUiState, viewAction: (HomeUiAction) -> Unit
                 },
                 backgroundColor = MaterialTheme.colorScheme.surfaceVariant,
                 placeholderText = "Search",
-
             )
             Spacer(modifier = Modifier.height(36.dp))
         }

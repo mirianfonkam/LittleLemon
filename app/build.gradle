@@ -97,6 +97,7 @@ dependencies {
     testImplementation "io.mockk:mockk:$mockk_version"
     testImplementation "io.ktor:ktor-client-mock:$ktor_version"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.1"
+    testImplementation("io.coil-kt:coil-test:2.4.0")
 
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
     debugImplementation 'androidx.compose.ui:ui-tooling'

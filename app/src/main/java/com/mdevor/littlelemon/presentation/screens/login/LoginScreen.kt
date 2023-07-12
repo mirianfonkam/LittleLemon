@@ -76,6 +76,7 @@ fun LoginScreenContent(
                         viewAction(LoginUiAction.UpdateFirstName(firstName))
                     },
                     labelText = "First Name",
+                    contentDescription = "Enter Your First Name",
                 )
                 BasicTextInputField(
                     textFieldState = viewState.lastName,
@@ -83,6 +84,7 @@ fun LoginScreenContent(
                         viewAction(LoginUiAction.UpdateLastName(lastName))
                     },
                     labelText = "Last Name",
+                    contentDescription = "Enter Your Last Name",
                 )
                 BasicTextInputField(
                     textFieldState = viewState.email,
@@ -90,9 +92,9 @@ fun LoginScreenContent(
                         viewAction(LoginUiAction.UpdateEmail(email))
                     },
                     labelText = "Email",
+                    contentDescription = "Enter Your Email Address",
                     keyboardType = KeyboardType.Email,
                 )
-
             }
             LemonButton(
                 modifier = Modifier
