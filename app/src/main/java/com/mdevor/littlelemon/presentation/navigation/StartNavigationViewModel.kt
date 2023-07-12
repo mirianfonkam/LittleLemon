@@ -15,11 +15,10 @@ class StartNavigationViewModel(
     val uiState: StateFlow<StartNavigationUiState> = _uiState.asStateFlow()
 
     init {
-        updateStartDestinationByLoginStatus(getIsLoggedUseCase)
+        updateStartDestinationByLoginStatus(isUserLogged = getIsLoggedUseCase())
     }
 
-    private fun updateStartDestinationByLoginStatus(getIsLoggedUseCase: GetIsLoggedUseCase) {
-        val isUserLogged = getIsLoggedUseCase()
+    private fun updateStartDestinationByLoginStatus(isUserLogged: Boolean) {
         val startDestination = if (isUserLogged) {
             LittleLemonDestination.HOME
         } else {
