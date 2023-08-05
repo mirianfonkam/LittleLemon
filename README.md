@@ -40,6 +40,8 @@
 | [Coil](https://github.com/coil-kt/coil)| Image loading library|
 | [Ktor](https://github.com/ktorio/ktor)| Network HTTP client|
 | [Koin](https://github.com/InsertKoinIO/koin)| Dependency Injection|
+| [Maestro UI](https://maestro.mobile.dev)| Mobile UI Testing Framework|
+
 
 ## 📚 References
 
