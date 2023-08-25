@@ -1,9 +1,12 @@
-# loginscreentest.yaml
+# On the terminal, change directory to the LittleLemon/uiautomation folder
+# >> Run the command:
+#    maestro test loginscreentest.yaml
 # This Maestro flow tests the login functionality of the Little Lemon application.
 
 appId: com.mdevor.littlelemon
 ---
-- launchApp
+- launchApp:
+    clearState: true
 
 # Test visibility of text components
 - assertVisible: "Let's get to know you"
@@ -18,7 +21,6 @@ appId: com.mdevor.littlelemon
 - assertVisible: "Enter Your Email Address"
 
 # Test attempt to register without entering required information
-
 - tapOn: "Enter Your First Name"
 - inputRandomPersonName
 - hideKeyboard
@@ -26,7 +28,6 @@ appId: com.mdevor.littlelemon
 - assertVisible: "Registration unsuccessful. Please enter all the data."
 
 # Test registration after entering all required valid information
-
 - tapOn: "Enter Your Last Name"
 - inputRandomPersonName
 - hideKeyboard
