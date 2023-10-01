@@ -11,7 +11,7 @@ class SetUserDataUseCaseTest {
     private val setUserDataUseCase = SetUserDataUseCase(repository = repository)
 
     @Test
-    fun `GIVEN setUserData is called with all fields WHEN invoke THEN assert all fields are set in repository`() {
+    fun `GIVEN setUserData is called with all fields WHEN invoke THEN assert all fields are set in repo`() {
         // GIVEN
         val firstName = "John"
         val lastName = "Doe"
@@ -21,11 +21,17 @@ class SetUserDataUseCaseTest {
         setUserDataUseCase(firstName = firstName, lastName = lastName, email = email)
 
         // THEN
-        verify(exactly = 1) { repository.setUserData(firstName, lastName, email) }
+        verify(exactly = 1) {
+            repository.setUserData(
+                firstName = firstName,
+                lastName = lastName,
+                email = email
+            )
+        }
     }
 
     @Test
-    fun `GIVEN setUserData is called with one field WHEN invoke THEN assert only that field is set in repository`() {
+    fun `GIVEN setUserData is called with one field WHEN invoke THEN assert only that field is set in repo`() {
         // GIVEN
         val firstName = "John"
 
@@ -37,11 +43,11 @@ class SetUserDataUseCaseTest {
     }
 
     @Test
-    fun `GIVEN setUserData is called with no fields WHEN invoke THEN assert all fields are null`() {
+    fun `GIVEN setUserData is called with no fields WHEN invoke THEN assert all fields are null in repo`() {
         // WHEN
         setUserDataUseCase()
 
         // THEN
-        verify { repository.setUserData(null, null, null) }
+        verify { repository.setUserData(firstName = null, lastName = null, email = null) }
     }
 }
