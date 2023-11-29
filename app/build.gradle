@@ -45,6 +45,11 @@ android {
     packagingOptions {
         resources.excludes.add("META-INF/*")
     }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 dependencies {

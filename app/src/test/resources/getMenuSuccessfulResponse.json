@@ -1,0 +1,39 @@
+{
+  "menu": [
+    {
+      "title": "Greek Salad",
+      "description": "The famous greek salad of crispy lettuce, peppers, olives, our Chicago.",
+      "price": 12.99,
+      "image": "https://github.com/Meta-Mobile-Developer-PC/Working-With-Data-API/blob/main/images/greekSalad.jpg?raw=true",
+      "category": "starters"
+    },
+    {
+      "title": "Bruschetta",
+      "description": "Oven-baked bruschetta stuffed with tomatos and herbs.",
+      "price": 7.99,
+      "image": "https://github.com/Meta-Mobile-Developer-PC/Working-With-Data-API/blob/main/images/bruschetta.jpg?raw=true",
+      "category": "starters"
+    },
+    {
+      "title": "Grilled Fish",
+      "description": "Fantastic grilled fish seasoned with salt.",
+      "price": 20.00,
+      "image": "https://www.lanascooking.com/wp-content/uploads/2021/07/simple-seasoned-grilled-fish-feature-1200.jpg",
+      "category": "mains"
+    },
+    {
+      "title": "Pasta",
+      "description": "Penne with fried aubergines, cherry tomatoes, tomato sauce, fresh chilli, garlic, basil & salted ricotta cheese.",
+      "price": 6.99,
+      "image": "https://github.com/Meta-Mobile-Developer-PC/Working-With-Data-API/blob/main/images/pasta.jpg?raw=true",
+      "category": "mains"
+    },
+    {
+      "title": "Lemon Desert",
+      "description": "Traditional homemade Italian Lemon Ricotta Cake.",
+      "price": 4.99,
+      "image": "https://www.marcellinaincucina.com/wp-content/uploads/2023/02/italian-lemon-cake-featured.jpg",
+      "category": "desserts"
+    }
+  ]
+}
