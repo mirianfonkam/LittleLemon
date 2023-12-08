@@ -61,7 +61,7 @@ fun LoginScreenContent(
 ) {
     Column(modifier = Modifier.fillMaxWidth()) {
         LogoTopBar()
-        OnBoardingBanner()
+        OnboardingBanner()
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -119,7 +119,7 @@ fun LoginScreenContent(
 }
 
 @Composable
-private fun OnBoardingBanner() {
+private fun OnboardingBanner() {
     Column(
         modifier = Modifier
             .background(color = MaterialTheme.colorScheme.secondary)
@@ -139,6 +139,9 @@ private fun OnBoardingBanner() {
 @Composable
 fun LoginScreenPreview() {
     LittleLemonTheme {
-        LoginScreen()
+        LoginScreenContent(
+            viewState = LoginUiState(),
+            viewAction = {}
+        )
     }
 }

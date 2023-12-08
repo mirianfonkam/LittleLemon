@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">LittleLemon</string>
+    <string name="app_name">Little Lemon</string>
+    <string name="little_lemon_content_description">Little Lemon Logo</string>
+    <string name="onboarding_message_login">Let\'s get to know you</string>
+    <string name="register">Register</string>
+    <string name="email">Email</string>
+    <string name="last_name">Last Name</string>
+    <string name="first_name">First Name</string>
 </resources>
