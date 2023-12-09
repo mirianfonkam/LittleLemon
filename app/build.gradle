@@ -67,7 +67,6 @@ dependencies {
     def compose_navigation_version = "2.6.0"
     def room_version = "2.4.3"
     def androidx_test_version = "1.5.0"
-    def kakaocup_compose_espresso_version = "0.3.0"
 
     implementation composeBom
     implementation 'androidx.compose.material3:material3'
@@ -104,7 +103,6 @@ dependencies {
     androidTestImplementation "androidx.navigation:navigation-testing:$compose_navigation_version"
     androidTestImplementation "androidx.test:core:$androidx_test_version"
     androidTestImplementation "io.mockk:mockk-android:$mockk_version"
-    androidTestImplementation "io.github.kakaocup:compose:$kakaocup_compose_espresso_version"
 
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.testng:testng:6.9.6'

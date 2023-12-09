@@ -47,7 +47,7 @@ fun ProfileScreen(
 }
 
 @Composable
-private fun ProfileScreenContent(viewState: ProfileUiState, viewAction: (ProfileUiAction) -> Unit) {
+fun ProfileScreenContent(viewState: ProfileUiState, viewAction: (ProfileUiAction) -> Unit) {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.SpaceBetween
@@ -123,6 +123,9 @@ fun ProfileScreenEffect(
 @Composable
 fun ProfileScreenPreview() {
     LittleLemonTheme {
-        ProfileScreen()
+        ProfileScreenContent(
+            viewState = ProfileUiState(),
+            viewAction = {}
+        )
     }
 }
