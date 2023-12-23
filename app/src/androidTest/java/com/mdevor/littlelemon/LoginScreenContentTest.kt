@@ -2,6 +2,7 @@ package com.mdevor.littlelemon
 
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertTextEquals
+import androidx.compose.ui.test.junit4.ComposeContentTestRule
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
@@ -28,6 +29,13 @@ class LoginScreenContentTest {
     private val emailTextInput = composeTestRule
         .onNodeWithContentDescription("Enter Your Email Address")
 
+    private fun ComposeContentTestRule.assertStaticTextIsDisplayed() {
+        onNodeWithText("Let's get to know you").assertIsDisplayed()
+        onNodeWithText("First Name").assertIsDisplayed()
+        onNodeWithText("Last Name").assertIsDisplayed()
+        onNodeWithText("Email").assertIsDisplayed()
+    }
+
     @Test
     fun givenEmptyLoginUiState_whenViewOpens_thenAssertEmptyViewsDisplaysAsExpected() {
         // WHEN
@@ -40,10 +48,7 @@ class LoginScreenContentTest {
 
         // THEN
         with(composeTestRule) {
-            onNodeWithText("Let's get to know you").assertIsDisplayed()
-            onNodeWithText("First Name").assertIsDisplayed()
-            onNodeWithText("Last Name").assertIsDisplayed()
-            onNodeWithText("Email").assertIsDisplayed()
+            assertStaticTextIsDisplayed()
 
             listOf(firstNameTextInput, lastNameTextInput,emailTextInput).forEach {
                 it.assertTextEquals("")
@@ -109,6 +114,7 @@ class LoginScreenContentTest {
         }
 
         // THEN
+        composeTestRule.assertStaticTextIsDisplayed()
         firstNameTextInput
             .assertTextEquals(expectedFirstName)
             .assertIsDisplayed()

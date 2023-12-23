@@ -1,7 +1,8 @@
 package com.mdevor.littlelemon
 
+import androidx.compose.ui.test.SemanticsNodeInteraction
 import androidx.compose.ui.test.assertIsDisplayed
-import androidx.compose.ui.test.assertTextEquals
+import androidx.compose.ui.test.junit4.ComposeContentTestRule
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
@@ -22,6 +23,13 @@ class ProfileScreenContentTest {
 
     private val mockViewActionMock: (ProfileUiAction) -> Unit = mockk(relaxed = true)
 
+    private fun ComposeContentTestRule.assertStaticComposablesAreDisplayed(): SemanticsNodeInteraction {
+        onNodeWithContentDescription("Back button").assertIsDisplayed()
+        onNodeWithContentDescription("Your profile picture")
+            .assertIsDisplayed()
+        return onNodeWithText("Log out").assertIsDisplayed()
+    }
+
     @Test
     fun givenEmptyProfileUiState_whenViewOpens_thenAssertEmptyViewsDisplayAsExpected() {
         // WHEN
@@ -34,10 +42,7 @@ class ProfileScreenContentTest {
 
         // THEN
         with(composeTestRule) {
-            onNodeWithContentDescription("Back button").assertIsDisplayed()
-            onNodeWithContentDescription("Your profile picture")
-               .assertIsDisplayed().assertTextEquals()
-            onNodeWithText("Log out").assertIsDisplayed()
+            assertStaticComposablesAreDisplayed()
         }
     }
 
@@ -60,6 +65,7 @@ class ProfileScreenContentTest {
 
         // THEN
         with(composeTestRule) {
+            assertStaticComposablesAreDisplayed()
             userInfoList.forEach { info ->
                 onNodeWithText(info.label).assertIsDisplayed()
                 onNodeWithText(info.value).assertIsDisplayed()
