@@ -118,6 +118,9 @@ private fun DishItemList(dishList: List<MenuItemData>) {
 @Composable
 fun HomeScreenPreview() {
     LittleLemonTheme {
-        HomeScreen()
+        HomeScreenContent(
+            viewState = HomeUiState(),
+            viewAction = {}
+        )
     }
 }
