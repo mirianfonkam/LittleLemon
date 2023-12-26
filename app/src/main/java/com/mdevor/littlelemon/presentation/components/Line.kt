@@ -4,7 +4,9 @@ import androidx.compose.material3.Divider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
+import com.mdevor.littlelemon.R
 
 @Composable
 fun LineDivider(
@@ -13,7 +15,7 @@ fun LineDivider(
 ) {
     Divider(
         color = color,
-        thickness = 1.dp,
+        thickness = dimensionResource(id = R.dimen.spacing_line),
         modifier = modifier
     )
 }

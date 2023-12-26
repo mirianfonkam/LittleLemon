@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.mdevor.littlelemon.R
@@ -30,7 +31,7 @@ fun HeroBannerContent() {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(bottom = 48.dp)
+            .padding(bottom = dimensionResource(id = R.dimen.spacing_xx_large))
     ) {
         Text(
             text = "We are a family owned Mediterranean restaurant, " +
@@ -39,7 +40,7 @@ fun HeroBannerContent() {
             color = MaterialTheme.colorScheme.surface,
             modifier = Modifier
                 .weight(weight = 0.5f)
-                .padding(end = 8.dp),
+                .padding(end = dimensionResource(id = R.dimen.spacing_x_small)),
         )
         Image(
             painter = painterResource(R.drawable.hero_image),
@@ -47,7 +48,7 @@ fun HeroBannerContent() {
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .size(120.dp)
-                .clip(RoundedCornerShape(16.dp))
+                .clip(RoundedCornerShape(dimensionResource(id = R.dimen.spacing_medium)))
         )
     }
 }

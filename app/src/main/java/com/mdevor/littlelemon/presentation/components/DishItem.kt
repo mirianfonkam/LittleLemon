@@ -12,10 +12,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.mdevor.littlelemon.R
 import com.mdevor.littlelemon.presentation.model.MenuItemData
 import com.mdevor.littlelemon.presentation.theme.LittleLemonTheme
 
@@ -34,7 +36,9 @@ fun DishItem(
             Text(
                 text = menuItem.title,
                 style = MaterialTheme.typography.titleLarge,
-                modifier = Modifier.padding(bottom = 4.dp)
+                modifier = Modifier.padding(
+                    bottom = dimensionResource(id = R.dimen.spacing_xx_small)
+                )
             )
             Text(
                 text = menuItem.description,
@@ -46,14 +50,17 @@ fun DishItem(
             Text(
                 text = menuItem.price,
                 style = MaterialTheme.typography.headlineSmall,
-                modifier = Modifier.padding(top = 6.dp)
+                modifier = Modifier.padding(top =
+                    dimensionResource(id = R.dimen.spacing_xx_small)
+                )
             )
         }
         AsyncImage(
             model = menuItem.image,
             contentDescription = "${menuItem.title} image",
             contentScale = ContentScale.Crop,
-            modifier = Modifier.size(70.dp)
+            modifier = Modifier
+                .size(70.dp)
                 .align(CenterVertically)
         )
     }

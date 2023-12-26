@@ -13,10 +13,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import com.mdevor.littlelemon.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -37,8 +39,8 @@ fun TextInputField(
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier.padding(
-                    top = 20.dp,
-                    bottom = 4.dp
+                    top = dimensionResource(id = R.dimen.spacing_medium),
+                    bottom = dimensionResource(id = R.dimen.spacing_xx_small)
                 )
             )
         }

@@ -14,9 +14,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.mdevor.littlelemon.R
 import com.mdevor.littlelemon.presentation.components.DishItem
 import com.mdevor.littlelemon.presentation.components.FilterList
 import com.mdevor.littlelemon.presentation.components.HeroBannerContent
@@ -60,7 +62,7 @@ fun HomeScreenContent(viewState: HomeUiState, viewAction: (HomeUiAction) -> Unit
         Column(
             modifier = Modifier
                 .background(color = MaterialTheme.colorScheme.secondary)
-                .padding(horizontal = 12.dp)
+                .padding(horizontal = dimensionResource(id = R.dimen.spacing_small))
                 .fillMaxWidth(),
         ) {
             HeroBannerContent()
@@ -72,7 +74,7 @@ fun HomeScreenContent(viewState: HomeUiState, viewAction: (HomeUiAction) -> Unit
                 backgroundColor = MaterialTheme.colorScheme.surfaceVariant,
                 placeholderText = "Search",
             )
-            Spacer(modifier = Modifier.height(36.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.spacing_x_large)))
         }
         FilterList(
             categories = viewState.categoryList,
@@ -80,7 +82,7 @@ fun HomeScreenContent(viewState: HomeUiState, viewAction: (HomeUiAction) -> Unit
             onFilterClick = { filter -> viewAction(HomeUiAction.FilterMenu(filter)) }
         )
         LineDivider(
-            modifier = Modifier.padding(horizontal = 16.dp),
+            modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_medium)),
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
         DishItemList(viewState.displayedMenuList)
@@ -98,14 +100,14 @@ private fun HomeTopBar(onProfileClick: () -> Unit) {
 @Composable
 private fun DishItemList(dishList: List<MenuItemData>) {
     LazyColumn(
-        modifier = Modifier.padding(horizontal = 16.dp)
+        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_medium))
     ) {
         itemsIndexed(items = dishList) { _, item ->
             DishItem(
                 menuItem = item,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 32.dp)
+                    .padding(vertical = dimensionResource(id = R.dimen.spacing_x_large))
             )
             LineDivider(
                 color = MaterialTheme.colorScheme.surfaceVariant

@@ -14,7 +14,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.dimensionResource
+import com.mdevor.littlelemon.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -24,10 +25,10 @@ fun FilterList(
     onFilterClick: (String) -> Unit,
 ) {
     LazyRow(
-        modifier = Modifier.padding(vertical = 16.dp),
-        horizontalArrangement = Arrangement.spacedBy(16.dp),
+        modifier = Modifier.padding(vertical = dimensionResource(id = R.dimen.spacing_medium)),
+        horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_medium)),
         contentPadding = PaddingValues(
-            horizontal = 12.dp
+            horizontal = dimensionResource(id = R.dimen.spacing_small)
         ),
     ) {
         items(items = categories) { filter ->
@@ -35,7 +36,7 @@ fun FilterList(
                 selected = filter in selectedCategories,
                 onClick = { onFilterClick(filter) },
                 label = { Text(text = filter) },
-                shape = RoundedCornerShape(16.dp),
+                shape = RoundedCornerShape(dimensionResource(id = R.dimen.spacing_medium)),
                 colors = FilterChipDefaults.filterChipColors(
                     containerColor = MaterialTheme.colorScheme.surfaceVariant,
                     labelColor = MaterialTheme.colorScheme.secondary,

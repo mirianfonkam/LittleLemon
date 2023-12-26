@@ -23,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -70,12 +71,12 @@ fun ProfileScreenContent(viewState: ProfileUiState, viewAction: (ProfileUiAction
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(bottom = 28.dp),
+                    .padding(bottom = dimensionResource(id = R.dimen.spacing_large)),
                 contentAlignment = Alignment.Center
             ) {
                 Image(
                     modifier = Modifier
-                        .padding(12.dp)
+                        .padding(dimensionResource(id = R.dimen.spacing_small))
                         .size(size = 160.dp)
                         .clip(CircleShape),
                     painter = painterResource(R.drawable.ic_little_lemon_profile),
@@ -84,16 +85,16 @@ fun ProfileScreenContent(viewState: ProfileUiState, viewAction: (ProfileUiAction
                 )
             }
         }
-        Column() {
+        Column {
             viewState.userInfoList.forEach { profileInfo ->
                 InfoItem(info = profileInfo)
             }
         }
         LemonButton(
             modifier = Modifier
-                .padding(horizontal = 12.dp)
-                .padding(bottom = 24.dp)
-                .height(height = 48.dp)
+                .padding(horizontal = dimensionResource(id = R.dimen.spacing_small))
+                .padding(bottom = dimensionResource(id = R.dimen.spacing_large))
+                .height(height = dimensionResource(id = R.dimen.spacing_xx_large))
                 .fillMaxWidth(),
             text = "Log out",
             onClick = {

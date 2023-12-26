@@ -16,10 +16,12 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.mdevor.littlelemon.R
 import com.mdevor.littlelemon.presentation.components.BasicTextInputField
 import com.mdevor.littlelemon.presentation.components.LemonButton
 import com.mdevor.littlelemon.presentation.components.LogoTopBar
@@ -65,11 +67,11 @@ fun LoginScreenContent(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = 12.dp),
+                .padding(horizontal = dimensionResource(id = R.dimen.spacing_small)),
             verticalArrangement = Arrangement.SpaceBetween
         ) {
             Column {
-                Spacer(modifier = Modifier.height(24.dp))
+                Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.spacing_large)))
                 BasicTextInputField(
                     textFieldState = viewState.firstName,
                     onTextValueChange = { firstName ->
@@ -98,8 +100,8 @@ fun LoginScreenContent(
             }
             LemonButton(
                 modifier = Modifier
-                    .padding(bottom = 24.dp)
-                    .height(height = 48.dp)
+                    .padding(bottom = dimensionResource(id = R.dimen.spacing_large))
+                    .height(height = dimensionResource(id = R.dimen.spacing_xx_large))
                     .fillMaxWidth(),
                 text = "Register",
                 onClick = {
@@ -123,7 +125,7 @@ private fun OnboardingBanner() {
     Column(
         modifier = Modifier
             .background(color = MaterialTheme.colorScheme.secondary)
-            .padding(vertical = 36.dp)
+            .padding(vertical = dimensionResource(id = R.dimen.spacing_x_large))
             .fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {

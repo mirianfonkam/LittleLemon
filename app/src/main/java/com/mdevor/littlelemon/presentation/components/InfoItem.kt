@@ -7,7 +7,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.dimensionResource
+import com.mdevor.littlelemon.R
 import com.mdevor.littlelemon.presentation.model.InfoData
 
 @Composable
@@ -15,7 +16,7 @@ fun InfoItem(info: InfoData) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 12.dp)
+            .padding(horizontal = dimensionResource(id = R.dimen.spacing_small))
     ) {
         Text(
             text = info.label,
@@ -26,12 +27,12 @@ fun InfoItem(info: InfoData) {
             text = info.value,
             style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier.padding(
-                top = 16.dp,
+                top = dimensionResource(id = R.dimen.spacing_medium),
             ),
         )
         LineDivider(
             color = MaterialTheme.colorScheme.surfaceVariant,
-            modifier = Modifier.padding(vertical = 12.dp)
+            modifier = Modifier.padding(vertical = dimensionResource(id = R.dimen.spacing_small))
         )
     }
 }
