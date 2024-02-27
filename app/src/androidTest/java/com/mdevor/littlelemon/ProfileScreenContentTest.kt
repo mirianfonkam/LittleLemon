@@ -11,6 +11,7 @@ import com.mdevor.littlelemon.presentation.model.InfoData
 import com.mdevor.littlelemon.presentation.screens.profile.ProfileScreenContent
 import com.mdevor.littlelemon.presentation.screens.profile.ProfileUiAction
 import com.mdevor.littlelemon.presentation.screens.profile.ProfileUiState
+import com.mdevor.littlelemon.presentation.theme.LittleLemonTheme
 import io.mockk.mockk
 import io.mockk.verify
 import org.junit.Rule
@@ -34,10 +35,12 @@ class ProfileScreenContentTest {
     fun givenEmptyProfileUiState_whenViewOpens_thenAssertEmptyViewsDisplayAsExpected() {
         // WHEN
         composeTestRule.setContent {
-            ProfileScreenContent(
-                viewState = ProfileUiState(),
-                viewAction = {}
-            )
+            LittleLemonTheme {
+                ProfileScreenContent(
+                    viewState = ProfileUiState(),
+                    viewAction = {}
+                )
+            }
         }
 
         // THEN
@@ -57,10 +60,12 @@ class ProfileScreenContentTest {
 
         // WHEN
         composeTestRule.setContent {
-            ProfileScreenContent(
-                viewState = ProfileUiState(userInfoList),
-                viewAction = {}
-            )
+            LittleLemonTheme {
+                ProfileScreenContent(
+                    viewState = ProfileUiState(userInfoList),
+                    viewAction = {}
+                )
+            }
         }
 
         // THEN
@@ -77,10 +82,12 @@ class ProfileScreenContentTest {
     fun whenLogoutButtonClicked_thenAssertClickLogoutButtonAction() {
         // GIVEN
         composeTestRule.setContent {
-            ProfileScreenContent(
-                viewState = ProfileUiState(),
-                viewAction = mockViewActionMock
-            )
+            LittleLemonTheme {
+                ProfileScreenContent(
+                    viewState = ProfileUiState(),
+                    viewAction = mockViewActionMock
+                )
+            }
         }
 
         // WHEN
@@ -94,10 +101,12 @@ class ProfileScreenContentTest {
     fun whenBackButtonClicked_thenAssertClickBackButtonAction() {
         // GIVEN
         composeTestRule.setContent {
-            ProfileScreenContent(
-                viewState = ProfileUiState(),
-                viewAction = mockViewActionMock
-            )
+            LittleLemonTheme {
+                ProfileScreenContent(
+                    viewState = ProfileUiState(),
+                    viewAction = mockViewActionMock
+                )
+            }
         }
 
         // WHEN

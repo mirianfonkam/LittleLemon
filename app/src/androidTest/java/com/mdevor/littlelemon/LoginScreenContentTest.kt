@@ -11,6 +11,7 @@ import androidx.compose.ui.test.performTextInput
 import com.mdevor.littlelemon.presentation.screens.login.LoginScreenContent
 import com.mdevor.littlelemon.presentation.screens.login.LoginUiAction
 import com.mdevor.littlelemon.presentation.screens.login.LoginUiState
+import com.mdevor.littlelemon.presentation.theme.LittleLemonTheme
 import io.mockk.mockk
 import io.mockk.verify
 import org.junit.Rule
@@ -40,10 +41,12 @@ class LoginScreenContentTest {
     fun givenEmptyLoginUiState_whenViewOpens_thenAssertEmptyViewsDisplaysAsExpected() {
         // WHEN
         composeTestRule.setContent {
-            LoginScreenContent(
-                viewState = LoginUiState(),
-                viewAction = {}
-            )
+            LittleLemonTheme {
+                LoginScreenContent(
+                    viewState = LoginUiState(),
+                    viewAction = {}
+                )
+            }
         }
 
         // THEN
@@ -61,10 +64,12 @@ class LoginScreenContentTest {
     fun givenEmptyLoginUiState_whenRegisterBtnClicked_thenAssertClickRegisterButtonAction() {
         // GIVEN
         composeTestRule.setContent {
-            LoginScreenContent(
-                viewState = LoginUiState(),
-                viewAction = mockViewActionMock
-            )
+            LittleLemonTheme {
+                LoginScreenContent(
+                    viewState = LoginUiState(),
+                    viewAction = mockViewActionMock
+                )
+            }
         }
 
         // WHEN
@@ -80,12 +85,14 @@ class LoginScreenContentTest {
     fun givenUiStateWithNonEmptyLoginStatusMessage_whenLogin_thenAssertHideLoginStatusMessageAction() {
         // GIVEN & WHEN
         composeTestRule.setContent {
-            LoginScreenContent(
-                viewState = LoginUiState(
-                    loginStatusMessage = "Registration unsuccessful. Please enter all the data."
-                ),
-                viewAction = mockViewActionMock
-            )
+            LittleLemonTheme {
+                LoginScreenContent(
+                    viewState = LoginUiState(
+                        loginStatusMessage = "Registration unsuccessful. Please enter all the data."
+                    ),
+                    viewAction = mockViewActionMock
+                )
+            }
         }
 
         // THEN
@@ -99,18 +106,18 @@ class LoginScreenContentTest {
         val expectedLastName = "Fonkam"
         val expectedEmail = "mirianfonkam@github.com"
 
-
-
         // WHEN
         composeTestRule.setContent {
-            LoginScreenContent(
-                viewState = LoginUiState(
-                    firstName = expectedFirstName,
-                    lastName = expectedLastName,
-                    email = expectedEmail,
-                ),
-                viewAction = {}
-            )
+            LittleLemonTheme {
+                LoginScreenContent(
+                    viewState = LoginUiState(
+                        firstName = expectedFirstName,
+                        lastName = expectedLastName,
+                        email = expectedEmail,
+                    ),
+                    viewAction = {}
+                )
+            }
         }
 
         // THEN
@@ -130,10 +137,12 @@ class LoginScreenContentTest {
     fun whenTypeFirstName_thenAssertUpdateFirstNameAction() {
         // GIVEN
         composeTestRule.setContent {
-            LoginScreenContent(
-                viewState = LoginUiState(),
-                viewAction = mockViewActionMock
-            )
+            LittleLemonTheme {
+                LoginScreenContent(
+                    viewState = LoginUiState(),
+                    viewAction = mockViewActionMock
+                )
+            }
         }
 
         // WHEN
@@ -147,10 +156,12 @@ class LoginScreenContentTest {
     fun whenTypeLastName_thenAssertUpdateLastNameAction() {
         // GIVEN
         composeTestRule.setContent {
-            LoginScreenContent(
-                viewState = LoginUiState(),
-                viewAction = mockViewActionMock
-            )
+            LittleLemonTheme {
+                LoginScreenContent(
+                    viewState = LoginUiState(),
+                    viewAction = mockViewActionMock
+                )
+            }
         }
 
         // WHEN
@@ -164,10 +175,12 @@ class LoginScreenContentTest {
     fun whenTypeEmail_thenAssertUpdateEmailAction() {
         // GIVEN
         composeTestRule.setContent {
-            LoginScreenContent(
-                viewState = LoginUiState(),
-                viewAction = mockViewActionMock
-            )
+            LittleLemonTheme {
+                LoginScreenContent(
+                    viewState = LoginUiState(),
+                    viewAction = mockViewActionMock
+                )
+            }
         }
 
         // WHEN

@@ -30,10 +30,12 @@ class HomeScreenContentTest {
     fun whenNavigateToProfile_thenAssertClickOnProfileAction() {
         // GIVEN
         composeTestRule.setContent {
-            HomeScreenContent(
-                viewState = HomeUiState(),
-                viewAction = mockViewActionMock
-            )
+            LittleLemonTheme {
+                HomeScreenContent(
+                    viewState = HomeUiState(),
+                    viewAction = mockViewActionMock
+                )
+            }
         }
 
         // WHEN
@@ -49,10 +51,12 @@ class HomeScreenContentTest {
         // GIVEN
         val textInput = "Burger"
         composeTestRule.setContent {
-            HomeScreenContent(
-                viewState = HomeUiState(),
-                viewAction = mockViewActionMock
-            )
+            LittleLemonTheme {
+                HomeScreenContent(
+                    viewState = HomeUiState(),
+                    viewAction = mockViewActionMock
+                )
+            }
         }
 
         // WHEN
@@ -69,12 +73,14 @@ class HomeScreenContentTest {
 
         // WHEN
         composeTestRule.setContent {
-            HomeScreenContent(
-                viewState = HomeUiState(
-                    searchQuery = emptySearchQuery
-                ),
-                viewAction = mockViewActionMock
-            )
+            LittleLemonTheme {
+                HomeScreenContent(
+                    viewState = HomeUiState(
+                        searchQuery = emptySearchQuery
+                    ),
+                    viewAction = mockViewActionMock
+                )
+            }
         }
 
         // THEN
@@ -88,12 +94,14 @@ class HomeScreenContentTest {
 
         // WHEN
         composeTestRule.setContent {
-            HomeScreenContent(
-                viewState = HomeUiState(
-                    searchQuery = pizzaSearchQuery
-                ),
-                viewAction = mockViewActionMock
-            )
+            LittleLemonTheme {
+                HomeScreenContent(
+                    viewState = HomeUiState(
+                        searchQuery = pizzaSearchQuery
+                    ),
+                    viewAction = mockViewActionMock
+                )
+            }
         }
 
         // THEN
