@@ -20,7 +20,6 @@ class HomeViewModel(
 
     private val _uiState = MutableStateFlow(HomeUiState())
     val uiState: StateFlow<HomeUiState> = _uiState.asStateFlow()
-
     init {
         getMenuList()
     }
@@ -88,8 +87,9 @@ class HomeViewModel(
 
     private fun updateDisplayedMenuList() {
         with(_uiState.value) {
+            val query = searchQuery.filterNot { it.isWhitespace() }
             val filteredMenuList = menuList.filter { menuItem ->
-                shouldSelectBySearchQuery(menuItem, searchQuery)
+                shouldSelectBySearchQuery(menuItem, query)
                         && shouldSelectByFilterList(selectedCategoryList, menuItem)
             }
             _uiState.update { it.copy(displayedMenuList = filteredMenuList) }
@@ -97,13 +97,13 @@ class HomeViewModel(
     }
 
     private fun shouldSelectBySearchQuery(menuItem: MenuItemData, searchQuery: String): Boolean {
-        return menuItem.title.contains(searchQuery, ignoreCase = true) || searchQuery.isBlank()
+        return searchQuery.isBlank() || menuItem.title.contains(searchQuery, ignoreCase = true)
     }
 
     private fun shouldSelectByFilterList(
         selectedCategoryList: List<String>,
         menuItem: MenuItemData
     ): Boolean {
-        return selectedCategoryList.contains(menuItem.category) || selectedCategoryList.isEmpty()
+        return selectedCategoryList.isEmpty() || selectedCategoryList.contains(menuItem.category)
     }
 }
