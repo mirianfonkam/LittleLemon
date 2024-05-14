@@ -32,8 +32,9 @@ fun FilterList(
         ),
     ) {
         items(items = categories) { filter ->
+            val isSelected = filter in selectedCategories
             FilterChip(
-                selected = filter in selectedCategories,
+                selected = isSelected,
                 onClick = { onFilterClick(filter) },
                 label = { Text(text = filter) },
                 shape = RoundedCornerShape(dimensionResource(id = R.dimen.spacing_medium)),
@@ -45,7 +46,9 @@ fun FilterList(
                 ),
                 border = FilterChipDefaults.filterChipBorder(
                     borderColor = Color.Transparent,
-                    selectedBorderColor = MaterialTheme.colorScheme.onSurface
+                    selectedBorderColor = MaterialTheme.colorScheme.onSurface,
+                    enabled = true,
+                    selected = isSelected,
                 )
             )
         }
