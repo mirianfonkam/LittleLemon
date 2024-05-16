@@ -20,12 +20,12 @@ jobs:
             java-version: '17'
 
       - name: Build and generate coverage report
-        run: ./gradlew koverHtmlReport
+        run: ./gradlew koverXmlReport
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v4.4.0
         with:
-          file: 'coverage_report.xml'
+          file: './coverage_report.xml'
           fail_ci_if_error: true
           verbose: true
         env:
