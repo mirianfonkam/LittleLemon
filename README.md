@@ -1,6 +1,8 @@
 <h1 align="center"> Little Lemon Android Captone 2023 </h1> 
 🍋 This is a food ordering app developed in Kotlin and Jetpack Compose for the Little Lemon Restaurant. This app uses static, GitHub hosted json files, to present a list of menu items to the customer. This app has search and filtering functionalities to help clients find the food that is relevant for them. 
 
+[![codecov](https://codecov.io/gh/mirianfonkam/LittleLemon/graph/badge.svg?token=TMS5PJIL87)](https://codecov.io/gh/mirianfonkam/LittleLemon)
+
 ## 🎯 Objectives
 
 1. Create a pleasant and user friendly experience with screen components using **JetPack Compose** 
@@ -11,7 +13,6 @@
 
 - [Little Lemon Figma](https://www.figma.com/file/Kn9dkpxIqUgR4CR77SWEo1/Little-Lemon-food-ordering-app---Capstone-Project?type=design&node-id=0%3A1&t=agUK0VpMSCC0j29q-1)
 
-  
 
 <p align="center">
   <img width="840" alt="image" src="https://github.com/mirianfonkam/LittleLemon/assets/28691174/5f7ebdd0-5ae6-421f-8698-51c287d57101">
@@ -26,7 +27,7 @@
  - [x] Use ViewModel to render the Home Screen
  - [x] Integrate the Ktor library for network requests
  - [x] Use Koin for dependency injection
- - [x] Filtering Funcionality - VM
+ - [x] Filtering Functionality - VM
  - [x] Searching Functionality - VM
  - [x] Improve Home Screen Composables
 
@@ -34,14 +35,14 @@
 
 ## 🛠️ Libraries & Tools
 
-| Resource | Functionality |
-| ------ | ------ |
+| Resource | Functionality                           |
+| ------ |-----------------------------------------|
 | [Figma](https://figma.com) | Design and access resources of the prototype |
-| [Coil](https://github.com/coil-kt/coil)| Image loading library|
-| [Ktor](https://github.com/ktorio/ktor)| Network HTTP client|
-| [Koin](https://github.com/InsertKoinIO/koin)| Dependency Injection|
-| [Maestro UI](https://maestro.mobile.dev)| Mobile UI Testing Framework|
-
+| [Coil](https://github.com/coil-kt/coil)| Image loading library                   |
+| [Ktor](https://github.com/ktorio/ktor)| Network HTTP client                     |
+| [Koin](https://github.com/InsertKoinIO/koin)| Dependency Injection                    |
+| [Maestro UI](https://maestro.mobile.dev)| Mobile UI Testing Framework             |
+| [Kover](https://github.com/Kotlin/kotlinx-kover)| Kotlin Code Coverage Tool               |
 
 ## 📚 References
 
