@@ -7,7 +7,7 @@ on:
 
 jobs:
   upload-coverage:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
       - name: Checkout code
@@ -18,6 +18,9 @@ jobs:
         with:
             distribution: 'temurin'
             java-version: '17'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v3
 
       - name: Build and generate coverage report
         run: ./gradlew koverXmlReport
