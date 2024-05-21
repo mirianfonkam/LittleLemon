@@ -22,6 +22,9 @@ jobs:
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v3
 
+      - name: Build with Gradle
+        run: ./gradlew build
+
       - name: Build and generate coverage report
         run: ./gradlew koverXmlReport
 

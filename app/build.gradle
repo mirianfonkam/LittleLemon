@@ -41,7 +41,7 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion "1.4.6"
+        kotlinCompilerExtensionVersion "1.5.14"
     }
     packagingOptions {
         resources.excludes.add("META-INF/*")
@@ -97,7 +97,7 @@ dependencies {
     def koin_version = "3.4.0"
     def mockk_version = "1.13.8"
     def compose_navigation_version = "2.7.7"
-    def room_version = "2.4.3"
+    def room_version = "2.6.1"
     def androidx_test_version = "1.5.0"
 
     implementation composeBom
