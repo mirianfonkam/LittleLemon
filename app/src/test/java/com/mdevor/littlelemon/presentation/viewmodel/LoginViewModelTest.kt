@@ -105,15 +105,16 @@ class LoginViewModelTest {
             assert(lastName.isBlank())
             assertEquals(unsuccessfulLoginStatusMessage, loginStatusMessage)
         }
+        verify { setIsLoggedUseCase wasNot Called }
     }
 
     @Test
     fun `GIVEN firstName and lastName are entered but email is blank WHEN ClickRegisterButton THEN assert setIsLoggedUseCase is not called`() {
         // GIVEN
-        val firstName = "Ada"
-        val lastName = "Lovelace"
-        viewModel.handleViewAction(LoginUiAction.UpdateFirstName(firstName))
-        viewModel.handleViewAction(LoginUiAction.UpdateLastName(lastName))
+        val firstNameInput = "Ada"
+        val lastNameInput = "Lovelace"
+        viewModel.handleViewAction(LoginUiAction.UpdateFirstName(firstNameInput))
+        viewModel.handleViewAction(LoginUiAction.UpdateLastName(lastNameInput))
 
         // WHEN
         viewModel.handleViewAction(LoginUiAction.ClickRegisterButton)
@@ -128,6 +129,46 @@ class LoginViewModelTest {
     }
 
     @Test
+    fun `GIVEN lastName is blank but firstName and email are entered WHEN ClickRegisterButton THEN assert setIsLoggedUseCase is not called`() {
+        // GIVEN
+        val firstNameInput = "Ada"
+        val emailInput = "ada.lovelace@gmail.com"
+        viewModel.handleViewAction(LoginUiAction.UpdateFirstName(firstNameInput))
+        viewModel.handleViewAction(LoginUiAction.UpdateEmail(emailInput))
+
+        // WHEN
+        viewModel.handleViewAction(LoginUiAction.ClickRegisterButton)
+
+        // THEN
+        with(viewModel.uiState.value) {
+            assert(firstName.isNotBlank())
+            assert(lastName.isBlank())
+            assert(email.isNotBlank())
+        }
+        verify { setIsLoggedUseCase wasNot Called }
+    }
+
+    @Test
+    fun `GIVEN firstName is blank but lastName and email are entered WHEN ClickRegisterButton THEN assert setIsLoggedUseCase is not called`() {
+        // GIVEN
+        val lastNameInput = "Turing"
+        val emailInput = "alan.turing@gmail.com"
+        viewModel.handleViewAction(LoginUiAction.UpdateLastName(lastNameInput))
+        viewModel.handleViewAction(LoginUiAction.UpdateEmail(emailInput))
+
+        // WHEN
+        viewModel.handleViewAction(LoginUiAction.ClickRegisterButton)
+
+        // THEN
+        with(viewModel.uiState.value) {
+            assert(firstName.isBlank())
+            assert(lastName.isNotBlank())
+            assert(email.isNotBlank())
+        }
+        verify { setIsLoggedUseCase wasNot Called }
+    }
+
+    @Test
     fun `GIVEN firstName, lastName and email are entered WHEN ClickRegisterButton THEN assert setIsLogged and setUserData useCases are invoked`() {
         // GIVEN
         enterAllRequiredInfo()
@@ -136,6 +177,11 @@ class LoginViewModelTest {
         viewModel.handleViewAction(LoginUiAction.ClickRegisterButton)
 
         // THEN
+        with(viewModel.uiState.value) {
+            assert(firstName.isNotBlank())
+            assert(lastName.isNotBlank())
+            assert(email.isNotBlank())
+        }
         verifySequence {
             setIsLoggedUseCase(isLogged = true)
             with(getUserEntity()) {
