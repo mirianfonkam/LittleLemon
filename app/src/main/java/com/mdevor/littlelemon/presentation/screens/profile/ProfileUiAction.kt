@@ -2,7 +2,7 @@ package com.mdevor.littlelemon.presentation.screens.profile
 
 sealed class ProfileUiAction {
 
-    object ClickBackButton : ProfileUiAction()
+    data object ClickBackButton : ProfileUiAction()
 
-    object ClickLogoutButton : ProfileUiAction()
+    data object ClickLogoutButton : ProfileUiAction()
 }

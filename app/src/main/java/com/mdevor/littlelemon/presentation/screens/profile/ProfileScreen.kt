@@ -25,6 +25,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -64,7 +65,7 @@ fun ProfileScreenContent(viewState: ProfileUiState, viewAction: (ProfileUiAction
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                         tint = MaterialTheme.colorScheme.surface,
-                        contentDescription = "Back button",
+                        contentDescription = stringResource(R.string.back_button),
                     )
                 }
             }
@@ -81,7 +82,7 @@ fun ProfileScreenContent(viewState: ProfileUiState, viewAction: (ProfileUiAction
                         .clip(CircleShape),
                     painter = painterResource(R.drawable.ic_little_lemon_profile),
                     contentScale = ContentScale.Crop,
-                    contentDescription = "Your profile picture"
+                    contentDescription = stringResource(R.string.your_profile_picture),
                 )
             }
         }
@@ -96,7 +97,7 @@ fun ProfileScreenContent(viewState: ProfileUiState, viewAction: (ProfileUiAction
                 .padding(bottom = dimensionResource(id = R.dimen.spacing_large))
                 .height(height = dimensionResource(id = R.dimen.spacing_xx_large))
                 .fillMaxWidth(),
-            text = "Log out",
+            text = stringResource(R.string.log_out),
             onClick = {
                 viewAction(ProfileUiAction.ClickLogoutButton)
             }

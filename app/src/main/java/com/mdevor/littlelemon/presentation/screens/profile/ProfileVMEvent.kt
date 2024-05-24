@@ -1,6 +1,6 @@
 package com.mdevor.littlelemon.presentation.screens.profile
 
 sealed class ProfileVMEvent {
-    object NavigateBack : ProfileVMEvent()
-    object NavigateToLogin : ProfileVMEvent()
+    data object NavigateBack : ProfileVMEvent()
+    data object NavigateToLogin : ProfileVMEvent()
 }

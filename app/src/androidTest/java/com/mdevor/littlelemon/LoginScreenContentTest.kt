@@ -88,7 +88,7 @@ class LoginScreenContentTest {
             LittleLemonTheme {
                 LoginScreenContent(
                     viewState = LoginUiState(
-                        loginStatusMessage = "Registration unsuccessful. Please enter all the data."
+                        loginStatusMessage = R.string.registration_unsuccessful_message
                     ),
                     viewAction = mockViewActionMock
                 )

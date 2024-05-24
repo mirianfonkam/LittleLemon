@@ -15,6 +15,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.mdevor.littlelemon.R
@@ -71,7 +74,7 @@ fun HomeScreenContent(viewState: HomeUiState, viewAction: (HomeUiAction) -> Unit
                     viewAction(HomeUiAction.SearchMenu(searchQuery))
                 },
                 backgroundColor = MaterialTheme.colorScheme.surfaceVariant,
-                placeholderText = "Search",
+                placeholderText = stringResource(R.string.search),
             )
             Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.spacing_x_large)))
         }
@@ -98,8 +101,13 @@ private fun HomeTopBar(onProfileClick: () -> Unit) {
 
 @Composable
 private fun DishItemList(dishList: List<MenuItemData>) {
+    val dishItemListContentDescription = stringResource(R.string.menu)
     LazyColumn(
-        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_medium))
+        modifier = Modifier
+            .padding(horizontal = dimensionResource(id = R.dimen.spacing_medium))
+            .semantics {
+                contentDescription = dishItemListContentDescription
+            },
     ) {
         itemsIndexed(items = dishList) { _, item ->
             DishItem(

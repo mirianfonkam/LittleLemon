@@ -14,17 +14,18 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.mdevor.littlelemon.R
 
 @Composable
 fun HeroBannerContent() {
     Text(
-        text = "Little Lemon",
+        text = stringResource(id = R.string.app_name),
         style = MaterialTheme.typography.displayLarge,
     )
     Text(
-        text = "Chicago",
+        text = stringResource(R.string.home_banner_subtitle),
         color = MaterialTheme.colorScheme.surface,
         style = MaterialTheme.typography.displayMedium
     )
@@ -34,8 +35,7 @@ fun HeroBannerContent() {
             .padding(bottom = dimensionResource(id = R.dimen.spacing_xx_large))
     ) {
         Text(
-            text = "We are a family owned Mediterranean restaurant, " +
-                    "focused on traditional recipes served with a modern twist.",
+            text = stringResource(R.string.home_banner_description),
             style = MaterialTheme.typography.displaySmall,
             color = MaterialTheme.colorScheme.surface,
             modifier = Modifier

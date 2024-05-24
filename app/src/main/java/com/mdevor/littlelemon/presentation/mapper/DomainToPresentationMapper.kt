@@ -1,5 +1,6 @@
 package com.mdevor.littlelemon.presentation.mapper
 
+import com.mdevor.littlelemon.R
 import com.mdevor.littlelemon.domain.entity.MenuEntity
 import com.mdevor.littlelemon.domain.entity.UserEntity
 import com.mdevor.littlelemon.presentation.model.InfoData
@@ -21,15 +22,15 @@ private fun MenuEntity.toPresentation() =
 fun UserEntity.toPresentation(): List<InfoData> {
     return listOf(
         InfoData(
-            label = "First Name",
+            label = R.string.first_name,
             value = firstName
         ),
         InfoData(
-            label = "Last Name",
+            label = R.string.last_name,
             value = lastName
         ),
         InfoData(
-            label = "Email",
+            label = R.string.email,
             value = email
         ),
     )

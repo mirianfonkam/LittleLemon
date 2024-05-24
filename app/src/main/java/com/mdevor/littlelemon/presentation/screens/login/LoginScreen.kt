@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -76,24 +77,24 @@ fun LoginScreenContent(
                     onTextValueChange = { firstName ->
                         viewAction(LoginUiAction.UpdateFirstName(firstName))
                     },
-                    labelText = "First Name",
-                    contentDescription = "Enter Your First Name",
+                    labelText = stringResource(id = R.string.first_name),
+                    contentDescription = stringResource(R.string.enter_your_first_name),
                 )
                 BasicTextInputField(
                     textFieldState = viewState.lastName,
                     onTextValueChange = { lastName ->
                         viewAction(LoginUiAction.UpdateLastName(lastName))
                     },
-                    labelText = "Last Name",
-                    contentDescription = "Enter Your Last Name",
+                    labelText = stringResource(id = R.string.last_name),
+                    contentDescription = stringResource(R.string.enter_your_last_name),
                 )
                 BasicTextInputField(
                     textFieldState = viewState.email,
                     onTextValueChange = { email ->
                         viewAction(LoginUiAction.UpdateEmail(email))
                     },
-                    labelText = "Email",
-                    contentDescription = "Enter Your Email Address",
+                    labelText = stringResource(id = R.string.email),
+                    contentDescription = stringResource(R.string.enter_your_email_address),
                     keyboardType = KeyboardType.Email,
                 )
             }
@@ -102,17 +103,17 @@ fun LoginScreenContent(
                     .padding(bottom = dimensionResource(id = R.dimen.spacing_large))
                     .height(height = dimensionResource(id = R.dimen.spacing_xx_large))
                     .fillMaxWidth(),
-                text = "Register",
+                text = stringResource(id = R.string.register),
                 onClick = {
                     viewAction(LoginUiAction.ClickRegisterButton)
                 }
             )
         }
     }
-    if (viewState.loginStatusMessage.isNotEmpty()) {
+    viewState.loginStatusMessage?.let { message ->
         Toast.makeText(
             LocalContext.current,
-            viewState.loginStatusMessage,
+            message,
             Toast.LENGTH_SHORT
         ).show()
         viewAction(LoginUiAction.HideLoginStatusMessage)
@@ -129,7 +130,7 @@ private fun OnboardingBanner() {
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
-            text = "Let's get to know you",
+            text = stringResource(R.string.onboarding_prompt_login),
             color = MaterialTheme.colorScheme.surface,
             style = MaterialTheme.typography.displayMedium,
         )
