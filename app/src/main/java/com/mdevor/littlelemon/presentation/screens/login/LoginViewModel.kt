@@ -1,6 +1,7 @@
 package com.mdevor.littlelemon.presentation.screens.login
 
 import androidx.lifecycle.ViewModel
+import com.mdevor.littlelemon.R
 import com.mdevor.littlelemon.domain.usecase.SetIsLoggedUseCase
 import com.mdevor.littlelemon.domain.usecase.SetUserDataUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -27,7 +28,7 @@ class LoginViewModel(
     }
 
     private fun handleHideLoginStatusMessage() {
-        _uiState.update { it.copy(loginStatusMessage = "") }
+        _uiState.update { it.copy(loginStatusMessage = null) }
     }
 
     private fun handleRegisterButtonClick() {
@@ -48,7 +49,7 @@ class LoginViewModel(
         } else {
             _uiState.update {
                 it.copy(
-                    loginStatusMessage = "Registration unsuccessful. Please enter all the data."
+                    loginStatusMessage = R.string.registration_unsuccessful_message
                 )
             }
         }

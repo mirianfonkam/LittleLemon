@@ -1,5 +1,6 @@
 package com.mdevor.littlelemon.presentation.viewmodel
 
+import com.mdevor.littlelemon.R
 import com.mdevor.littlelemon.domain.usecase.SetIsLoggedUseCase
 import com.mdevor.littlelemon.domain.usecase.SetUserDataUseCase
 import com.mdevor.littlelemon.presentation.screens.login.LoginUiAction
@@ -22,7 +23,7 @@ class LoginViewModelTest {
     @get:Rule
     val mainDispatcherRule = MainDispatcherRule()
 
-    private lateinit var  viewModel : LoginViewModel
+    private lateinit var viewModel: LoginViewModel
     private val setIsLoggedUseCase = mockk<SetIsLoggedUseCase>(relaxed = true)
     private val setUserDataUseCase = mockk<SetUserDataUseCase>(relaxed = true)
 
@@ -92,7 +93,7 @@ class LoginViewModelTest {
     @Test
     fun `GIVEN unsuccessful message WHEN handle ClickRegisterButton THEN assert uiState updates with unsuccessful login status message`() {
         // GIVEN
-        val unsuccessfulLoginStatusMessage = "Registration unsuccessful. Please enter all the data."
+        val unsuccessfulLoginStatusMessage = R.string.registration_unsuccessful_message
 
         // WHEN
         viewModel.handleViewAction(LoginUiAction.ClickRegisterButton)
@@ -152,7 +153,7 @@ class LoginViewModelTest {
                 firstName = firstName,
                 lastName = lastName,
                 email = email,
-                loginStatusMessage = "",
+                loginStatusMessage = null,
                 loginEvent = LoginVMEvent.NavigateToHome,
             )
         }
@@ -172,7 +173,7 @@ class LoginViewModelTest {
             firstName = getUserEntity().firstName,
             lastName = "",
             email = "",
-            loginStatusMessage = "",
+            loginStatusMessage = null,
             loginEvent = null,
         )
 

@@ -5,7 +5,7 @@ sealed class HomeUiAction {
 
     data class SearchMenu(val searchQuery: String): HomeUiAction()
 
-    object ClickOnProfile: HomeUiAction()
+    data object ClickOnProfile : HomeUiAction()
 
-    object ClearHomeEvent: HomeUiAction()
+    data object ClearHomeEvent : HomeUiAction()
 }

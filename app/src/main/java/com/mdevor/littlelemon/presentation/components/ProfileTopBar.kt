@@ -14,6 +14,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.mdevor.littlelemon.R
 
@@ -33,7 +34,7 @@ fun ProfileTopBar(
                 .clickable { onProfileClick() },
             painter = painterResource(R.drawable.ic_little_lemon_profile),
             contentScale = ContentScale.Crop,
-            contentDescription = "Navigate to profile"
+            contentDescription = stringResource(R.string.navigate_to_profile_content_desc)
         )
     }
 }

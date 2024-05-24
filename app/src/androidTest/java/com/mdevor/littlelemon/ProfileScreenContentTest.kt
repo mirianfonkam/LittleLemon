@@ -53,9 +53,9 @@ class ProfileScreenContentTest {
     fun givenNonEmptyProfileUiState_whenViewOpens_thenAssertDisplayedUserInfo() {
         // GIVEN
         val userInfoList = listOf(
-            InfoData("First Name", "John"),
-            InfoData("Last Name", "Doe"),
-            InfoData("Email", "john.doe@example.com")
+            InfoData(R.string.first_name, "John"),
+            InfoData(R.string.last_name, "Doe"),
+            InfoData(R.string.email, "john.doe@example.com")
         )
 
         // WHEN
@@ -71,8 +71,10 @@ class ProfileScreenContentTest {
         // THEN
         with(composeTestRule) {
             assertStaticComposablesAreDisplayed()
+            onNodeWithText("First Name").assertIsDisplayed()
+            onNodeWithText("Last Name").assertIsDisplayed()
+            onNodeWithText("Email").assertIsDisplayed()
             userInfoList.forEach { info ->
-                onNodeWithText(info.label).assertIsDisplayed()
                 onNodeWithText(info.value).assertIsDisplayed()
             }
         }

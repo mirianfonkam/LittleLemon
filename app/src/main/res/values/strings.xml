@@ -1,9 +1,23 @@
 <resources>
     <string name="app_name">Little Lemon</string>
-    <string name="little_lemon_content_description">Little Lemon Logo</string>
+    <string name="little_lemon_logo_content_desc">Little Lemon Logo</string>
     <string name="onboarding_message_login">Let\'s get to know you</string>
     <string name="register">Register</string>
     <string name="email">Email</string>
     <string name="last_name">Last Name</string>
     <string name="first_name">First Name</string>
+    <string name="back_button">Back button</string>
+    <string name="log_out">Log out</string>
+    <string name="your_profile_picture">Your profile picture</string>
+    <string name="enter_your_first_name">Enter Your First Name</string>
+    <string name="enter_your_last_name">Enter Your Last Name</string>
+    <string name="enter_your_email_address">Enter Your Email Address</string>
+    <string name="onboarding_prompt_login">Let\'s get to know you</string>
+    <string name="navigate_to_profile_content_desc">Navigate to profile</string>
+    <string name="home_banner_subtitle">Chicago</string>
+    <string name="menu">Menu</string>
+    <string name="registration_unsuccessful_message">Registration unsuccessful. Please enter all the data.</string>
+    <string name="search">Search</string>
+    <string name="home_banner_description">We are a family owned Mediterranean restaurant, focused on traditional recipes served with a modern twist.</string>
+    <string name="dish_item_image_content_desc">%1$s image</string>
 </resources>

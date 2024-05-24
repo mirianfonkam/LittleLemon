@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -50,14 +51,17 @@ fun DishItem(
             Text(
                 text = menuItem.price,
                 style = MaterialTheme.typography.headlineSmall,
-                modifier = Modifier.padding(top =
-                    dimensionResource(id = R.dimen.spacing_xx_small)
+                modifier = Modifier.padding(
+                    top = dimensionResource(id = R.dimen.spacing_xx_small)
                 )
             )
         }
         AsyncImage(
             model = menuItem.image,
-            contentDescription = "${menuItem.title} image",
+            contentDescription = stringResource(
+                R.string.dish_item_image_content_desc,
+                menuItem.title
+            ),
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .size(70.dp)

@@ -8,6 +8,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import com.mdevor.littlelemon.R
 import com.mdevor.littlelemon.presentation.model.InfoData
 
@@ -19,7 +20,7 @@ fun InfoItem(info: InfoData) {
             .padding(horizontal = dimensionResource(id = R.dimen.spacing_small))
     ) {
         Text(
-            text = info.label,
+            text = stringResource(id = info.label),
             style = MaterialTheme.typography.labelSmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )

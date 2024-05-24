@@ -3,11 +3,13 @@ package com.mdevor.littlelemon
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsNotSelected
 import androidx.compose.ui.test.assertIsSelected
+import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.ComposeContentTestRule
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performScrollToNode
 import androidx.compose.ui.test.performTextInput
 import com.mdevor.littlelemon.presentation.model.MenuItemData
 import com.mdevor.littlelemon.presentation.screens.home.HomeScreenContent
@@ -253,8 +255,15 @@ class HomeScreenContentTest {
     private fun ComposeContentTestRule.assertMenuItemIsDisplayed(
         menuItem: MenuItemData,
     ) {
-        onNodeWithText(menuItem.title).assertIsDisplayed()
-        onNodeWithText(menuItem.description).assertIsDisplayed()
-        onNodeWithText(menuItem.price).assertIsDisplayed()
+        with(onNodeWithContentDescription("Menu")) {
+            performScrollToNode(hasText(menuItem.title))
+            onNodeWithText(menuItem.title).assertIsDisplayed()
+
+            performScrollToNode(hasText(menuItem.description))
+            onNodeWithText(menuItem.description).assertIsDisplayed()
+
+            performScrollToNode(hasText(menuItem.price))
+            onNodeWithText(menuItem.price).assertIsDisplayed()
+        }
     }
 }
