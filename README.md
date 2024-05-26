@@ -1,5 +1,5 @@
 <h1 align="center"> Little Lemon Android Captone 2023 </h1> 
-🍋 This is a food ordering app developed in Kotlin and Jetpack Compose for the Little Lemon Restaurant. This app uses static, GitHub hosted json files, to present a list of menu items to the customer. This app has search and filtering functionalities to help clients find the food that is relevant for them. 
+🍋 This is a food menu app developed in Kotlin and Jetpack Compose for the Little Lemon Restaurant. This app uses static, GitHub hosted json files, to present a list of menu items to the customer. This app has search and filtering functionalities to help clients find the food that is relevant for them. 
 
 [![codecov](https://codecov.io/gh/mirianfonkam/LittleLemon/graph/badge.svg?token=TMS5PJIL87)](https://codecov.io/gh/mirianfonkam/LittleLemon)
 
