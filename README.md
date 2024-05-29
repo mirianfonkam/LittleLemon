@@ -43,7 +43,7 @@
 | [Maestro UI](https://maestro.mobile.dev)| Mobile UI Testing Framework             |
 | [Kover](https://github.com/Kotlin/kotlinx-kover)| Kotlin Code Coverage Tool               |
 
-For more insights into this project's architecture and testing strategy, please visit the (Wiki page)[https://github.com/mirianfonkam/LittleLemon/wiki].
+For more insights into this project's architecture and testing strategy, please visit the [Wiki page](https://github.com/mirianfonkam/LittleLemon/wiki).
 
 ## 📚 References
 
