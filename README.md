@@ -5,14 +5,13 @@
 
 ## 🎯 Objectives
 
-1. Create a pleasant and user friendly experience with screen components using **JetPack Compose** 
+1. Create user friendly experience using **JetPack Compose** 
 2. Use **Ktor** to consume data from the internet
 3. Implement tests with **JUnit** 
 
 ## 📲 Design & Screenshots
 
 - [Little Lemon Figma](https://www.figma.com/file/Kn9dkpxIqUgR4CR77SWEo1/Little-Lemon-food-ordering-app---Capstone-Project?type=design&node-id=0%3A1&t=agUK0VpMSCC0j29q-1)
-
 
 <p align="center">
   <img width="840" alt="image" src="https://github.com/mirianfonkam/LittleLemon/assets/28691174/5f7ebdd0-5ae6-421f-8698-51c287d57101">
@@ -31,7 +30,7 @@
  - [x] Searching Functionality - VM
  - [x] Improve Home Screen Composables
 
-[<< KanBan Board with Capstone Tasks >>](https://github.com/users/mirianfonkam/projects/5)
+[<< KanBan Board with Project Tasks >>](https://github.com/users/mirianfonkam/projects/5)
 
 ## 🛠️ Libraries & Tools
 
@@ -43,6 +42,8 @@
 | [Koin](https://github.com/InsertKoinIO/koin)| Dependency Injection                    |
 | [Maestro UI](https://maestro.mobile.dev)| Mobile UI Testing Framework             |
 | [Kover](https://github.com/Kotlin/kotlinx-kover)| Kotlin Code Coverage Tool               |
+
+For more insights into this project's architecture and testing strategy, please visit the (Wiki page)[https://github.com/mirianfonkam/LittleLemon/wiki].
 
 ## 📚 References
 
