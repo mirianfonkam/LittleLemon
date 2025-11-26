@@ -16,7 +16,7 @@ import io.mockk.verifySequence
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.testng.Assert.assertEquals
+import kotlin.test.assertEquals
 
 class LoginViewModelTest {
 

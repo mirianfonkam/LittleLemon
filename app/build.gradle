@@ -1,10 +1,10 @@
 plugins {
-    id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
-    id 'org.jetbrains.kotlin.plugin.serialization'
-    id 'com.google.devtools.ksp'
-    id 'org.jetbrains.kotlinx.kover'
-    id("org.jetbrains.kotlin.plugin.compose")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.compose)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.kover)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -121,7 +121,6 @@ dependencies {
 
     // Unit Tests
     testImplementation(libs.junit4)
-    testImplementation(libs.testng)
     testImplementation(libs.bundles.koin.test)
     testImplementation(libs.mockk)
     testImplementation(libs.kotlinx.coroutines.test)
