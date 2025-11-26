@@ -90,64 +90,46 @@ android {
 }
 
 dependencies {
-    def composeBom = platform('androidx.compose:compose-bom:2024.05.00')
-    def ktor_version = "2.1.3"
-    def koin_version = "3.4.0"
-    def mockk_version = "1.13.8"
-    def compose_navigation_version = "2.7.7"
-    def room_version = "2.6.1"
-    def androidx_test_version = "1.5.0"
-
-    implementation composeBom
-    implementation 'androidx.compose.material3:material3'
-    implementation 'androidx.compose.ui:ui'
-    implementation 'androidx.compose.ui:ui-tooling-preview'
-    implementation 'androidx.activity:activity-compose'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose'
-    implementation "androidx.lifecycle:lifecycle-runtime-compose"
-    implementation 'androidx.compose.runtime:runtime-livedata'
-    implementation("io.coil-kt:coil-compose:2.4.0")
-    implementation "androidx.navigation:navigation-compose:$compose_navigation_version"
+    implementation(platform(libs.compose.bom))
+    implementation(libs.compose.material3)
+    implementation(libs.compose.ui)
+    implementation(libs.compose.ui.tooling.preview)
+    implementation(libs.activity.compose)
+    implementation(libs.lifecycle.viewmodel.compose)
+    implementation(libs.lifecycle.runtime.compose)
+    implementation(libs.coil.compose)
+    implementation(libs.navigation.compose)
 
     // Room
-    implementation "androidx.room:room-runtime:$room_version"
-    implementation "androidx.room:room-ktx:$room_version"
-    ksp "androidx.room:room-compiler:$room_version"
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
 
     // Ktor
-    implementation "io.ktor:ktor-client-core:$ktor_version"
-    implementation "io.ktor:ktor-client-android:$ktor_version"
-    implementation "io.ktor:ktor-client-content-negotiation:$ktor_version"
-    implementation "io.ktor:ktor-serialization-kotlinx-json:$ktor_version"
-    implementation "io.ktor:ktor-client-mock:$ktor_version"
+    implementation(libs.bundles.ktor.client)
 
     // Koin
-    implementation "io.insert-koin:koin-androidx-compose:3.4.3"
-    implementation "io.insert-koin:koin-android:$koin_version"
+    implementation(libs.bundles.koin.android)
 
     // UI Tests
-    androidTestImplementation composeBom
-    androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
-    androidTestImplementation "io.mockk:mockk-android:$mockk_version"
-    androidTestImplementation "io.ktor:ktor-client-mock:$ktor_version"
-    androidTestImplementation "androidx.navigation:navigation-testing:$compose_navigation_version"
-    androidTestImplementation "androidx.test:core:$androidx_test_version"
-    androidTestImplementation "io.mockk:mockk-android:$mockk_version"
-    testImplementation("io.coil-kt:coil-test:2.4.0")
+    androidTestImplementation(platform(libs.compose.bom))
+    androidTestImplementation(libs.compose.ui.test.junit4)
+    androidTestImplementation(libs.navigation.testing)
+    androidTestImplementation(libs.androidx.test.core)
+    androidTestImplementation(libs.mockk.android)
+    testImplementation(libs.coil.test)
 
     // Unit Tests
-    testImplementation 'junit:junit:4.13.2'
-    testImplementation 'org.testng:testng:6.9.6'
-    testImplementation "io.insert-koin:koin-test:$koin_version"
-    testImplementation "io.insert-koin:koin-test-junit4:$koin_version"
-    testImplementation "io.insert-koin:koin-android-test:$koin_version"
-    testImplementation "io.mockk:mockk:$mockk_version"
-    testImplementation "io.ktor:ktor-client-mock:$ktor_version"
-    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3"
-    testImplementation "androidx.room:room-testing:$room_version"
-    implementation 'androidx.test:core-ktx:1.5.0'
-    implementation 'androidx.test.ext:junit-ktx:1.1.5'
+    testImplementation(libs.junit4)
+    testImplementation(libs.testng)
+    testImplementation(libs.bundles.koin.test)
+    testImplementation(libs.mockk)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.room.testing)
+    implementation(libs.androidx.test.core.ktx)
+    implementation(libs.androidx.test.ext.junit.ktx)
 
-    debugImplementation 'androidx.compose.ui:ui-test-manifest'
-    debugImplementation 'androidx.compose.ui:ui-tooling'
+    // Debug
+    debugImplementation(libs.compose.ui.test.manifest)
+    debugImplementation(libs.compose.ui.tooling)
 }
