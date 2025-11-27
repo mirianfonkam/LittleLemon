@@ -1,24 +1,29 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.compose)
+    alias(libs.plugins.dependency.guard)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.kover)
     alias(libs.plugins.ksp)
 }
 
+kotlin {
+    jvmToolchain(17)
+}
+
 android {
-    namespace 'com.mdevor.littlelemon'
-    compileSdk 34
+    namespace = 'com.mdevor.littlelemon'
+    compileSdk = 36
 
     defaultConfig {
-        applicationId "com.mdevor.littlelemon"
-        minSdk 24
-        targetSdkVersion 34
-        versionCode 1
-        versionName "1.0"
+        applicationId = "com.mdevor.littlelemon"
+        minSdk = 24
+        targetSdkVersion = 36
+        versionCode = 1
+        versionName = "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary true
         }
@@ -32,14 +37,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
-    }
-    kotlinOptions {
-        jvmTarget = '17'
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     buildFeatures {
-        compose true
+        compose = true
     }
     packagingOptions {
         resources.excludes.add("META-INF/*")
@@ -87,11 +89,19 @@ android {
             }
         }
     }
+    lint {
+        warningsAsErrors true
+    }
+}
+
+dependencyGuard {
+    configuration("releaseRuntimeClasspath")
 }
 
 dependencies {
     implementation(platform(libs.compose.bom))
     implementation(libs.compose.material3)
+    implementation(libs.compose.material.iconsExtended)
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.activity.compose)
@@ -125,8 +135,6 @@ dependencies {
     testImplementation(libs.mockk)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.room.testing)
-    implementation(libs.androidx.test.core.ktx)
-    implementation(libs.androidx.test.ext.junit.ktx)
 
     // Debug
     debugImplementation(libs.compose.ui.test.manifest)
