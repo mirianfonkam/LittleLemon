@@ -1,6 +1,8 @@
 package com.mdevor.littlelemon.presentation.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -15,8 +17,9 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.tooling.preview.Preview
 import com.mdevor.littlelemon.R
+import com.mdevor.littlelemon.presentation.theme.LittleLemonTheme
 
 @Composable
 fun HeroBannerContent() {
@@ -24,31 +27,49 @@ fun HeroBannerContent() {
         text = stringResource(id = R.string.app_name),
         style = MaterialTheme.typography.displayLarge,
     )
-    Text(
-        text = stringResource(R.string.home_banner_subtitle),
-        color = MaterialTheme.colorScheme.surface,
-        style = MaterialTheme.typography.displayMedium
-    )
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(bottom = dimensionResource(id = R.dimen.spacing_xx_large))
+            .padding(bottom = dimensionResource(id = R.dimen.spacing_medium))
     ) {
-        Text(
-            text = stringResource(R.string.home_banner_description),
-            style = MaterialTheme.typography.displaySmall,
-            color = MaterialTheme.colorScheme.surface,
-            modifier = Modifier
-                .weight(weight = 0.5f)
-                .padding(end = dimensionResource(id = R.dimen.spacing_x_small)),
-        )
+        Column(
+            modifier = Modifier.weight(weight = 0.5f)
+        ) {
+            Text(
+                text = stringResource(R.string.home_banner_subtitle),
+                color = MaterialTheme.colorScheme.surface,
+                style = MaterialTheme.typography.displayMedium
+            )
+            Text(
+                modifier = Modifier
+                    .padding(end = dimensionResource(id = R.dimen.spacing_x_small)),
+                text = stringResource(R.string.home_banner_description),
+                style = MaterialTheme.typography.displaySmall,
+                color = MaterialTheme.colorScheme.surface,
+            )
+        }
         Image(
+            modifier = Modifier
+                .size(dimensionResource(R.dimen.hero_banner_image_size))
+                .clip(RoundedCornerShape(dimensionResource(id = R.dimen.spacing_medium))),
             painter = painterResource(R.drawable.hero_image),
             contentDescription = "",
             contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .size(120.dp)
-                .clip(RoundedCornerShape(dimensionResource(id = R.dimen.spacing_medium)))
         )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun HeroBannerContentPreview() {
+    LittleLemonTheme {
+        Column(
+            modifier = Modifier
+                .background(color = MaterialTheme.colorScheme.secondary)
+                .padding(horizontal = dimensionResource(id = R.dimen.spacing_small))
+                .fillMaxWidth(),
+        ) {
+            HeroBannerContent()
+        }
     }
 }

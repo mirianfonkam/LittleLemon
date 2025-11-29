@@ -9,4 +9,6 @@
     <dimen name="spacing_large">24dp</dimen>
     <dimen name="spacing_x_large">32dp</dimen>
     <dimen name="spacing_xx_large">48dp</dimen>
+    <dimen name="menu_item_image_size">70dp</dimen>
+    <dimen name="hero_banner_image_size">120dp</dimen>
 </resources>

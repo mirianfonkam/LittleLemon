@@ -16,7 +16,6 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.mdevor.littlelemon.R
 import com.mdevor.littlelemon.presentation.model.MenuItemData
@@ -24,7 +23,7 @@ import com.mdevor.littlelemon.presentation.theme.LittleLemonTheme
 
 @Composable
 fun DishItem(
-    modifier: Modifier = Modifier.fillMaxWidth(),
+    modifier: Modifier,
     menuItem: MenuItemData,
 ) {
     Row(
@@ -57,15 +56,15 @@ fun DishItem(
             )
         }
         AsyncImage(
+            modifier = Modifier
+                .size( dimensionResource(id = R.dimen.menu_item_image_size))
+                .align(CenterVertically),
             model = menuItem.image,
             contentDescription = stringResource(
                 R.string.dish_item_image_content_desc,
                 menuItem.title
             ),
             contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .size(70.dp)
-                .align(CenterVertically)
         )
     }
 }
@@ -75,6 +74,7 @@ fun DishItem(
 fun DishItemPreview() {
     LittleLemonTheme {
         DishItem(
+            modifier = Modifier.fillMaxWidth(),
             menuItem = MenuItemData(
                 title = "Pasta",
                 description = "Delicious pasta for your delight.",

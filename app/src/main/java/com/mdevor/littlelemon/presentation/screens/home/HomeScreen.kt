@@ -76,7 +76,7 @@ fun HomeScreenContent(viewState: HomeUiState, viewAction: (HomeUiAction) -> Unit
                 backgroundColor = MaterialTheme.colorScheme.surfaceVariant,
                 placeholderText = stringResource(R.string.search),
             )
-            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.spacing_x_large)))
+            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.spacing_medium)))
         }
         FilterList(
             categories = viewState.categoryList,
@@ -104,17 +104,17 @@ private fun DishItemList(dishList: List<MenuItemData>) {
     val dishItemListContentDescription = stringResource(R.string.menu)
     LazyColumn(
         modifier = Modifier
-            .padding(horizontal = dimensionResource(id = R.dimen.spacing_medium))
+            .padding(horizontal = dimensionResource(id = R.dimen.spacing_small))
             .semantics {
                 contentDescription = dishItemListContentDescription
             },
     ) {
         itemsIndexed(items = dishList) { _, item ->
             DishItem(
-                menuItem = item,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = dimensionResource(id = R.dimen.spacing_x_large))
+                    .padding(vertical = dimensionResource(id = R.dimen.spacing_x_large)),
+                menuItem = item,
             )
             LineDivider(
                 color = MaterialTheme.colorScheme.surfaceVariant
